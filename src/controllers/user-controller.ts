@@ -1,8 +1,15 @@
-import { Request, Response } from "express";
+import express from "express";
 import prisma from "../config/prisma-config.ts";
 import bcrypt from "bcryptjs";
 import { generateAccessToken, generateRefreshToken, setRefreshCookie } from "../utils/generateToken.ts";
 import jwt from "jsonwebtoken";
+import generateOtp, { setOtp, getOtp, clearOtp, isInCooldown } from "../utils/otpUtils.ts";
+import { sendOtpEmail } from "../utils/nodemailer.ts";
+
+type Request = express.Request;
+type Response = express.Response;
+const otpExpiryMin = parseInt(process.env.OTP_EXPIRES_IN_MINUTES || '10');
+const cooldownSec = parseInt(process.env.OTP_COOLDOWN_SECONDS || '60');
 
 export const registerUser = async (req: Request, res: Response):Promise<void> => {
     try {
@@ -25,7 +32,7 @@ export const registerUser = async (req: Request, res: Response):Promise<void> =>
         }
         const saltRounds = 10;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        
+        const otp = generateOtp ();
         const accessToken = generateAccessToken({
             username,
             email,
@@ -46,10 +53,11 @@ export const registerUser = async (req: Request, res: Response):Promise<void> =>
                 accessToken
             }
         });
-
+        setOtp(email, otp, otpExpiryMin, cooldownSec);
+        await sendOtpEmail(email, otp);
         res.status(201).json({
             status: 201,
-            message: "User registered successfully",
+            message: "User registered successfully, otp sent to email",
             user,
             refreshToken
         });   
@@ -143,4 +151,77 @@ export const logout = (req: Request, res: Response) => {
     sameSite: "strict",
   });
   res.json({ message: "Logged out successfully" });
+};
+
+export const verifyOtp = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email, code } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+  }  
+    if (user.isVerified) {
+        res.status(400).json({ message: 'Already verified' });
+        return;
+    }
+
+  const record = getOtp(email);
+  if (!record || record.otp !== code) {
+      res.status(400).json({ message: 'Invalid or expired OTP' });
+      return;
+  }
+
+  if (new Date() > record.expiresAt) {
+      res.status(400).json({ message: 'OTP expired' });
+      return;
+  }
+
+  await prisma.user.update({
+    where: { email },
+    data: { isVerified: true },
+  });
+
+  clearOtp(email);
+    res.status(200).json({ message: 'Email verified successfully' });
+    } catch (error) {
+        console.error("Error in verifyOtp:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+        
+    }
+  
+    
+};
+
+export const resendOtp = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+    }
+    if (user.isVerified) {
+       
+        res.status(400).json({ message: 'Already verified' });
+        return;
+    }
+
+  if (isInCooldown(email)) {
+      res.status(429).json({ message: 'Please wait before requesting a new OTP' });
+      return;
+  }
+
+  const otp = generateOtp();
+  setOtp(email, otp, otpExpiryMin, cooldownSec);
+  await sendOtpEmail(email, otp);
+
+  res.status(200).json({ message: 'New OTP sent' });
+    } catch (error) {
+        console.error("Error in resending otp:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+  
 };
