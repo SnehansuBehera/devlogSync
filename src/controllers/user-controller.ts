@@ -1,10 +1,10 @@
 import express from "express";
-import prisma from "../config/prisma-config.ts";
+import prisma from "../config/prisma-config";
 import bcrypt from "bcryptjs";
-import { generateAccessToken, generateRefreshToken, setRefreshCookie } from "../utils/generateToken.ts";
+import { generateAccessToken, generateRefreshToken, setRefreshCookie } from "../utils/generateToken";
 import jwt from "jsonwebtoken";
-import generateOtp, { setOtp, getOtp, clearOtp, isInCooldown } from "../utils/otpUtils.ts";
-import { sendOtpEmail } from "../utils/nodemailer.ts";
+import generateOtp, { setOtp, getOtp, clearOtp, isInCooldown } from "../utils/otpUtils";
+import { sendOtpEmail } from "../utils/nodemailer";
 
 type Request = express.Request;
 type Response = express.Response;

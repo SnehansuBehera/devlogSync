@@ -1,6 +1,6 @@
 import express from 'express';
-import { accessTokenUsingRefreshToken, login, logout, registerUser, resendOtp, verifyOtp } from '../controllers/user-controller.ts';
-import { socialAuthController } from '../controllers/socialAuth-controller.ts';
+import { accessTokenUsingRefreshToken, login, logout, registerUser, resendOtp, verifyOtp } from '../controllers/user-controller';
+import { socialAuthController } from '../controllers/socialAuth-controller';
 
 
 const router = express.Router();

@@ -1,5 +1,5 @@
 import express from "express";
-import prisma from "../config/prisma-config.ts";
+import prisma from "../config/prisma-config";
 
 
 type Request = express.Request;

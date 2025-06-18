@@ -1,5 +1,5 @@
 import express from "express";
-import authRouter from "./routes/user-routes.ts";
+import authRouter from "./routes/user-routes";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
