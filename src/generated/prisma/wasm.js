@@ -145,6 +145,40 @@ exports.Prisma.AccountScalarFieldEnum = {
   expiresAt: 'expiresAt'
 };
 
+exports.Prisma.ProjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.TaskScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  startDate: 'startDate',
+  dueDate: 'dueDate',
+  status: 'status',
+  projectId: 'projectId',
+  assignedToId: 'assignedToId',
+  assignedById: 'assignedById',
+  updatedById: 'updatedById',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  completedOn: 'completedOn'
+};
+
+exports.Prisma.GitHubRepoScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  url: 'url',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  projectId: 'projectId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -159,11 +193,18 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.TaskStatus = exports.$Enums.TaskStatus = {
+  PENDING: 'PENDING',
+  COMPLETED: 'COMPLETED',
+  OVERDUE: 'OVERDUE'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Account: 'Account'
+  Account: 'Account',
+  Project: 'Project',
+  Task: 'Task',
+  GitHubRepo: 'GitHubRepo'
 };
 
 /**

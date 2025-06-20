@@ -10,11 +10,12 @@ declare global {
   }
 }
 
-export const jwtVerify = async (res: Response, req: Request, next: NextFunction) => {
+export const jwtVerify = async (req: Request, res: Response, next: NextFunction):Promise<void> => {
 
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) {
-        return res.status(401).json({ status: 401, message: "Access token is missing" });
+      res.status(401).json({ status: 401, message: "Access token is missing" });
+      return;
     }
 
     try {
@@ -28,6 +29,6 @@ export const jwtVerify = async (res: Response, req: Request, next: NextFunction)
         next();
     } catch (error) {
         console.error("JWT verification error:", error);
-        return res.status(403).json({ status: 403, message: "Invalid or expired token" });
+        res.status(403).json({ status: 403, message: "Invalid or expired token" });
     }
 }

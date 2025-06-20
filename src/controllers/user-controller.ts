@@ -11,61 +11,85 @@ type Response = express.Response;
 const otpExpiryMin = parseInt(process.env.OTP_EXPIRES_IN_MINUTES || '10');
 const cooldownSec = parseInt(process.env.OTP_COOLDOWN_SECONDS || '60');
 
-export const registerUser = async (req: Request, res: Response):Promise<void> => {
-    try {
-        const { firstName, lastName, email, password, username } = req.body;
-        if (!firstName || !lastName || !email || !password || !username) {
-            res.status(400).json({ status: 400, message: "All fields are required" });
-            return;
-        }
-        const existingUser = await prisma.user.findFirst({
-            where: {
-                OR: [
-                    { email },
-                    { username }
-                ]
-            }
-        });
-        if (existingUser) {
-            res.status(409).json({ status: 409, message: "Email or username already exists" });
-            return;
-        }
-        const saltRounds = 10;
-        const hashedPassword = await bcrypt.hash(password, saltRounds);
-        const otp = generateOtp ();
-        const accessToken = generateAccessToken({
-            username,
-            email,
-    
-        });
-        const refreshToken = generateRefreshToken({
-            username,
-            email,
-        })
-        setRefreshCookie(res, refreshToken);
-        const user = await prisma.user.create({
-            data: {
-                firstName,
-                lastName: lastName,
-                email,
-                password: hashedPassword,
-                username,
-                accessToken
-            }
-        });
-        setOtp(email, otp, otpExpiryMin, cooldownSec);
-        await sendOtpEmail(email, otp);
-        res.status(201).json({
-            status: 201,
-            message: "User registered successfully, otp sent to email",
-            user,
-            refreshToken
-        });   
-    } catch (error) {
-        console.error("Error in Register:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+export const registerUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { firstName, lastName, email, password, username } = req.body;
+
+    if (!firstName || !lastName || !email || !password || !username) {
+      res.status(400).json({ status: 400, message: "All fields are required" });
+      return;
     }
-}
+
+    const existingUser = await prisma.user.findFirst({
+      where: {
+        OR: [
+          { email },
+          { username }
+        ]
+      }
+    });
+
+    if (existingUser) {
+      res.status(409).json({ status: 409, message: "Email or username already exists" });
+      return;
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+    const otp = generateOtp();
+
+    const createdUser = await prisma.user.create({
+      data: {
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        username,
+      }
+    });
+
+    const accessToken = generateAccessToken({
+      id: createdUser.id,
+      username,
+      email,
+    });
+
+    const refreshToken = generateRefreshToken({
+      id: createdUser.id,
+      username,
+      email,
+    });
+
+    await prisma.user.update({
+      where: { id: createdUser.id },
+      data: { accessToken }
+    });
+
+    setRefreshCookie(res, refreshToken);
+
+    setOtp(email, otp, otpExpiryMin, cooldownSec);
+    await sendOtpEmail(email, otp);
+
+    res.status(201).json({
+      status: 201,
+      message: "User registered successfully, OTP sent to email",
+      user: {
+        id: createdUser.id,
+        firstName: createdUser.firstName,
+        lastName: createdUser.lastName,
+        email: createdUser.email,
+        username: createdUser.username,
+        accessToken,
+      },
+      refreshToken
+    });
+
+  } catch (error) {
+    console.error("Error in Register:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
 
 export const login = async (req: Request, res: Response):Promise<void> => { 
     try {
@@ -95,10 +119,12 @@ export const login = async (req: Request, res: Response):Promise<void> => {
         const accessToken = generateAccessToken({
             username: user.username,
             email: user.email,
+            id: user.id
         });
         const refreshToken = generateRefreshToken({
             username: user.username,
             email: user.email,
+            id: user.id
         });
         setRefreshCookie(res, refreshToken)
         await prisma.user.update({
@@ -132,7 +158,7 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
         }
         const decode = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
         if (typeof decode === "object" && decode !== null && "username" in decode && "email" in decode) {
-            const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email });
+            const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
           res.status(201).json({status: 201,message:"Access token created successfully", accessToken: newAccessToken });
         } else {
             res.status(401).json({ status: 401, message: "Invalid refresh token" });
