@@ -116,6 +116,13 @@ export const getAllTasksOfUser = async (req: Request, res: Response): Promise<vo
                 assignedBy: true,
             },
         }); 
+        await prisma.task.updateMany({
+            where: {
+                dueDate: { lt: new Date() },
+                status: "PENDING",
+            },
+            data: { status: "OVERDUE" },
+        });
         if (!tasks || tasks.length === 0) {
             res.status(404).json({ error: 'No tasks found for this user' });
             return;
@@ -150,6 +157,14 @@ export const getAllProjectTasksOfUser = async (req: Request, res: Response): Pro
                 assignedBy: true,
             },
         });
+        await prisma.task.updateMany({
+            where: {
+            dueDate: { lt: new Date() },
+            status: "PENDING",
+        },
+        data: { status: "OVERDUE" },
+        });
+
         if (!tasks || tasks.length === 0) {
             res.status(404).json({ error: 'No tasks found for this user in the project' });
             return;
@@ -161,3 +176,63 @@ export const getAllProjectTasksOfUser = async (req: Request, res: Response): Pro
         res.status(500).json({ error: "Internal Server Error" });
     }
 }
+
+export const markTaskCompleted = async (req: Request, response: Response): Promise<void> => {
+    try {
+        const taskId = parseInt(req.params.taskId);
+        if( isNaN(taskId)) {
+            response.status(400).json({ error: 'Invalid task ID' });
+            return;
+        }
+        const task = await prisma.task.update({
+            where: { id: taskId },
+            data: {
+                status: 'COMPLETED',
+                completedOn: new Date(),
+            }
+        });
+        if (!task) {
+            response.status(404).json({
+                status: 404,
+                message: "Task not found",
+                
+            });
+            return;
+        }
+        response.status(200).json({
+            status: 200,    
+            message: "Task marked as completed successfully",
+            data: task
+        });
+    } catch (error) {
+        console.error("Error in marking task as completed:", error);
+        response.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+export const updateTask = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const taskId = parseInt(req.params.taskId);
+        if (isNaN(taskId)) {
+            res.status(400).json({ error: 'Invalid task ID' });
+            return;
+        }
+        const { title, description, startDate, dueDate, assignedToId } = req.body;
+
+        const updatedTask = await prisma.task.update({
+            where: { id: taskId },
+            data: {
+                title,
+                description,
+                startDate: new Date(startDate),
+                dueDate: new Date(dueDate),
+                assignedToId,
+            },
+        });
+
+        res.status(200).json({ status: 200, message: "Task updated successfully", data: updatedTask });
+    } catch (error) {
+        console.error("Error in updating task:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}   
