@@ -15,24 +15,29 @@ datasource db {
 }
 
 model User {
-  id             Int       @id @default(autoincrement())
-  email          String    @unique
-  password       String?
-  firstName      String?
-  lastName       String?
-  username       String?   @unique
-  image          String?
-  isActive       Boolean   @default(false)
-  isAdmin        Boolean   @default(false)
-  isVerified     Boolean   @default(false)
-  createdAt      DateTime  @default(now())
-  accessToken    String?
-  accounts       Account[]
-  Project        Project[]
-  ProjectMembers Project[] @relation("ProjectMembers")
-  assignedTasks  Task[]    @relation("AssignedTo")
-  createdTasks   Task[]    @relation("AssignedBy")
-  updatedTasks   Task[]    @relation("UpdatedBy")
+  id                Int                 @id @default(autoincrement())
+  email             String              @unique
+  password          String?
+  firstName         String?
+  lastName          String?
+  username          String?             @unique
+  image             String?
+  isActive          Boolean             @default(false)
+  isAdmin           Boolean             @default(false)
+  isVerified        Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  accessToken       String?
+  githubToken       String?
+  githubUsername    String?
+  accounts          Account[]
+  Project           Project[]
+  ProjectMembers    Project[]           @relation("ProjectMembers")
+  assignedTasks     Task[]              @relation("AssignedTo")
+  createdTasks      Task[]              @relation("AssignedBy")
+  updatedTasks      Task[]              @relation("UpdatedBy")
+  GitHubCommit      GitHubCommit[]
+  GitHubCommitGroup GitHubCommitGroup[]
+  DailyLog          DailyLog[]
 }
 
 model Account {
@@ -92,12 +97,46 @@ enum TaskStatus {
 }
 
 model GitHubRepo {
-  id        Int      @id @default(autoincrement())
-  name      String
-  url       String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  projectId Int
+  id                Int                 @id @default(autoincrement())
+  name              String
+  url               String
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  projectId         Int
+  webHookId         Int?
+  project           Project             @relation(fields: [projectId], references: [id])
+  GitHubCommit      GitHubCommit[]
+  GitHubCommitGroup GitHubCommitGroup[]
+}
 
-  project Project @relation(fields: [projectId], references: [id])
+model GitHubCommit {
+  id                  Int                @id @default(autoincrement())
+  repoId              Int
+  userId              Int
+  repo                GitHubRepo         @relation(fields: [repoId], references: [id])
+  user                User               @relation(fields: [userId], references: [id])
+  commitDate          DateTime           @db.Date
+  timing              DateTime           @db.Time
+  message             String
+  GitHubCommitGroup   GitHubCommitGroup? @relation(fields: [gitHubCommitGroupId], references: [id])
+  gitHubCommitGroupId Int?
+}
+
+model GitHubCommitGroup {
+  id      Int            @id @default(autoincrement())
+  user    User           @relation(fields: [userId], references: [id])
+  userId  Int
+  repo    GitHubRepo     @relation(fields: [repoId], references: [id])
+  repoId  Int
+  commits GitHubCommit[] @relation()
+}
+
+model DailyLog {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  date      DateTime
+  works     Json // stores [{ commitId: Int, time: Float }]
+  aiSummary String?
+  export    String?
 }

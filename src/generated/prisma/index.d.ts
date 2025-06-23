@@ -38,6 +38,21 @@ export type Task = $Result.DefaultSelection<Prisma.$TaskPayload>
  * 
  */
 export type GitHubRepo = $Result.DefaultSelection<Prisma.$GitHubRepoPayload>
+/**
+ * Model GitHubCommit
+ * 
+ */
+export type GitHubCommit = $Result.DefaultSelection<Prisma.$GitHubCommitPayload>
+/**
+ * Model GitHubCommitGroup
+ * 
+ */
+export type GitHubCommitGroup = $Result.DefaultSelection<Prisma.$GitHubCommitGroupPayload>
+/**
+ * Model DailyLog
+ * 
+ */
+export type DailyLog = $Result.DefaultSelection<Prisma.$DailyLogPayload>
 
 /**
  * Enums
@@ -231,6 +246,36 @@ export class PrismaClient<
     * ```
     */
   get gitHubRepo(): Prisma.GitHubRepoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.gitHubCommit`: Exposes CRUD operations for the **GitHubCommit** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GitHubCommits
+    * const gitHubCommits = await prisma.gitHubCommit.findMany()
+    * ```
+    */
+  get gitHubCommit(): Prisma.GitHubCommitDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.gitHubCommitGroup`: Exposes CRUD operations for the **GitHubCommitGroup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more GitHubCommitGroups
+    * const gitHubCommitGroups = await prisma.gitHubCommitGroup.findMany()
+    * ```
+    */
+  get gitHubCommitGroup(): Prisma.GitHubCommitGroupDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyLog`: Exposes CRUD operations for the **DailyLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyLogs
+    * const dailyLogs = await prisma.dailyLog.findMany()
+    * ```
+    */
+  get dailyLog(): Prisma.DailyLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -675,7 +720,10 @@ export namespace Prisma {
     Account: 'Account',
     Project: 'Project',
     Task: 'Task',
-    GitHubRepo: 'GitHubRepo'
+    GitHubRepo: 'GitHubRepo',
+    GitHubCommit: 'GitHubCommit',
+    GitHubCommitGroup: 'GitHubCommitGroup',
+    DailyLog: 'DailyLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -694,7 +742,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo"
+      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo" | "gitHubCommit" | "gitHubCommitGroup" | "dailyLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1068,6 +1116,228 @@ export namespace Prisma {
           }
         }
       }
+      GitHubCommit: {
+        payload: Prisma.$GitHubCommitPayload<ExtArgs>
+        fields: Prisma.GitHubCommitFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GitHubCommitFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GitHubCommitFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          findFirst: {
+            args: Prisma.GitHubCommitFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GitHubCommitFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          findMany: {
+            args: Prisma.GitHubCommitFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>[]
+          }
+          create: {
+            args: Prisma.GitHubCommitCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          createMany: {
+            args: Prisma.GitHubCommitCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GitHubCommitCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>[]
+          }
+          delete: {
+            args: Prisma.GitHubCommitDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          update: {
+            args: Prisma.GitHubCommitUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          deleteMany: {
+            args: Prisma.GitHubCommitDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GitHubCommitUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GitHubCommitUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>[]
+          }
+          upsert: {
+            args: Prisma.GitHubCommitUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitPayload>
+          }
+          aggregate: {
+            args: Prisma.GitHubCommitAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGitHubCommit>
+          }
+          groupBy: {
+            args: Prisma.GitHubCommitGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GitHubCommitGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GitHubCommitCountArgs<ExtArgs>
+            result: $Utils.Optional<GitHubCommitCountAggregateOutputType> | number
+          }
+        }
+      }
+      GitHubCommitGroup: {
+        payload: Prisma.$GitHubCommitGroupPayload<ExtArgs>
+        fields: Prisma.GitHubCommitGroupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.GitHubCommitGroupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.GitHubCommitGroupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          findFirst: {
+            args: Prisma.GitHubCommitGroupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.GitHubCommitGroupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          findMany: {
+            args: Prisma.GitHubCommitGroupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>[]
+          }
+          create: {
+            args: Prisma.GitHubCommitGroupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          createMany: {
+            args: Prisma.GitHubCommitGroupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.GitHubCommitGroupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>[]
+          }
+          delete: {
+            args: Prisma.GitHubCommitGroupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          update: {
+            args: Prisma.GitHubCommitGroupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          deleteMany: {
+            args: Prisma.GitHubCommitGroupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.GitHubCommitGroupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.GitHubCommitGroupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>[]
+          }
+          upsert: {
+            args: Prisma.GitHubCommitGroupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$GitHubCommitGroupPayload>
+          }
+          aggregate: {
+            args: Prisma.GitHubCommitGroupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGitHubCommitGroup>
+          }
+          groupBy: {
+            args: Prisma.GitHubCommitGroupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GitHubCommitGroupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.GitHubCommitGroupCountArgs<ExtArgs>
+            result: $Utils.Optional<GitHubCommitGroupCountAggregateOutputType> | number
+          }
+        }
+      }
+      DailyLog: {
+        payload: Prisma.$DailyLogPayload<ExtArgs>
+        fields: Prisma.DailyLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findFirst: {
+            args: Prisma.DailyLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findMany: {
+            args: Prisma.DailyLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          create: {
+            args: Prisma.DailyLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          createMany: {
+            args: Prisma.DailyLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          delete: {
+            args: Prisma.DailyLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          update: {
+            args: Prisma.DailyLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          aggregate: {
+            args: Prisma.DailyLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyLog>
+          }
+          groupBy: {
+            args: Prisma.DailyLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyLogCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1157,6 +1427,9 @@ export namespace Prisma {
     project?: ProjectOmit
     task?: TaskOmit
     gitHubRepo?: GitHubRepoOmit
+    gitHubCommit?: GitHubCommitOmit
+    gitHubCommitGroup?: GitHubCommitGroupOmit
+    dailyLog?: DailyLogOmit
   }
 
   /* Types for Logging */
@@ -1257,6 +1530,9 @@ export namespace Prisma {
     assignedTasks: number
     createdTasks: number
     updatedTasks: number
+    GitHubCommit: number
+    GitHubCommitGroup: number
+    DailyLog: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1266,6 +1542,9 @@ export namespace Prisma {
     assignedTasks?: boolean | UserCountOutputTypeCountAssignedTasksArgs
     createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
     updatedTasks?: boolean | UserCountOutputTypeCountUpdatedTasksArgs
+    GitHubCommit?: boolean | UserCountOutputTypeCountGitHubCommitArgs
+    GitHubCommitGroup?: boolean | UserCountOutputTypeCountGitHubCommitGroupArgs
+    DailyLog?: boolean | UserCountOutputTypeCountDailyLogArgs
   }
 
   // Custom InputTypes
@@ -1321,6 +1600,27 @@ export namespace Prisma {
     where?: TaskWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountGitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountGitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitGroupWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountDailyLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyLogWhereInput
+  }
+
 
   /**
    * Count Type ProjectCountOutputType
@@ -1372,6 +1672,77 @@ export namespace Prisma {
 
 
   /**
+   * Count Type GitHubRepoCountOutputType
+   */
+
+  export type GitHubRepoCountOutputType = {
+    GitHubCommit: number
+    GitHubCommitGroup: number
+  }
+
+  export type GitHubRepoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    GitHubCommit?: boolean | GitHubRepoCountOutputTypeCountGitHubCommitArgs
+    GitHubCommitGroup?: boolean | GitHubRepoCountOutputTypeCountGitHubCommitGroupArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GitHubRepoCountOutputType without action
+   */
+  export type GitHubRepoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubRepoCountOutputType
+     */
+    select?: GitHubRepoCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GitHubRepoCountOutputType without action
+   */
+  export type GitHubRepoCountOutputTypeCountGitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitWhereInput
+  }
+
+  /**
+   * GitHubRepoCountOutputType without action
+   */
+  export type GitHubRepoCountOutputTypeCountGitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitGroupWhereInput
+  }
+
+
+  /**
+   * Count Type GitHubCommitGroupCountOutputType
+   */
+
+  export type GitHubCommitGroupCountOutputType = {
+    commits: number
+  }
+
+  export type GitHubCommitGroupCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commits?: boolean | GitHubCommitGroupCountOutputTypeCountCommitsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GitHubCommitGroupCountOutputType without action
+   */
+  export type GitHubCommitGroupCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroupCountOutputType
+     */
+    select?: GitHubCommitGroupCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GitHubCommitGroupCountOutputType without action
+   */
+  export type GitHubCommitGroupCountOutputTypeCountCommitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1408,6 +1779,8 @@ export namespace Prisma {
     isVerified: boolean | null
     createdAt: Date | null
     accessToken: string | null
+    githubToken: string | null
+    githubUsername: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1423,6 +1796,8 @@ export namespace Prisma {
     isVerified: boolean | null
     createdAt: Date | null
     accessToken: string | null
+    githubToken: string | null
+    githubUsername: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1438,6 +1813,8 @@ export namespace Prisma {
     isVerified: number
     createdAt: number
     accessToken: number
+    githubToken: number
+    githubUsername: number
     _all: number
   }
 
@@ -1463,6 +1840,8 @@ export namespace Prisma {
     isVerified?: true
     createdAt?: true
     accessToken?: true
+    githubToken?: true
+    githubUsername?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1478,6 +1857,8 @@ export namespace Prisma {
     isVerified?: true
     createdAt?: true
     accessToken?: true
+    githubToken?: true
+    githubUsername?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1493,6 +1874,8 @@ export namespace Prisma {
     isVerified?: true
     createdAt?: true
     accessToken?: true
+    githubToken?: true
+    githubUsername?: true
     _all?: true
   }
 
@@ -1595,6 +1978,8 @@ export namespace Prisma {
     isVerified: boolean
     createdAt: Date
     accessToken: string | null
+    githubToken: string | null
+    githubUsername: string | null
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1629,12 +2014,17 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: boolean
     accessToken?: boolean
+    githubToken?: boolean
+    githubUsername?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
     Project?: boolean | User$ProjectArgs<ExtArgs>
     ProjectMembers?: boolean | User$ProjectMembersArgs<ExtArgs>
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
+    GitHubCommit?: boolean | User$GitHubCommitArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
+    DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1651,6 +2041,8 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: boolean
     accessToken?: boolean
+    githubToken?: boolean
+    githubUsername?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1666,6 +2058,8 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: boolean
     accessToken?: boolean
+    githubToken?: boolean
+    githubUsername?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1681,9 +2075,11 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: boolean
     accessToken?: boolean
+    githubToken?: boolean
+    githubUsername?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "username" | "image" | "isActive" | "isAdmin" | "isVerified" | "createdAt" | "accessToken", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "firstName" | "lastName" | "username" | "image" | "isActive" | "isAdmin" | "isVerified" | "createdAt" | "accessToken" | "githubToken" | "githubUsername", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     Project?: boolean | User$ProjectArgs<ExtArgs>
@@ -1691,6 +2087,9 @@ export namespace Prisma {
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
+    GitHubCommit?: boolean | User$GitHubCommitArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
+    DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1705,6 +2104,9 @@ export namespace Prisma {
       assignedTasks: Prisma.$TaskPayload<ExtArgs>[]
       createdTasks: Prisma.$TaskPayload<ExtArgs>[]
       updatedTasks: Prisma.$TaskPayload<ExtArgs>[]
+      GitHubCommit: Prisma.$GitHubCommitPayload<ExtArgs>[]
+      GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs>[]
+      DailyLog: Prisma.$DailyLogPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1719,6 +2121,8 @@ export namespace Prisma {
       isVerified: boolean
       createdAt: Date
       accessToken: string | null
+      githubToken: string | null
+      githubUsername: string | null
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2119,6 +2523,9 @@ export namespace Prisma {
     assignedTasks<T extends User$assignedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$assignedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdTasks<T extends User$createdTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updatedTasks<T extends User$updatedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$updatedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GitHubCommit<T extends User$GitHubCommitArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubCommitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GitHubCommitGroup<T extends User$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubCommitGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    DailyLog<T extends User$DailyLogArgs<ExtArgs> = {}>(args?: Subset<T, User$DailyLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2160,6 +2567,8 @@ export namespace Prisma {
     readonly isVerified: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly accessToken: FieldRef<"User", 'String'>
+    readonly githubToken: FieldRef<"User", 'String'>
+    readonly githubUsername: FieldRef<"User", 'String'>
   }
     
 
@@ -2689,6 +3098,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
+  }
+
+  /**
+   * User.GitHubCommit
+   */
+  export type User$GitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    where?: GitHubCommitWhereInput
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    cursor?: GitHubCommitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * User.GitHubCommitGroup
+   */
+  export type User$GitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    where?: GitHubCommitGroupWhereInput
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubCommitGroupScalarFieldEnum | GitHubCommitGroupScalarFieldEnum[]
+  }
+
+  /**
+   * User.DailyLog
+   */
+  export type User$DailyLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    where?: DailyLogWhereInput
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    cursor?: DailyLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
   }
 
   /**
@@ -6297,11 +6778,13 @@ export namespace Prisma {
   export type GitHubRepoAvgAggregateOutputType = {
     id: number | null
     projectId: number | null
+    webHookId: number | null
   }
 
   export type GitHubRepoSumAggregateOutputType = {
     id: number | null
     projectId: number | null
+    webHookId: number | null
   }
 
   export type GitHubRepoMinAggregateOutputType = {
@@ -6311,6 +6794,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     projectId: number | null
+    webHookId: number | null
   }
 
   export type GitHubRepoMaxAggregateOutputType = {
@@ -6320,6 +6804,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     projectId: number | null
+    webHookId: number | null
   }
 
   export type GitHubRepoCountAggregateOutputType = {
@@ -6329,6 +6814,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     projectId: number
+    webHookId: number
     _all: number
   }
 
@@ -6336,11 +6822,13 @@ export namespace Prisma {
   export type GitHubRepoAvgAggregateInputType = {
     id?: true
     projectId?: true
+    webHookId?: true
   }
 
   export type GitHubRepoSumAggregateInputType = {
     id?: true
     projectId?: true
+    webHookId?: true
   }
 
   export type GitHubRepoMinAggregateInputType = {
@@ -6350,6 +6838,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     projectId?: true
+    webHookId?: true
   }
 
   export type GitHubRepoMaxAggregateInputType = {
@@ -6359,6 +6848,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     projectId?: true
+    webHookId?: true
   }
 
   export type GitHubRepoCountAggregateInputType = {
@@ -6368,6 +6858,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     projectId?: true
+    webHookId?: true
     _all?: true
   }
 
@@ -6464,6 +6955,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     projectId: number
+    webHookId: number | null
     _count: GitHubRepoCountAggregateOutputType | null
     _avg: GitHubRepoAvgAggregateOutputType | null
     _sum: GitHubRepoSumAggregateOutputType | null
@@ -6492,7 +6984,11 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projectId?: boolean
+    webHookId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    GitHubCommit?: boolean | GitHubRepo$GitHubCommitArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubRepo$GitHubCommitGroupArgs<ExtArgs>
+    _count?: boolean | GitHubRepoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubRepo"]>
 
   export type GitHubRepoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6502,6 +6998,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projectId?: boolean
+    webHookId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubRepo"]>
 
@@ -6512,6 +7009,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projectId?: boolean
+    webHookId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubRepo"]>
 
@@ -6522,11 +7020,15 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     projectId?: boolean
+    webHookId?: boolean
   }
 
-  export type GitHubRepoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "createdAt" | "updatedAt" | "projectId", ExtArgs["result"]["gitHubRepo"]>
+  export type GitHubRepoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "createdAt" | "updatedAt" | "projectId" | "webHookId", ExtArgs["result"]["gitHubRepo"]>
   export type GitHubRepoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
+    GitHubCommit?: boolean | GitHubRepo$GitHubCommitArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubRepo$GitHubCommitGroupArgs<ExtArgs>
+    _count?: boolean | GitHubRepoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GitHubRepoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
@@ -6539,6 +7041,8 @@ export namespace Prisma {
     name: "GitHubRepo"
     objects: {
       project: Prisma.$ProjectPayload<ExtArgs>
+      GitHubCommit: Prisma.$GitHubCommitPayload<ExtArgs>[]
+      GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6547,6 +7051,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       projectId: number
+      webHookId: number | null
     }, ExtArgs["result"]["gitHubRepo"]>
     composites: {}
   }
@@ -6942,6 +7447,8 @@ export namespace Prisma {
   export interface Prisma__GitHubRepoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    GitHubCommit<T extends GitHubRepo$GitHubCommitArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepo$GitHubCommitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    GitHubCommitGroup<T extends GitHubRepo$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepo$GitHubCommitGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6977,6 +7484,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"GitHubRepo", 'DateTime'>
     readonly updatedAt: FieldRef<"GitHubRepo", 'DateTime'>
     readonly projectId: FieldRef<"GitHubRepo", 'Int'>
+    readonly webHookId: FieldRef<"GitHubRepo", 'Int'>
   }
     
 
@@ -7373,6 +7881,54 @@ export namespace Prisma {
   }
 
   /**
+   * GitHubRepo.GitHubCommit
+   */
+  export type GitHubRepo$GitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    where?: GitHubCommitWhereInput
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    cursor?: GitHubCommitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubRepo.GitHubCommitGroup
+   */
+  export type GitHubRepo$GitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    where?: GitHubCommitGroupWhereInput
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubCommitGroupScalarFieldEnum | GitHubCommitGroupScalarFieldEnum[]
+  }
+
+  /**
    * GitHubRepo without action
    */
   export type GitHubRepoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7388,6 +7944,3388 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: GitHubRepoInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GitHubCommit
+   */
+
+  export type AggregateGitHubCommit = {
+    _count: GitHubCommitCountAggregateOutputType | null
+    _avg: GitHubCommitAvgAggregateOutputType | null
+    _sum: GitHubCommitSumAggregateOutputType | null
+    _min: GitHubCommitMinAggregateOutputType | null
+    _max: GitHubCommitMaxAggregateOutputType | null
+  }
+
+  export type GitHubCommitAvgAggregateOutputType = {
+    id: number | null
+    repoId: number | null
+    userId: number | null
+    gitHubCommitGroupId: number | null
+  }
+
+  export type GitHubCommitSumAggregateOutputType = {
+    id: number | null
+    repoId: number | null
+    userId: number | null
+    gitHubCommitGroupId: number | null
+  }
+
+  export type GitHubCommitMinAggregateOutputType = {
+    id: number | null
+    repoId: number | null
+    userId: number | null
+    commitDate: Date | null
+    timing: Date | null
+    message: string | null
+    gitHubCommitGroupId: number | null
+  }
+
+  export type GitHubCommitMaxAggregateOutputType = {
+    id: number | null
+    repoId: number | null
+    userId: number | null
+    commitDate: Date | null
+    timing: Date | null
+    message: string | null
+    gitHubCommitGroupId: number | null
+  }
+
+  export type GitHubCommitCountAggregateOutputType = {
+    id: number
+    repoId: number
+    userId: number
+    commitDate: number
+    timing: number
+    message: number
+    gitHubCommitGroupId: number
+    _all: number
+  }
+
+
+  export type GitHubCommitAvgAggregateInputType = {
+    id?: true
+    repoId?: true
+    userId?: true
+    gitHubCommitGroupId?: true
+  }
+
+  export type GitHubCommitSumAggregateInputType = {
+    id?: true
+    repoId?: true
+    userId?: true
+    gitHubCommitGroupId?: true
+  }
+
+  export type GitHubCommitMinAggregateInputType = {
+    id?: true
+    repoId?: true
+    userId?: true
+    commitDate?: true
+    timing?: true
+    message?: true
+    gitHubCommitGroupId?: true
+  }
+
+  export type GitHubCommitMaxAggregateInputType = {
+    id?: true
+    repoId?: true
+    userId?: true
+    commitDate?: true
+    timing?: true
+    message?: true
+    gitHubCommitGroupId?: true
+  }
+
+  export type GitHubCommitCountAggregateInputType = {
+    id?: true
+    repoId?: true
+    userId?: true
+    commitDate?: true
+    timing?: true
+    message?: true
+    gitHubCommitGroupId?: true
+    _all?: true
+  }
+
+  export type GitHubCommitAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubCommit to aggregate.
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommits to fetch.
+     */
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GitHubCommitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GitHubCommits
+    **/
+    _count?: true | GitHubCommitCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GitHubCommitAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GitHubCommitSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GitHubCommitMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GitHubCommitMaxAggregateInputType
+  }
+
+  export type GetGitHubCommitAggregateType<T extends GitHubCommitAggregateArgs> = {
+        [P in keyof T & keyof AggregateGitHubCommit]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGitHubCommit[P]>
+      : GetScalarType<T[P], AggregateGitHubCommit[P]>
+  }
+
+
+
+
+  export type GitHubCommitGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitWhereInput
+    orderBy?: GitHubCommitOrderByWithAggregationInput | GitHubCommitOrderByWithAggregationInput[]
+    by: GitHubCommitScalarFieldEnum[] | GitHubCommitScalarFieldEnum
+    having?: GitHubCommitScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GitHubCommitCountAggregateInputType | true
+    _avg?: GitHubCommitAvgAggregateInputType
+    _sum?: GitHubCommitSumAggregateInputType
+    _min?: GitHubCommitMinAggregateInputType
+    _max?: GitHubCommitMaxAggregateInputType
+  }
+
+  export type GitHubCommitGroupByOutputType = {
+    id: number
+    repoId: number
+    userId: number
+    commitDate: Date
+    timing: Date
+    message: string
+    gitHubCommitGroupId: number | null
+    _count: GitHubCommitCountAggregateOutputType | null
+    _avg: GitHubCommitAvgAggregateOutputType | null
+    _sum: GitHubCommitSumAggregateOutputType | null
+    _min: GitHubCommitMinAggregateOutputType | null
+    _max: GitHubCommitMaxAggregateOutputType | null
+  }
+
+  type GetGitHubCommitGroupByPayload<T extends GitHubCommitGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GitHubCommitGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GitHubCommitGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GitHubCommitGroupByOutputType[P]>
+            : GetScalarType<T[P], GitHubCommitGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GitHubCommitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repoId?: boolean
+    userId?: boolean
+    commitDate?: boolean
+    timing?: boolean
+    message?: boolean
+    gitHubCommitGroupId?: boolean
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommit"]>
+
+  export type GitHubCommitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repoId?: boolean
+    userId?: boolean
+    commitDate?: boolean
+    timing?: boolean
+    message?: boolean
+    gitHubCommitGroupId?: boolean
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommit"]>
+
+  export type GitHubCommitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    repoId?: boolean
+    userId?: boolean
+    commitDate?: boolean
+    timing?: boolean
+    message?: boolean
+    gitHubCommitGroupId?: boolean
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommit"]>
+
+  export type GitHubCommitSelectScalar = {
+    id?: boolean
+    repoId?: boolean
+    userId?: boolean
+    commitDate?: boolean
+    timing?: boolean
+    message?: boolean
+    gitHubCommitGroupId?: boolean
+  }
+
+  export type GitHubCommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repoId" | "userId" | "commitDate" | "timing" | "message" | "gitHubCommitGroupId", ExtArgs["result"]["gitHubCommit"]>
+  export type GitHubCommitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }
+  export type GitHubCommitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }
+  export type GitHubCommitIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
+  }
+
+  export type $GitHubCommitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GitHubCommit"
+    objects: {
+      repo: Prisma.$GitHubRepoPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+      GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      repoId: number
+      userId: number
+      commitDate: Date
+      timing: Date
+      message: string
+      gitHubCommitGroupId: number | null
+    }, ExtArgs["result"]["gitHubCommit"]>
+    composites: {}
+  }
+
+  type GitHubCommitGetPayload<S extends boolean | null | undefined | GitHubCommitDefaultArgs> = $Result.GetResult<Prisma.$GitHubCommitPayload, S>
+
+  type GitHubCommitCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GitHubCommitFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GitHubCommitCountAggregateInputType | true
+    }
+
+  export interface GitHubCommitDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GitHubCommit'], meta: { name: 'GitHubCommit' } }
+    /**
+     * Find zero or one GitHubCommit that matches the filter.
+     * @param {GitHubCommitFindUniqueArgs} args - Arguments to find a GitHubCommit
+     * @example
+     * // Get one GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GitHubCommitFindUniqueArgs>(args: SelectSubset<T, GitHubCommitFindUniqueArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GitHubCommit that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GitHubCommitFindUniqueOrThrowArgs} args - Arguments to find a GitHubCommit
+     * @example
+     * // Get one GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GitHubCommitFindUniqueOrThrowArgs>(args: SelectSubset<T, GitHubCommitFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubCommit that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitFindFirstArgs} args - Arguments to find a GitHubCommit
+     * @example
+     * // Get one GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GitHubCommitFindFirstArgs>(args?: SelectSubset<T, GitHubCommitFindFirstArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubCommit that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitFindFirstOrThrowArgs} args - Arguments to find a GitHubCommit
+     * @example
+     * // Get one GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GitHubCommitFindFirstOrThrowArgs>(args?: SelectSubset<T, GitHubCommitFindFirstOrThrowArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GitHubCommits that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GitHubCommits
+     * const gitHubCommits = await prisma.gitHubCommit.findMany()
+     * 
+     * // Get first 10 GitHubCommits
+     * const gitHubCommits = await prisma.gitHubCommit.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gitHubCommitWithIdOnly = await prisma.gitHubCommit.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GitHubCommitFindManyArgs>(args?: SelectSubset<T, GitHubCommitFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GitHubCommit.
+     * @param {GitHubCommitCreateArgs} args - Arguments to create a GitHubCommit.
+     * @example
+     * // Create one GitHubCommit
+     * const GitHubCommit = await prisma.gitHubCommit.create({
+     *   data: {
+     *     // ... data to create a GitHubCommit
+     *   }
+     * })
+     * 
+     */
+    create<T extends GitHubCommitCreateArgs>(args: SelectSubset<T, GitHubCommitCreateArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GitHubCommits.
+     * @param {GitHubCommitCreateManyArgs} args - Arguments to create many GitHubCommits.
+     * @example
+     * // Create many GitHubCommits
+     * const gitHubCommit = await prisma.gitHubCommit.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GitHubCommitCreateManyArgs>(args?: SelectSubset<T, GitHubCommitCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GitHubCommits and returns the data saved in the database.
+     * @param {GitHubCommitCreateManyAndReturnArgs} args - Arguments to create many GitHubCommits.
+     * @example
+     * // Create many GitHubCommits
+     * const gitHubCommit = await prisma.gitHubCommit.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GitHubCommits and only return the `id`
+     * const gitHubCommitWithIdOnly = await prisma.gitHubCommit.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GitHubCommitCreateManyAndReturnArgs>(args?: SelectSubset<T, GitHubCommitCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GitHubCommit.
+     * @param {GitHubCommitDeleteArgs} args - Arguments to delete one GitHubCommit.
+     * @example
+     * // Delete one GitHubCommit
+     * const GitHubCommit = await prisma.gitHubCommit.delete({
+     *   where: {
+     *     // ... filter to delete one GitHubCommit
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GitHubCommitDeleteArgs>(args: SelectSubset<T, GitHubCommitDeleteArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GitHubCommit.
+     * @param {GitHubCommitUpdateArgs} args - Arguments to update one GitHubCommit.
+     * @example
+     * // Update one GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GitHubCommitUpdateArgs>(args: SelectSubset<T, GitHubCommitUpdateArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GitHubCommits.
+     * @param {GitHubCommitDeleteManyArgs} args - Arguments to filter GitHubCommits to delete.
+     * @example
+     * // Delete a few GitHubCommits
+     * const { count } = await prisma.gitHubCommit.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GitHubCommitDeleteManyArgs>(args?: SelectSubset<T, GitHubCommitDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubCommits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GitHubCommits
+     * const gitHubCommit = await prisma.gitHubCommit.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GitHubCommitUpdateManyArgs>(args: SelectSubset<T, GitHubCommitUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubCommits and returns the data updated in the database.
+     * @param {GitHubCommitUpdateManyAndReturnArgs} args - Arguments to update many GitHubCommits.
+     * @example
+     * // Update many GitHubCommits
+     * const gitHubCommit = await prisma.gitHubCommit.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GitHubCommits and only return the `id`
+     * const gitHubCommitWithIdOnly = await prisma.gitHubCommit.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GitHubCommitUpdateManyAndReturnArgs>(args: SelectSubset<T, GitHubCommitUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GitHubCommit.
+     * @param {GitHubCommitUpsertArgs} args - Arguments to update or create a GitHubCommit.
+     * @example
+     * // Update or create a GitHubCommit
+     * const gitHubCommit = await prisma.gitHubCommit.upsert({
+     *   create: {
+     *     // ... data to create a GitHubCommit
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GitHubCommit we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GitHubCommitUpsertArgs>(args: SelectSubset<T, GitHubCommitUpsertArgs<ExtArgs>>): Prisma__GitHubCommitClient<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GitHubCommits.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitCountArgs} args - Arguments to filter GitHubCommits to count.
+     * @example
+     * // Count the number of GitHubCommits
+     * const count = await prisma.gitHubCommit.count({
+     *   where: {
+     *     // ... the filter for the GitHubCommits we want to count
+     *   }
+     * })
+    **/
+    count<T extends GitHubCommitCountArgs>(
+      args?: Subset<T, GitHubCommitCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GitHubCommitCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GitHubCommit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GitHubCommitAggregateArgs>(args: Subset<T, GitHubCommitAggregateArgs>): Prisma.PrismaPromise<GetGitHubCommitAggregateType<T>>
+
+    /**
+     * Group by GitHubCommit.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GitHubCommitGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GitHubCommitGroupByArgs['orderBy'] }
+        : { orderBy?: GitHubCommitGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GitHubCommitGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGitHubCommitGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GitHubCommit model
+   */
+  readonly fields: GitHubCommitFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GitHubCommit.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GitHubCommitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    repo<T extends GitHubRepoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepoDefaultArgs<ExtArgs>>): Prisma__GitHubRepoClient<$Result.GetResult<Prisma.$GitHubRepoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    GitHubCommitGroup<T extends GitHubCommit$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, GitHubCommit$GitHubCommitGroupArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GitHubCommit model
+   */
+  interface GitHubCommitFieldRefs {
+    readonly id: FieldRef<"GitHubCommit", 'Int'>
+    readonly repoId: FieldRef<"GitHubCommit", 'Int'>
+    readonly userId: FieldRef<"GitHubCommit", 'Int'>
+    readonly commitDate: FieldRef<"GitHubCommit", 'DateTime'>
+    readonly timing: FieldRef<"GitHubCommit", 'DateTime'>
+    readonly message: FieldRef<"GitHubCommit", 'String'>
+    readonly gitHubCommitGroupId: FieldRef<"GitHubCommit", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GitHubCommit findUnique
+   */
+  export type GitHubCommitFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommit to fetch.
+     */
+    where: GitHubCommitWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommit findUniqueOrThrow
+   */
+  export type GitHubCommitFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommit to fetch.
+     */
+    where: GitHubCommitWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommit findFirst
+   */
+  export type GitHubCommitFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommit to fetch.
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommits to fetch.
+     */
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubCommits.
+     */
+    cursor?: GitHubCommitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubCommits.
+     */
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommit findFirstOrThrow
+   */
+  export type GitHubCommitFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommit to fetch.
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommits to fetch.
+     */
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubCommits.
+     */
+    cursor?: GitHubCommitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommits.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubCommits.
+     */
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommit findMany
+   */
+  export type GitHubCommitFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommits to fetch.
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommits to fetch.
+     */
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GitHubCommits.
+     */
+    cursor?: GitHubCommitWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommits from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommits.
+     */
+    skip?: number
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommit create
+   */
+  export type GitHubCommitCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GitHubCommit.
+     */
+    data: XOR<GitHubCommitCreateInput, GitHubCommitUncheckedCreateInput>
+  }
+
+  /**
+   * GitHubCommit createMany
+   */
+  export type GitHubCommitCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GitHubCommits.
+     */
+    data: GitHubCommitCreateManyInput | GitHubCommitCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GitHubCommit createManyAndReturn
+   */
+  export type GitHubCommitCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * The data used to create many GitHubCommits.
+     */
+    data: GitHubCommitCreateManyInput | GitHubCommitCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubCommit update
+   */
+  export type GitHubCommitUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GitHubCommit.
+     */
+    data: XOR<GitHubCommitUpdateInput, GitHubCommitUncheckedUpdateInput>
+    /**
+     * Choose, which GitHubCommit to update.
+     */
+    where: GitHubCommitWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommit updateMany
+   */
+  export type GitHubCommitUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GitHubCommits.
+     */
+    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubCommits to update
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * Limit how many GitHubCommits to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubCommit updateManyAndReturn
+   */
+  export type GitHubCommitUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * The data used to update GitHubCommits.
+     */
+    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubCommits to update
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * Limit how many GitHubCommits to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubCommit upsert
+   */
+  export type GitHubCommitUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GitHubCommit to update in case it exists.
+     */
+    where: GitHubCommitWhereUniqueInput
+    /**
+     * In case the GitHubCommit found by the `where` argument doesn't exist, create a new GitHubCommit with this data.
+     */
+    create: XOR<GitHubCommitCreateInput, GitHubCommitUncheckedCreateInput>
+    /**
+     * In case the GitHubCommit was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GitHubCommitUpdateInput, GitHubCommitUncheckedUpdateInput>
+  }
+
+  /**
+   * GitHubCommit delete
+   */
+  export type GitHubCommitDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    /**
+     * Filter which GitHubCommit to delete.
+     */
+    where: GitHubCommitWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommit deleteMany
+   */
+  export type GitHubCommitDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubCommits to delete
+     */
+    where?: GitHubCommitWhereInput
+    /**
+     * Limit how many GitHubCommits to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubCommit.GitHubCommitGroup
+   */
+  export type GitHubCommit$GitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    where?: GitHubCommitGroupWhereInput
+  }
+
+  /**
+   * GitHubCommit without action
+   */
+  export type GitHubCommitDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model GitHubCommitGroup
+   */
+
+  export type AggregateGitHubCommitGroup = {
+    _count: GitHubCommitGroupCountAggregateOutputType | null
+    _avg: GitHubCommitGroupAvgAggregateOutputType | null
+    _sum: GitHubCommitGroupSumAggregateOutputType | null
+    _min: GitHubCommitGroupMinAggregateOutputType | null
+    _max: GitHubCommitGroupMaxAggregateOutputType | null
+  }
+
+  export type GitHubCommitGroupAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    repoId: number | null
+  }
+
+  export type GitHubCommitGroupSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    repoId: number | null
+  }
+
+  export type GitHubCommitGroupMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    repoId: number | null
+  }
+
+  export type GitHubCommitGroupMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    repoId: number | null
+  }
+
+  export type GitHubCommitGroupCountAggregateOutputType = {
+    id: number
+    userId: number
+    repoId: number
+    _all: number
+  }
+
+
+  export type GitHubCommitGroupAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    repoId?: true
+  }
+
+  export type GitHubCommitGroupSumAggregateInputType = {
+    id?: true
+    userId?: true
+    repoId?: true
+  }
+
+  export type GitHubCommitGroupMinAggregateInputType = {
+    id?: true
+    userId?: true
+    repoId?: true
+  }
+
+  export type GitHubCommitGroupMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    repoId?: true
+  }
+
+  export type GitHubCommitGroupCountAggregateInputType = {
+    id?: true
+    userId?: true
+    repoId?: true
+    _all?: true
+  }
+
+  export type GitHubCommitGroupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubCommitGroup to aggregate.
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommitGroups to fetch.
+     */
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommitGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommitGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned GitHubCommitGroups
+    **/
+    _count?: true | GitHubCommitGroupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GitHubCommitGroupAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GitHubCommitGroupSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GitHubCommitGroupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GitHubCommitGroupMaxAggregateInputType
+  }
+
+  export type GetGitHubCommitGroupAggregateType<T extends GitHubCommitGroupAggregateArgs> = {
+        [P in keyof T & keyof AggregateGitHubCommitGroup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGitHubCommitGroup[P]>
+      : GetScalarType<T[P], AggregateGitHubCommitGroup[P]>
+  }
+
+
+
+
+  export type GitHubCommitGroupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: GitHubCommitGroupWhereInput
+    orderBy?: GitHubCommitGroupOrderByWithAggregationInput | GitHubCommitGroupOrderByWithAggregationInput[]
+    by: GitHubCommitGroupScalarFieldEnum[] | GitHubCommitGroupScalarFieldEnum
+    having?: GitHubCommitGroupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GitHubCommitGroupCountAggregateInputType | true
+    _avg?: GitHubCommitGroupAvgAggregateInputType
+    _sum?: GitHubCommitGroupSumAggregateInputType
+    _min?: GitHubCommitGroupMinAggregateInputType
+    _max?: GitHubCommitGroupMaxAggregateInputType
+  }
+
+  export type GitHubCommitGroupGroupByOutputType = {
+    id: number
+    userId: number
+    repoId: number
+    _count: GitHubCommitGroupCountAggregateOutputType | null
+    _avg: GitHubCommitGroupAvgAggregateOutputType | null
+    _sum: GitHubCommitGroupSumAggregateOutputType | null
+    _min: GitHubCommitGroupMinAggregateOutputType | null
+    _max: GitHubCommitGroupMaxAggregateOutputType | null
+  }
+
+  type GetGitHubCommitGroupGroupByPayload<T extends GitHubCommitGroupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GitHubCommitGroupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GitHubCommitGroupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GitHubCommitGroupGroupByOutputType[P]>
+            : GetScalarType<T[P], GitHubCommitGroupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type GitHubCommitGroupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    repoId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    commits?: boolean | GitHubCommitGroup$commitsArgs<ExtArgs>
+    _count?: boolean | GitHubCommitGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommitGroup"]>
+
+  export type GitHubCommitGroupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    repoId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommitGroup"]>
+
+  export type GitHubCommitGroupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    repoId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gitHubCommitGroup"]>
+
+  export type GitHubCommitGroupSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    repoId?: boolean
+  }
+
+  export type GitHubCommitGroupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "repoId", ExtArgs["result"]["gitHubCommitGroup"]>
+  export type GitHubCommitGroupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+    commits?: boolean | GitHubCommitGroup$commitsArgs<ExtArgs>
+    _count?: boolean | GitHubCommitGroupCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type GitHubCommitGroupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+  }
+  export type GitHubCommitGroupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
+  }
+
+  export type $GitHubCommitGroupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "GitHubCommitGroup"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      repo: Prisma.$GitHubRepoPayload<ExtArgs>
+      commits: Prisma.$GitHubCommitPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      repoId: number
+    }, ExtArgs["result"]["gitHubCommitGroup"]>
+    composites: {}
+  }
+
+  type GitHubCommitGroupGetPayload<S extends boolean | null | undefined | GitHubCommitGroupDefaultArgs> = $Result.GetResult<Prisma.$GitHubCommitGroupPayload, S>
+
+  type GitHubCommitGroupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<GitHubCommitGroupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: GitHubCommitGroupCountAggregateInputType | true
+    }
+
+  export interface GitHubCommitGroupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['GitHubCommitGroup'], meta: { name: 'GitHubCommitGroup' } }
+    /**
+     * Find zero or one GitHubCommitGroup that matches the filter.
+     * @param {GitHubCommitGroupFindUniqueArgs} args - Arguments to find a GitHubCommitGroup
+     * @example
+     * // Get one GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends GitHubCommitGroupFindUniqueArgs>(args: SelectSubset<T, GitHubCommitGroupFindUniqueArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one GitHubCommitGroup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {GitHubCommitGroupFindUniqueOrThrowArgs} args - Arguments to find a GitHubCommitGroup
+     * @example
+     * // Get one GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends GitHubCommitGroupFindUniqueOrThrowArgs>(args: SelectSubset<T, GitHubCommitGroupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubCommitGroup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupFindFirstArgs} args - Arguments to find a GitHubCommitGroup
+     * @example
+     * // Get one GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends GitHubCommitGroupFindFirstArgs>(args?: SelectSubset<T, GitHubCommitGroupFindFirstArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first GitHubCommitGroup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupFindFirstOrThrowArgs} args - Arguments to find a GitHubCommitGroup
+     * @example
+     * // Get one GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends GitHubCommitGroupFindFirstOrThrowArgs>(args?: SelectSubset<T, GitHubCommitGroupFindFirstOrThrowArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more GitHubCommitGroups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all GitHubCommitGroups
+     * const gitHubCommitGroups = await prisma.gitHubCommitGroup.findMany()
+     * 
+     * // Get first 10 GitHubCommitGroups
+     * const gitHubCommitGroups = await prisma.gitHubCommitGroup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gitHubCommitGroupWithIdOnly = await prisma.gitHubCommitGroup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends GitHubCommitGroupFindManyArgs>(args?: SelectSubset<T, GitHubCommitGroupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a GitHubCommitGroup.
+     * @param {GitHubCommitGroupCreateArgs} args - Arguments to create a GitHubCommitGroup.
+     * @example
+     * // Create one GitHubCommitGroup
+     * const GitHubCommitGroup = await prisma.gitHubCommitGroup.create({
+     *   data: {
+     *     // ... data to create a GitHubCommitGroup
+     *   }
+     * })
+     * 
+     */
+    create<T extends GitHubCommitGroupCreateArgs>(args: SelectSubset<T, GitHubCommitGroupCreateArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many GitHubCommitGroups.
+     * @param {GitHubCommitGroupCreateManyArgs} args - Arguments to create many GitHubCommitGroups.
+     * @example
+     * // Create many GitHubCommitGroups
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends GitHubCommitGroupCreateManyArgs>(args?: SelectSubset<T, GitHubCommitGroupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many GitHubCommitGroups and returns the data saved in the database.
+     * @param {GitHubCommitGroupCreateManyAndReturnArgs} args - Arguments to create many GitHubCommitGroups.
+     * @example
+     * // Create many GitHubCommitGroups
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many GitHubCommitGroups and only return the `id`
+     * const gitHubCommitGroupWithIdOnly = await prisma.gitHubCommitGroup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends GitHubCommitGroupCreateManyAndReturnArgs>(args?: SelectSubset<T, GitHubCommitGroupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a GitHubCommitGroup.
+     * @param {GitHubCommitGroupDeleteArgs} args - Arguments to delete one GitHubCommitGroup.
+     * @example
+     * // Delete one GitHubCommitGroup
+     * const GitHubCommitGroup = await prisma.gitHubCommitGroup.delete({
+     *   where: {
+     *     // ... filter to delete one GitHubCommitGroup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends GitHubCommitGroupDeleteArgs>(args: SelectSubset<T, GitHubCommitGroupDeleteArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one GitHubCommitGroup.
+     * @param {GitHubCommitGroupUpdateArgs} args - Arguments to update one GitHubCommitGroup.
+     * @example
+     * // Update one GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends GitHubCommitGroupUpdateArgs>(args: SelectSubset<T, GitHubCommitGroupUpdateArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more GitHubCommitGroups.
+     * @param {GitHubCommitGroupDeleteManyArgs} args - Arguments to filter GitHubCommitGroups to delete.
+     * @example
+     * // Delete a few GitHubCommitGroups
+     * const { count } = await prisma.gitHubCommitGroup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends GitHubCommitGroupDeleteManyArgs>(args?: SelectSubset<T, GitHubCommitGroupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubCommitGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many GitHubCommitGroups
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends GitHubCommitGroupUpdateManyArgs>(args: SelectSubset<T, GitHubCommitGroupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more GitHubCommitGroups and returns the data updated in the database.
+     * @param {GitHubCommitGroupUpdateManyAndReturnArgs} args - Arguments to update many GitHubCommitGroups.
+     * @example
+     * // Update many GitHubCommitGroups
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more GitHubCommitGroups and only return the `id`
+     * const gitHubCommitGroupWithIdOnly = await prisma.gitHubCommitGroup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends GitHubCommitGroupUpdateManyAndReturnArgs>(args: SelectSubset<T, GitHubCommitGroupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one GitHubCommitGroup.
+     * @param {GitHubCommitGroupUpsertArgs} args - Arguments to update or create a GitHubCommitGroup.
+     * @example
+     * // Update or create a GitHubCommitGroup
+     * const gitHubCommitGroup = await prisma.gitHubCommitGroup.upsert({
+     *   create: {
+     *     // ... data to create a GitHubCommitGroup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the GitHubCommitGroup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends GitHubCommitGroupUpsertArgs>(args: SelectSubset<T, GitHubCommitGroupUpsertArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of GitHubCommitGroups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupCountArgs} args - Arguments to filter GitHubCommitGroups to count.
+     * @example
+     * // Count the number of GitHubCommitGroups
+     * const count = await prisma.gitHubCommitGroup.count({
+     *   where: {
+     *     // ... the filter for the GitHubCommitGroups we want to count
+     *   }
+     * })
+    **/
+    count<T extends GitHubCommitGroupCountArgs>(
+      args?: Subset<T, GitHubCommitGroupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GitHubCommitGroupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a GitHubCommitGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GitHubCommitGroupAggregateArgs>(args: Subset<T, GitHubCommitGroupAggregateArgs>): Prisma.PrismaPromise<GetGitHubCommitGroupAggregateType<T>>
+
+    /**
+     * Group by GitHubCommitGroup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GitHubCommitGroupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends GitHubCommitGroupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: GitHubCommitGroupGroupByArgs['orderBy'] }
+        : { orderBy?: GitHubCommitGroupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, GitHubCommitGroupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGitHubCommitGroupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the GitHubCommitGroup model
+   */
+  readonly fields: GitHubCommitGroupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for GitHubCommitGroup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__GitHubCommitGroupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    repo<T extends GitHubRepoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepoDefaultArgs<ExtArgs>>): Prisma__GitHubRepoClient<$Result.GetResult<Prisma.$GitHubRepoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    commits<T extends GitHubCommitGroup$commitsArgs<ExtArgs> = {}>(args?: Subset<T, GitHubCommitGroup$commitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the GitHubCommitGroup model
+   */
+  interface GitHubCommitGroupFieldRefs {
+    readonly id: FieldRef<"GitHubCommitGroup", 'Int'>
+    readonly userId: FieldRef<"GitHubCommitGroup", 'Int'>
+    readonly repoId: FieldRef<"GitHubCommitGroup", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * GitHubCommitGroup findUnique
+   */
+  export type GitHubCommitGroupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommitGroup to fetch.
+     */
+    where: GitHubCommitGroupWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommitGroup findUniqueOrThrow
+   */
+  export type GitHubCommitGroupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommitGroup to fetch.
+     */
+    where: GitHubCommitGroupWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommitGroup findFirst
+   */
+  export type GitHubCommitGroupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommitGroup to fetch.
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommitGroups to fetch.
+     */
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubCommitGroups.
+     */
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommitGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommitGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubCommitGroups.
+     */
+    distinct?: GitHubCommitGroupScalarFieldEnum | GitHubCommitGroupScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommitGroup findFirstOrThrow
+   */
+  export type GitHubCommitGroupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommitGroup to fetch.
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommitGroups to fetch.
+     */
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for GitHubCommitGroups.
+     */
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommitGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommitGroups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of GitHubCommitGroups.
+     */
+    distinct?: GitHubCommitGroupScalarFieldEnum | GitHubCommitGroupScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommitGroup findMany
+   */
+  export type GitHubCommitGroupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter, which GitHubCommitGroups to fetch.
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of GitHubCommitGroups to fetch.
+     */
+    orderBy?: GitHubCommitGroupOrderByWithRelationInput | GitHubCommitGroupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing GitHubCommitGroups.
+     */
+    cursor?: GitHubCommitGroupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` GitHubCommitGroups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` GitHubCommitGroups.
+     */
+    skip?: number
+    distinct?: GitHubCommitGroupScalarFieldEnum | GitHubCommitGroupScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommitGroup create
+   */
+  export type GitHubCommitGroupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a GitHubCommitGroup.
+     */
+    data: XOR<GitHubCommitGroupCreateInput, GitHubCommitGroupUncheckedCreateInput>
+  }
+
+  /**
+   * GitHubCommitGroup createMany
+   */
+  export type GitHubCommitGroupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many GitHubCommitGroups.
+     */
+    data: GitHubCommitGroupCreateManyInput | GitHubCommitGroupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * GitHubCommitGroup createManyAndReturn
+   */
+  export type GitHubCommitGroupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * The data used to create many GitHubCommitGroups.
+     */
+    data: GitHubCommitGroupCreateManyInput | GitHubCommitGroupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubCommitGroup update
+   */
+  export type GitHubCommitGroupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a GitHubCommitGroup.
+     */
+    data: XOR<GitHubCommitGroupUpdateInput, GitHubCommitGroupUncheckedUpdateInput>
+    /**
+     * Choose, which GitHubCommitGroup to update.
+     */
+    where: GitHubCommitGroupWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommitGroup updateMany
+   */
+  export type GitHubCommitGroupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update GitHubCommitGroups.
+     */
+    data: XOR<GitHubCommitGroupUpdateManyMutationInput, GitHubCommitGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubCommitGroups to update
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * Limit how many GitHubCommitGroups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubCommitGroup updateManyAndReturn
+   */
+  export type GitHubCommitGroupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * The data used to update GitHubCommitGroups.
+     */
+    data: XOR<GitHubCommitGroupUpdateManyMutationInput, GitHubCommitGroupUncheckedUpdateManyInput>
+    /**
+     * Filter which GitHubCommitGroups to update
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * Limit how many GitHubCommitGroups to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * GitHubCommitGroup upsert
+   */
+  export type GitHubCommitGroupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the GitHubCommitGroup to update in case it exists.
+     */
+    where: GitHubCommitGroupWhereUniqueInput
+    /**
+     * In case the GitHubCommitGroup found by the `where` argument doesn't exist, create a new GitHubCommitGroup with this data.
+     */
+    create: XOR<GitHubCommitGroupCreateInput, GitHubCommitGroupUncheckedCreateInput>
+    /**
+     * In case the GitHubCommitGroup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<GitHubCommitGroupUpdateInput, GitHubCommitGroupUncheckedUpdateInput>
+  }
+
+  /**
+   * GitHubCommitGroup delete
+   */
+  export type GitHubCommitGroupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+    /**
+     * Filter which GitHubCommitGroup to delete.
+     */
+    where: GitHubCommitGroupWhereUniqueInput
+  }
+
+  /**
+   * GitHubCommitGroup deleteMany
+   */
+  export type GitHubCommitGroupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which GitHubCommitGroups to delete
+     */
+    where?: GitHubCommitGroupWhereInput
+    /**
+     * Limit how many GitHubCommitGroups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * GitHubCommitGroup.commits
+   */
+  export type GitHubCommitGroup$commitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommit
+     */
+    select?: GitHubCommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommit
+     */
+    omit?: GitHubCommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitInclude<ExtArgs> | null
+    where?: GitHubCommitWhereInput
+    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
+    cursor?: GitHubCommitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
+  }
+
+  /**
+   * GitHubCommitGroup without action
+   */
+  export type GitHubCommitGroupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GitHubCommitGroup
+     */
+    select?: GitHubCommitGroupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the GitHubCommitGroup
+     */
+    omit?: GitHubCommitGroupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: GitHubCommitGroupInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DailyLog
+   */
+
+  export type AggregateDailyLog = {
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  export type DailyLogAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type DailyLogSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type DailyLogMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    aiSummary: string | null
+    export: string | null
+  }
+
+  export type DailyLogMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    aiSummary: string | null
+    export: string | null
+  }
+
+  export type DailyLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    works: number
+    aiSummary: number
+    export: number
+    _all: number
+  }
+
+
+  export type DailyLogAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type DailyLogSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type DailyLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    aiSummary?: true
+    export?: true
+  }
+
+  export type DailyLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    aiSummary?: true
+    export?: true
+  }
+
+  export type DailyLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    works?: true
+    aiSummary?: true
+    export?: true
+    _all?: true
+  }
+
+  export type DailyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLog to aggregate.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyLogs
+    **/
+    _count?: true | DailyLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DailyLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DailyLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type GetDailyLogAggregateType<T extends DailyLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyLog[P]>
+      : GetScalarType<T[P], AggregateDailyLog[P]>
+  }
+
+
+
+
+  export type DailyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyLogWhereInput
+    orderBy?: DailyLogOrderByWithAggregationInput | DailyLogOrderByWithAggregationInput[]
+    by: DailyLogScalarFieldEnum[] | DailyLogScalarFieldEnum
+    having?: DailyLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyLogCountAggregateInputType | true
+    _avg?: DailyLogAvgAggregateInputType
+    _sum?: DailyLogSumAggregateInputType
+    _min?: DailyLogMinAggregateInputType
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type DailyLogGroupByOutputType = {
+    id: number
+    userId: number
+    date: Date
+    works: JsonValue
+    aiSummary: string | null
+    export: string | null
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  type GetDailyLogGroupByPayload<T extends DailyLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    works?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    works?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    works?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    works?: boolean
+    aiSummary?: boolean
+    export?: boolean
+  }
+
+  export type DailyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "works" | "aiSummary" | "export", ExtArgs["result"]["dailyLog"]>
+  export type DailyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $DailyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      date: Date
+      works: Prisma.JsonValue
+      aiSummary: string | null
+      export: string | null
+    }, ExtArgs["result"]["dailyLog"]>
+    composites: {}
+  }
+
+  type DailyLogGetPayload<S extends boolean | null | undefined | DailyLogDefaultArgs> = $Result.GetResult<Prisma.$DailyLogPayload, S>
+
+  type DailyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyLogCountAggregateInputType | true
+    }
+
+  export interface DailyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyLog'], meta: { name: 'DailyLog' } }
+    /**
+     * Find zero or one DailyLog that matches the filter.
+     * @param {DailyLogFindUniqueArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyLogFindUniqueArgs>(args: SelectSubset<T, DailyLogFindUniqueArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyLogFindUniqueOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyLogFindFirstArgs>(args?: SelectSubset<T, DailyLogFindFirstArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany()
+     * 
+     * // Get first 10 DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyLogFindManyArgs>(args?: SelectSubset<T, DailyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyLog.
+     * @param {DailyLogCreateArgs} args - Arguments to create a DailyLog.
+     * @example
+     * // Create one DailyLog
+     * const DailyLog = await prisma.dailyLog.create({
+     *   data: {
+     *     // ... data to create a DailyLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyLogCreateArgs>(args: SelectSubset<T, DailyLogCreateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyLogs.
+     * @param {DailyLogCreateManyArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyLogCreateManyArgs>(args?: SelectSubset<T, DailyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyLogs and returns the data saved in the database.
+     * @param {DailyLogCreateManyAndReturnArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyLog.
+     * @param {DailyLogDeleteArgs} args - Arguments to delete one DailyLog.
+     * @example
+     * // Delete one DailyLog
+     * const DailyLog = await prisma.dailyLog.delete({
+     *   where: {
+     *     // ... filter to delete one DailyLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyLogDeleteArgs>(args: SelectSubset<T, DailyLogDeleteArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyLog.
+     * @param {DailyLogUpdateArgs} args - Arguments to update one DailyLog.
+     * @example
+     * // Update one DailyLog
+     * const dailyLog = await prisma.dailyLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyLogUpdateArgs>(args: SelectSubset<T, DailyLogUpdateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyLogs.
+     * @param {DailyLogDeleteManyArgs} args - Arguments to filter DailyLogs to delete.
+     * @example
+     * // Delete a few DailyLogs
+     * const { count } = await prisma.dailyLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyLogDeleteManyArgs>(args?: SelectSubset<T, DailyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyLogUpdateManyArgs>(args: SelectSubset<T, DailyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs and returns the data updated in the database.
+     * @param {DailyLogUpdateManyAndReturnArgs} args - Arguments to update many DailyLogs.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyLog.
+     * @param {DailyLogUpsertArgs} args - Arguments to update or create a DailyLog.
+     * @example
+     * // Update or create a DailyLog
+     * const dailyLog = await prisma.dailyLog.upsert({
+     *   create: {
+     *     // ... data to create a DailyLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyLogUpsertArgs>(args: SelectSubset<T, DailyLogUpsertArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogCountArgs} args - Arguments to filter DailyLogs to count.
+     * @example
+     * // Count the number of DailyLogs
+     * const count = await prisma.dailyLog.count({
+     *   where: {
+     *     // ... the filter for the DailyLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyLogCountArgs>(
+      args?: Subset<T, DailyLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyLogAggregateArgs>(args: Subset<T, DailyLogAggregateArgs>): Prisma.PrismaPromise<GetDailyLogAggregateType<T>>
+
+    /**
+     * Group by DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyLogGroupByArgs['orderBy'] }
+        : { orderBy?: DailyLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyLog model
+   */
+  readonly fields: DailyLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyLog model
+   */
+  interface DailyLogFieldRefs {
+    readonly id: FieldRef<"DailyLog", 'Int'>
+    readonly userId: FieldRef<"DailyLog", 'Int'>
+    readonly date: FieldRef<"DailyLog", 'DateTime'>
+    readonly works: FieldRef<"DailyLog", 'Json'>
+    readonly aiSummary: FieldRef<"DailyLog", 'String'>
+    readonly export: FieldRef<"DailyLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyLog findUnique
+   */
+  export type DailyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findUniqueOrThrow
+   */
+  export type DailyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findFirst
+   */
+  export type DailyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findFirstOrThrow
+   */
+  export type DailyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findMany
+   */
+  export type DailyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLogs to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog create
+   */
+  export type DailyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DailyLog.
+     */
+    data: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+  }
+
+  /**
+   * DailyLog createMany
+   */
+  export type DailyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyLog createManyAndReturn
+   */
+  export type DailyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog update
+   */
+  export type DailyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DailyLog.
+     */
+    data: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+    /**
+     * Choose, which DailyLog to update.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog updateMany
+   */
+  export type DailyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog updateManyAndReturn
+   */
+  export type DailyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog upsert
+   */
+  export type DailyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DailyLog to update in case it exists.
+     */
+    where: DailyLogWhereUniqueInput
+    /**
+     * In case the DailyLog found by the `where` argument doesn't exist, create a new DailyLog with this data.
+     */
+    create: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+    /**
+     * In case the DailyLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyLog delete
+   */
+  export type DailyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter which DailyLog to delete.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog deleteMany
+   */
+  export type DailyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLogs to delete
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog without action
+   */
+  export type DailyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
   }
 
 
@@ -7417,7 +11355,9 @@ export namespace Prisma {
     isAdmin: 'isAdmin',
     isVerified: 'isVerified',
     createdAt: 'createdAt',
-    accessToken: 'accessToken'
+    accessToken: 'accessToken',
+    githubToken: 'githubToken',
+    githubUsername: 'githubUsername'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -7473,10 +11413,45 @@ export namespace Prisma {
     url: 'url',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    projectId: 'projectId'
+    projectId: 'projectId',
+    webHookId: 'webHookId'
   };
 
   export type GitHubRepoScalarFieldEnum = (typeof GitHubRepoScalarFieldEnum)[keyof typeof GitHubRepoScalarFieldEnum]
+
+
+  export const GitHubCommitScalarFieldEnum: {
+    id: 'id',
+    repoId: 'repoId',
+    userId: 'userId',
+    commitDate: 'commitDate',
+    timing: 'timing',
+    message: 'message',
+    gitHubCommitGroupId: 'gitHubCommitGroupId'
+  };
+
+  export type GitHubCommitScalarFieldEnum = (typeof GitHubCommitScalarFieldEnum)[keyof typeof GitHubCommitScalarFieldEnum]
+
+
+  export const GitHubCommitGroupScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    repoId: 'repoId'
+  };
+
+  export type GitHubCommitGroupScalarFieldEnum = (typeof GitHubCommitGroupScalarFieldEnum)[keyof typeof GitHubCommitGroupScalarFieldEnum]
+
+
+  export const DailyLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    works: 'works',
+    aiSummary: 'aiSummary',
+    export: 'export'
+  };
+
+  export type DailyLogScalarFieldEnum = (typeof DailyLogScalarFieldEnum)[keyof typeof DailyLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7485,6 +11460,13 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -7501,6 +11483,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -7572,6 +11563,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -7604,12 +11609,17 @@ export namespace Prisma {
     isVerified?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     accessToken?: StringNullableFilter<"User"> | string | null
+    githubToken?: StringNullableFilter<"User"> | string | null
+    githubUsername?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     Project?: ProjectListRelationFilter
     ProjectMembers?: ProjectListRelationFilter
     assignedTasks?: TaskListRelationFilter
     createdTasks?: TaskListRelationFilter
     updatedTasks?: TaskListRelationFilter
+    GitHubCommit?: GitHubCommitListRelationFilter
+    GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
+    DailyLog?: DailyLogListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7625,12 +11635,17 @@ export namespace Prisma {
     isVerified?: SortOrder
     createdAt?: SortOrder
     accessToken?: SortOrderInput | SortOrder
+    githubToken?: SortOrderInput | SortOrder
+    githubUsername?: SortOrderInput | SortOrder
     accounts?: AccountOrderByRelationAggregateInput
     Project?: ProjectOrderByRelationAggregateInput
     ProjectMembers?: ProjectOrderByRelationAggregateInput
     assignedTasks?: TaskOrderByRelationAggregateInput
     createdTasks?: TaskOrderByRelationAggregateInput
     updatedTasks?: TaskOrderByRelationAggregateInput
+    GitHubCommit?: GitHubCommitOrderByRelationAggregateInput
+    GitHubCommitGroup?: GitHubCommitGroupOrderByRelationAggregateInput
+    DailyLog?: DailyLogOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7649,12 +11664,17 @@ export namespace Prisma {
     isVerified?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     accessToken?: StringNullableFilter<"User"> | string | null
+    githubToken?: StringNullableFilter<"User"> | string | null
+    githubUsername?: StringNullableFilter<"User"> | string | null
     accounts?: AccountListRelationFilter
     Project?: ProjectListRelationFilter
     ProjectMembers?: ProjectListRelationFilter
     assignedTasks?: TaskListRelationFilter
     createdTasks?: TaskListRelationFilter
     updatedTasks?: TaskListRelationFilter
+    GitHubCommit?: GitHubCommitListRelationFilter
+    GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
+    DailyLog?: DailyLogListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -7670,6 +11690,8 @@ export namespace Prisma {
     isVerified?: SortOrder
     createdAt?: SortOrder
     accessToken?: SortOrderInput | SortOrder
+    githubToken?: SortOrderInput | SortOrder
+    githubUsername?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -7693,6 +11715,8 @@ export namespace Prisma {
     isVerified?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     accessToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    githubToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    githubUsername?: StringNullableWithAggregatesFilter<"User"> | string | null
   }
 
   export type AccountWhereInput = {
@@ -7950,7 +11974,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     updatedAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     projectId?: IntFilter<"GitHubRepo"> | number
+    webHookId?: IntNullableFilter<"GitHubRepo"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    GitHubCommit?: GitHubCommitListRelationFilter
+    GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
   }
 
   export type GitHubRepoOrderByWithRelationInput = {
@@ -7960,7 +11987,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrderInput | SortOrder
     project?: ProjectOrderByWithRelationInput
+    GitHubCommit?: GitHubCommitOrderByRelationAggregateInput
+    GitHubCommitGroup?: GitHubCommitGroupOrderByRelationAggregateInput
   }
 
   export type GitHubRepoWhereUniqueInput = Prisma.AtLeast<{
@@ -7973,7 +12003,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     updatedAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     projectId?: IntFilter<"GitHubRepo"> | number
+    webHookId?: IntNullableFilter<"GitHubRepo"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
+    GitHubCommit?: GitHubCommitListRelationFilter
+    GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
   }, "id">
 
   export type GitHubRepoOrderByWithAggregationInput = {
@@ -7983,6 +12016,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrderInput | SortOrder
     _count?: GitHubRepoCountOrderByAggregateInput
     _avg?: GitHubRepoAvgOrderByAggregateInput
     _max?: GitHubRepoMaxOrderByAggregateInput
@@ -8000,6 +12034,195 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"GitHubRepo"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"GitHubRepo"> | Date | string
     projectId?: IntWithAggregatesFilter<"GitHubRepo"> | number
+    webHookId?: IntNullableWithAggregatesFilter<"GitHubRepo"> | number | null
+  }
+
+  export type GitHubCommitWhereInput = {
+    AND?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
+    OR?: GitHubCommitWhereInput[]
+    NOT?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
+    id?: IntFilter<"GitHubCommit"> | number
+    repoId?: IntFilter<"GitHubCommit"> | number
+    userId?: IntFilter<"GitHubCommit"> | number
+    commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
+    timing?: DateTimeFilter<"GitHubCommit"> | Date | string
+    message?: StringFilter<"GitHubCommit"> | string
+    gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
+    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    GitHubCommitGroup?: XOR<GitHubCommitGroupNullableScalarRelationFilter, GitHubCommitGroupWhereInput> | null
+  }
+
+  export type GitHubCommitOrderByWithRelationInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    commitDate?: SortOrder
+    timing?: SortOrder
+    message?: SortOrder
+    gitHubCommitGroupId?: SortOrderInput | SortOrder
+    repo?: GitHubRepoOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    GitHubCommitGroup?: GitHubCommitGroupOrderByWithRelationInput
+  }
+
+  export type GitHubCommitWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
+    OR?: GitHubCommitWhereInput[]
+    NOT?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
+    repoId?: IntFilter<"GitHubCommit"> | number
+    userId?: IntFilter<"GitHubCommit"> | number
+    commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
+    timing?: DateTimeFilter<"GitHubCommit"> | Date | string
+    message?: StringFilter<"GitHubCommit"> | string
+    gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
+    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    GitHubCommitGroup?: XOR<GitHubCommitGroupNullableScalarRelationFilter, GitHubCommitGroupWhereInput> | null
+  }, "id">
+
+  export type GitHubCommitOrderByWithAggregationInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    commitDate?: SortOrder
+    timing?: SortOrder
+    message?: SortOrder
+    gitHubCommitGroupId?: SortOrderInput | SortOrder
+    _count?: GitHubCommitCountOrderByAggregateInput
+    _avg?: GitHubCommitAvgOrderByAggregateInput
+    _max?: GitHubCommitMaxOrderByAggregateInput
+    _min?: GitHubCommitMinOrderByAggregateInput
+    _sum?: GitHubCommitSumOrderByAggregateInput
+  }
+
+  export type GitHubCommitScalarWhereWithAggregatesInput = {
+    AND?: GitHubCommitScalarWhereWithAggregatesInput | GitHubCommitScalarWhereWithAggregatesInput[]
+    OR?: GitHubCommitScalarWhereWithAggregatesInput[]
+    NOT?: GitHubCommitScalarWhereWithAggregatesInput | GitHubCommitScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GitHubCommit"> | number
+    repoId?: IntWithAggregatesFilter<"GitHubCommit"> | number
+    userId?: IntWithAggregatesFilter<"GitHubCommit"> | number
+    commitDate?: DateTimeWithAggregatesFilter<"GitHubCommit"> | Date | string
+    timing?: DateTimeWithAggregatesFilter<"GitHubCommit"> | Date | string
+    message?: StringWithAggregatesFilter<"GitHubCommit"> | string
+    gitHubCommitGroupId?: IntNullableWithAggregatesFilter<"GitHubCommit"> | number | null
+  }
+
+  export type GitHubCommitGroupWhereInput = {
+    AND?: GitHubCommitGroupWhereInput | GitHubCommitGroupWhereInput[]
+    OR?: GitHubCommitGroupWhereInput[]
+    NOT?: GitHubCommitGroupWhereInput | GitHubCommitGroupWhereInput[]
+    id?: IntFilter<"GitHubCommitGroup"> | number
+    userId?: IntFilter<"GitHubCommitGroup"> | number
+    repoId?: IntFilter<"GitHubCommitGroup"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
+    commits?: GitHubCommitListRelationFilter
+  }
+
+  export type GitHubCommitGroupOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    repo?: GitHubRepoOrderByWithRelationInput
+    commits?: GitHubCommitOrderByRelationAggregateInput
+  }
+
+  export type GitHubCommitGroupWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: GitHubCommitGroupWhereInput | GitHubCommitGroupWhereInput[]
+    OR?: GitHubCommitGroupWhereInput[]
+    NOT?: GitHubCommitGroupWhereInput | GitHubCommitGroupWhereInput[]
+    userId?: IntFilter<"GitHubCommitGroup"> | number
+    repoId?: IntFilter<"GitHubCommitGroup"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
+    commits?: GitHubCommitListRelationFilter
+  }, "id">
+
+  export type GitHubCommitGroupOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+    _count?: GitHubCommitGroupCountOrderByAggregateInput
+    _avg?: GitHubCommitGroupAvgOrderByAggregateInput
+    _max?: GitHubCommitGroupMaxOrderByAggregateInput
+    _min?: GitHubCommitGroupMinOrderByAggregateInput
+    _sum?: GitHubCommitGroupSumOrderByAggregateInput
+  }
+
+  export type GitHubCommitGroupScalarWhereWithAggregatesInput = {
+    AND?: GitHubCommitGroupScalarWhereWithAggregatesInput | GitHubCommitGroupScalarWhereWithAggregatesInput[]
+    OR?: GitHubCommitGroupScalarWhereWithAggregatesInput[]
+    NOT?: GitHubCommitGroupScalarWhereWithAggregatesInput | GitHubCommitGroupScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"GitHubCommitGroup"> | number
+    userId?: IntWithAggregatesFilter<"GitHubCommitGroup"> | number
+    repoId?: IntWithAggregatesFilter<"GitHubCommitGroup"> | number
+  }
+
+  export type DailyLogWhereInput = {
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    id?: IntFilter<"DailyLog"> | number
+    userId?: IntFilter<"DailyLog"> | number
+    date?: DateTimeFilter<"DailyLog"> | Date | string
+    works?: JsonFilter<"DailyLog">
+    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
+    export?: StringNullableFilter<"DailyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type DailyLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    works?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    export?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type DailyLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    userId?: IntFilter<"DailyLog"> | number
+    date?: DateTimeFilter<"DailyLog"> | Date | string
+    works?: JsonFilter<"DailyLog">
+    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
+    export?: StringNullableFilter<"DailyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type DailyLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    works?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    export?: SortOrderInput | SortOrder
+    _count?: DailyLogCountOrderByAggregateInput
+    _avg?: DailyLogAvgOrderByAggregateInput
+    _max?: DailyLogMaxOrderByAggregateInput
+    _min?: DailyLogMinOrderByAggregateInput
+    _sum?: DailyLogSumOrderByAggregateInput
+  }
+
+  export type DailyLogScalarWhereWithAggregatesInput = {
+    AND?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    OR?: DailyLogScalarWhereWithAggregatesInput[]
+    NOT?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DailyLog"> | number
+    userId?: IntWithAggregatesFilter<"DailyLog"> | number
+    date?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
+    works?: JsonWithAggregatesFilter<"DailyLog">
+    aiSummary?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
+    export?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
   }
 
   export type UserCreateInput = {
@@ -8014,12 +12237,17 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -8035,12 +12263,17 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -8055,12 +12288,17 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8076,12 +12314,17 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8097,6 +12340,8 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8111,6 +12356,8 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8126,6 +12373,8 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AccountCreateInput = {
@@ -8375,7 +12624,10 @@ export namespace Prisma {
     url: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    webHookId?: number | null
     project: ProjectCreateNestedOneWithoutGithubReposInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoUncheckedCreateInput = {
@@ -8385,6 +12637,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     projectId: number
+    webHookId?: number | null
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoUpdateInput = {
@@ -8392,7 +12647,10 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
     project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubRepoUncheckedUpdateInput = {
@@ -8402,6 +12660,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: IntFieldUpdateOperationsInput | number
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubRepoCreateManyInput = {
@@ -8411,6 +12672,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     projectId: number
+    webHookId?: number | null
   }
 
   export type GitHubRepoUpdateManyMutationInput = {
@@ -8418,6 +12680,7 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GitHubRepoUncheckedUpdateManyInput = {
@@ -8427,6 +12690,172 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: IntFieldUpdateOperationsInput | number
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitCreateInput = {
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
+    user: UserCreateNestedOneWithoutGitHubCommitInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
+  }
+
+  export type GitHubCommitUncheckedCreateInput = {
+    id?: number
+    repoId: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitUpdateInput = {
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
+    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
+  }
+
+  export type GitHubCommitUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitCreateManyInput = {
+    id?: number
+    repoId: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitUpdateManyMutationInput = {
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GitHubCommitUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitGroupCreateInput = {
+    user: UserCreateNestedOneWithoutGitHubCommitGroupInput
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput
+    commits?: GitHubCommitCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupUncheckedCreateInput = {
+    id?: number
+    userId: number
+    repoId: number
+    commits?: GitHubCommitUncheckedCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupUpdateInput = {
+    user?: UserUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+    commits?: GitHubCommitUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    commits?: GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupCreateManyInput = {
+    id?: number
+    userId: number
+    repoId: number
+  }
+
+  export type GitHubCommitGroupUpdateManyMutationInput = {
+
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DailyLogCreateInput = {
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+    user: UserCreateNestedOneWithoutDailyLogInput
+  }
+
+  export type DailyLogUncheckedCreateInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutDailyLogNestedInput
+  }
+
+  export type DailyLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogCreateManyInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -8504,6 +12933,24 @@ export namespace Prisma {
     none?: TaskWhereInput
   }
 
+  export type GitHubCommitListRelationFilter = {
+    every?: GitHubCommitWhereInput
+    some?: GitHubCommitWhereInput
+    none?: GitHubCommitWhereInput
+  }
+
+  export type GitHubCommitGroupListRelationFilter = {
+    every?: GitHubCommitGroupWhereInput
+    some?: GitHubCommitGroupWhereInput
+    none?: GitHubCommitGroupWhereInput
+  }
+
+  export type DailyLogListRelationFilter = {
+    every?: DailyLogWhereInput
+    some?: DailyLogWhereInput
+    none?: DailyLogWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -8521,6 +12968,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type GitHubCommitOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GitHubCommitGroupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DailyLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
@@ -8534,6 +12993,8 @@ export namespace Prisma {
     isVerified?: SortOrder
     createdAt?: SortOrder
     accessToken?: SortOrder
+    githubToken?: SortOrder
+    githubUsername?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -8553,6 +13014,8 @@ export namespace Prisma {
     isVerified?: SortOrder
     createdAt?: SortOrder
     accessToken?: SortOrder
+    githubToken?: SortOrder
+    githubUsername?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -8568,6 +13031,8 @@ export namespace Prisma {
     isVerified?: SortOrder
     createdAt?: SortOrder
     accessToken?: SortOrder
+    githubToken?: SortOrder
+    githubUsername?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -8905,11 +13370,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrder
   }
 
   export type GitHubRepoAvgOrderByAggregateInput = {
     id?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrder
   }
 
   export type GitHubRepoMaxOrderByAggregateInput = {
@@ -8919,6 +13386,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrder
   }
 
   export type GitHubRepoMinOrderByAggregateInput = {
@@ -8928,11 +13396,181 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrder
   }
 
   export type GitHubRepoSumOrderByAggregateInput = {
     id?: SortOrder
     projectId?: SortOrder
+    webHookId?: SortOrder
+  }
+
+  export type GitHubRepoScalarRelationFilter = {
+    is?: GitHubRepoWhereInput
+    isNot?: GitHubRepoWhereInput
+  }
+
+  export type GitHubCommitGroupNullableScalarRelationFilter = {
+    is?: GitHubCommitGroupWhereInput | null
+    isNot?: GitHubCommitGroupWhereInput | null
+  }
+
+  export type GitHubCommitCountOrderByAggregateInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    commitDate?: SortOrder
+    timing?: SortOrder
+    message?: SortOrder
+    gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubCommitAvgOrderByAggregateInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubCommitMaxOrderByAggregateInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    commitDate?: SortOrder
+    timing?: SortOrder
+    message?: SortOrder
+    gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubCommitMinOrderByAggregateInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    commitDate?: SortOrder
+    timing?: SortOrder
+    message?: SortOrder
+    gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubCommitSumOrderByAggregateInput = {
+    id?: SortOrder
+    repoId?: SortOrder
+    userId?: SortOrder
+    gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubCommitGroupCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+  }
+
+  export type GitHubCommitGroupAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+  }
+
+  export type GitHubCommitGroupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+  }
+
+  export type GitHubCommitGroupMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+  }
+
+  export type GitHubCommitGroupSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    repoId?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DailyLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    works?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type DailyLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -8976,6 +13614,27 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type GitHubCommitCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubCommitCreateManyUserInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type GitHubCommitGroupCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput> | GitHubCommitGroupCreateWithoutUserInput[] | GitHubCommitGroupUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutUserInput | GitHubCommitGroupCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubCommitGroupCreateManyUserInputEnvelope
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+  }
+
+  export type DailyLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput> | DailyLogCreateWithoutUserInput[] | DailyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutUserInput | DailyLogCreateOrConnectWithoutUserInput[]
+    createMany?: DailyLogCreateManyUserInputEnvelope
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -9015,6 +13674,27 @@ export namespace Prisma {
     connectOrCreate?: TaskCreateOrConnectWithoutUpdatedByInput | TaskCreateOrConnectWithoutUpdatedByInput[]
     createMany?: TaskCreateManyUpdatedByInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
+  }
+
+  export type GitHubCommitUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubCommitCreateManyUserInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput> | GitHubCommitGroupCreateWithoutUserInput[] | GitHubCommitGroupUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutUserInput | GitHubCommitGroupCreateOrConnectWithoutUserInput[]
+    createMany?: GitHubCommitGroupCreateManyUserInputEnvelope
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+  }
+
+  export type DailyLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput> | DailyLogCreateWithoutUserInput[] | DailyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutUserInput | DailyLogCreateOrConnectWithoutUserInput[]
+    createMany?: DailyLogCreateManyUserInputEnvelope
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9116,6 +13796,48 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type GitHubCommitUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutUserInput | GitHubCommitUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubCommitCreateManyUserInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutUserInput | GitHubCommitUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutUserInput | GitHubCommitUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type GitHubCommitGroupUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput> | GitHubCommitGroupCreateWithoutUserInput[] | GitHubCommitGroupUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutUserInput | GitHubCommitGroupCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput | GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubCommitGroupCreateManyUserInputEnvelope
+    set?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    disconnect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    delete?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    update?: GitHubCommitGroupUpdateWithWhereUniqueWithoutUserInput | GitHubCommitGroupUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubCommitGroupUpdateManyWithWhereWithoutUserInput | GitHubCommitGroupUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+  }
+
+  export type DailyLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput> | DailyLogCreateWithoutUserInput[] | DailyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutUserInput | DailyLogCreateOrConnectWithoutUserInput[]
+    upsert?: DailyLogUpsertWithWhereUniqueWithoutUserInput | DailyLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DailyLogCreateManyUserInputEnvelope
+    set?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    disconnect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    delete?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    update?: DailyLogUpdateWithWhereUniqueWithoutUserInput | DailyLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DailyLogUpdateManyWithWhereWithoutUserInput | DailyLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9205,6 +13927,48 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutUpdatedByInput | TaskUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutUpdatedByInput | TaskUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutUserInput | GitHubCommitUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubCommitCreateManyUserInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutUserInput | GitHubCommitUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutUserInput | GitHubCommitUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput> | GitHubCommitGroupCreateWithoutUserInput[] | GitHubCommitGroupUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutUserInput | GitHubCommitGroupCreateOrConnectWithoutUserInput[]
+    upsert?: GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput | GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: GitHubCommitGroupCreateManyUserInputEnvelope
+    set?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    disconnect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    delete?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    update?: GitHubCommitGroupUpdateWithWhereUniqueWithoutUserInput | GitHubCommitGroupUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: GitHubCommitGroupUpdateManyWithWhereWithoutUserInput | GitHubCommitGroupUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+  }
+
+  export type DailyLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput> | DailyLogCreateWithoutUserInput[] | DailyLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: DailyLogCreateOrConnectWithoutUserInput | DailyLogCreateOrConnectWithoutUserInput[]
+    upsert?: DailyLogUpsertWithWhereUniqueWithoutUserInput | DailyLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: DailyLogCreateManyUserInputEnvelope
+    set?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    disconnect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    delete?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+    update?: DailyLogUpdateWithWhereUniqueWithoutUserInput | DailyLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: DailyLogUpdateManyWithWhereWithoutUserInput | DailyLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -9437,12 +14201,224 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput
   }
 
+  export type GitHubCommitCreateNestedManyWithoutRepoInput = {
+    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
+    createMany?: GitHubCommitCreateManyRepoInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type GitHubCommitGroupCreateNestedManyWithoutRepoInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
+    createMany?: GitHubCommitGroupCreateManyRepoInputEnvelope
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+  }
+
+  export type GitHubCommitUncheckedCreateNestedManyWithoutRepoInput = {
+    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
+    createMany?: GitHubCommitCreateManyRepoInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
+    createMany?: GitHubCommitGroupCreateManyRepoInputEnvelope
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+  }
+
   export type ProjectUpdateOneRequiredWithoutGithubReposNestedInput = {
     create?: XOR<ProjectCreateWithoutGithubReposInput, ProjectUncheckedCreateWithoutGithubReposInput>
     connectOrCreate?: ProjectCreateOrConnectWithoutGithubReposInput
     upsert?: ProjectUpsertWithoutGithubReposInput
     connect?: ProjectWhereUniqueInput
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutGithubReposInput, ProjectUpdateWithoutGithubReposInput>, ProjectUncheckedUpdateWithoutGithubReposInput>
+  }
+
+  export type GitHubCommitUpdateManyWithoutRepoNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitUpsertWithWhereUniqueWithoutRepoInput[]
+    createMany?: GitHubCommitCreateManyRepoInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitUpdateWithWhereUniqueWithoutRepoInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutRepoInput | GitHubCommitUpdateManyWithWhereWithoutRepoInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type GitHubCommitGroupUpdateManyWithoutRepoNestedInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
+    upsert?: GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput[]
+    createMany?: GitHubCommitGroupCreateManyRepoInputEnvelope
+    set?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    disconnect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    delete?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    update?: GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput[]
+    updateMany?: GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput | GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput[]
+    deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitUpsertWithWhereUniqueWithoutRepoInput[]
+    createMany?: GitHubCommitCreateManyRepoInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitUpdateWithWhereUniqueWithoutRepoInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutRepoInput | GitHubCommitUpdateManyWithWhereWithoutRepoInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
+    upsert?: GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput[]
+    createMany?: GitHubCommitGroupCreateManyRepoInputEnvelope
+    set?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    disconnect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    delete?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
+    update?: GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput[]
+    updateMany?: GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput | GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput[]
+    deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+  }
+
+  export type GitHubRepoCreateNestedOneWithoutGitHubCommitInput = {
+    create?: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
+    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitInput
+    connect?: GitHubRepoWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutGitHubCommitInput = {
+    create?: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GitHubCommitGroupCreateNestedOneWithoutCommitsInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutCommitsInput
+    connect?: GitHubCommitGroupWhereUniqueInput
+  }
+
+  export type GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput = {
+    create?: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
+    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitInput
+    upsert?: GitHubRepoUpsertWithoutGitHubCommitInput
+    connect?: GitHubRepoWhereUniqueInput
+    update?: XOR<XOR<GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitInput, GitHubRepoUpdateWithoutGitHubCommitInput>, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutGitHubCommitNestedInput = {
+    create?: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitInput
+    upsert?: UserUpsertWithoutGitHubCommitInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGitHubCommitInput, UserUpdateWithoutGitHubCommitInput>, UserUncheckedUpdateWithoutGitHubCommitInput>
+  }
+
+  export type GitHubCommitGroupUpdateOneWithoutCommitsNestedInput = {
+    create?: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
+    connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutCommitsInput
+    upsert?: GitHubCommitGroupUpsertWithoutCommitsInput
+    disconnect?: GitHubCommitGroupWhereInput | boolean
+    delete?: GitHubCommitGroupWhereInput | boolean
+    connect?: GitHubCommitGroupWhereUniqueInput
+    update?: XOR<XOR<GitHubCommitGroupUpdateToOneWithWhereWithoutCommitsInput, GitHubCommitGroupUpdateWithoutCommitsInput>, GitHubCommitGroupUncheckedUpdateWithoutCommitsInput>
+  }
+
+  export type UserCreateNestedOneWithoutGitHubCommitGroupInput = {
+    create?: XOR<UserCreateWithoutGitHubCommitGroupInput, UserUncheckedCreateWithoutGitHubCommitGroupInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitGroupInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput = {
+    create?: XOR<GitHubRepoCreateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput>
+    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitGroupInput
+    connect?: GitHubRepoWhereUniqueInput
+  }
+
+  export type GitHubCommitCreateNestedManyWithoutGitHubCommitGroupInput = {
+    create?: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput> | GitHubCommitCreateWithoutGitHubCommitGroupInput[] | GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput | GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput[]
+    createMany?: GitHubCommitCreateManyGitHubCommitGroupInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type GitHubCommitUncheckedCreateNestedManyWithoutGitHubCommitGroupInput = {
+    create?: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput> | GitHubCommitCreateWithoutGitHubCommitGroupInput[] | GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput | GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput[]
+    createMany?: GitHubCommitCreateManyGitHubCommitGroupInputEnvelope
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutGitHubCommitGroupNestedInput = {
+    create?: XOR<UserCreateWithoutGitHubCommitGroupInput, UserUncheckedCreateWithoutGitHubCommitGroupInput>
+    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitGroupInput
+    upsert?: UserUpsertWithoutGitHubCommitGroupInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGitHubCommitGroupInput, UserUpdateWithoutGitHubCommitGroupInput>, UserUncheckedUpdateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubRepoUpdateOneRequiredWithoutGitHubCommitGroupNestedInput = {
+    create?: XOR<GitHubRepoCreateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput>
+    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitGroupInput
+    upsert?: GitHubRepoUpsertWithoutGitHubCommitGroupInput
+    connect?: GitHubRepoWhereUniqueInput
+    update?: XOR<XOR<GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitGroupInput, GitHubRepoUpdateWithoutGitHubCommitGroupInput>, GitHubRepoUncheckedUpdateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitUpdateManyWithoutGitHubCommitGroupNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput> | GitHubCommitCreateWithoutGitHubCommitGroupInput[] | GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput | GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput | GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput[]
+    createMany?: GitHubCommitCreateManyGitHubCommitGroupInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutGitHubCommitGroupInput | GitHubCommitUpdateWithWhereUniqueWithoutGitHubCommitGroupInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput | GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupNestedInput = {
+    create?: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput> | GitHubCommitCreateWithoutGitHubCommitGroupInput[] | GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput[]
+    connectOrCreate?: GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput | GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput[]
+    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput | GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput[]
+    createMany?: GitHubCommitCreateManyGitHubCommitGroupInputEnvelope
+    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
+    update?: GitHubCommitUpdateWithWhereUniqueWithoutGitHubCommitGroupInput | GitHubCommitUpdateWithWhereUniqueWithoutGitHubCommitGroupInput[]
+    updateMany?: GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput | GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput[]
+    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutDailyLogInput = {
+    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutDailyLogNestedInput = {
+    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
+    upsert?: UserUpsertWithoutDailyLogInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyLogInput, UserUpdateWithoutDailyLogInput>, UserUncheckedUpdateWithoutDailyLogInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9662,6 +14638,29 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type AccountCreateWithoutUserInput = {
     provider: string
@@ -9864,6 +14863,79 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type GitHubCommitCreateWithoutUserInput = {
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
+  }
+
+  export type GitHubCommitUncheckedCreateWithoutUserInput = {
+    id?: number
+    repoId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitCreateOrConnectWithoutUserInput = {
+    where: GitHubCommitWhereUniqueInput
+    create: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubCommitCreateManyUserInputEnvelope = {
+    data: GitHubCommitCreateManyUserInput | GitHubCommitCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GitHubCommitGroupCreateWithoutUserInput = {
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput
+    commits?: GitHubCommitCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupUncheckedCreateWithoutUserInput = {
+    id?: number
+    repoId: number
+    commits?: GitHubCommitUncheckedCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupCreateOrConnectWithoutUserInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    create: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubCommitGroupCreateManyUserInputEnvelope = {
+    data: GitHubCommitGroupCreateManyUserInput | GitHubCommitGroupCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DailyLogCreateWithoutUserInput = {
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogUncheckedCreateWithoutUserInput = {
+    id?: number
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogCreateOrConnectWithoutUserInput = {
+    where: DailyLogWhereUniqueInput
+    create: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type DailyLogCreateManyUserInputEnvelope = {
+    data: DailyLogCreateManyUserInput | DailyLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -10004,6 +15076,88 @@ export namespace Prisma {
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
+  export type GitHubCommitUpsertWithWhereUniqueWithoutUserInput = {
+    where: GitHubCommitWhereUniqueInput
+    update: XOR<GitHubCommitUpdateWithoutUserInput, GitHubCommitUncheckedUpdateWithoutUserInput>
+    create: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubCommitUpdateWithWhereUniqueWithoutUserInput = {
+    where: GitHubCommitWhereUniqueInput
+    data: XOR<GitHubCommitUpdateWithoutUserInput, GitHubCommitUncheckedUpdateWithoutUserInput>
+  }
+
+  export type GitHubCommitUpdateManyWithWhereWithoutUserInput = {
+    where: GitHubCommitScalarWhereInput
+    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type GitHubCommitScalarWhereInput = {
+    AND?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+    OR?: GitHubCommitScalarWhereInput[]
+    NOT?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+    id?: IntFilter<"GitHubCommit"> | number
+    repoId?: IntFilter<"GitHubCommit"> | number
+    userId?: IntFilter<"GitHubCommit"> | number
+    commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
+    timing?: DateTimeFilter<"GitHubCommit"> | Date | string
+    message?: StringFilter<"GitHubCommit"> | string
+    gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
+  }
+
+  export type GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    update: XOR<GitHubCommitGroupUpdateWithoutUserInput, GitHubCommitGroupUncheckedUpdateWithoutUserInput>
+    create: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput>
+  }
+
+  export type GitHubCommitGroupUpdateWithWhereUniqueWithoutUserInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    data: XOR<GitHubCommitGroupUpdateWithoutUserInput, GitHubCommitGroupUncheckedUpdateWithoutUserInput>
+  }
+
+  export type GitHubCommitGroupUpdateManyWithWhereWithoutUserInput = {
+    where: GitHubCommitGroupScalarWhereInput
+    data: XOR<GitHubCommitGroupUpdateManyMutationInput, GitHubCommitGroupUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type GitHubCommitGroupScalarWhereInput = {
+    AND?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+    OR?: GitHubCommitGroupScalarWhereInput[]
+    NOT?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
+    id?: IntFilter<"GitHubCommitGroup"> | number
+    userId?: IntFilter<"GitHubCommitGroup"> | number
+    repoId?: IntFilter<"GitHubCommitGroup"> | number
+  }
+
+  export type DailyLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: DailyLogWhereUniqueInput
+    update: XOR<DailyLogUpdateWithoutUserInput, DailyLogUncheckedUpdateWithoutUserInput>
+    create: XOR<DailyLogCreateWithoutUserInput, DailyLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type DailyLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: DailyLogWhereUniqueInput
+    data: XOR<DailyLogUpdateWithoutUserInput, DailyLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type DailyLogUpdateManyWithWhereWithoutUserInput = {
+    where: DailyLogScalarWhereInput
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type DailyLogScalarWhereInput = {
+    AND?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+    OR?: DailyLogScalarWhereInput[]
+    NOT?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+    id?: IntFilter<"DailyLog"> | number
+    userId?: IntFilter<"DailyLog"> | number
+    date?: DateTimeFilter<"DailyLog"> | Date | string
+    works?: JsonFilter<"DailyLog">
+    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
+    export?: StringNullableFilter<"DailyLog"> | string | null
+  }
+
   export type UserCreateWithoutAccountsInput = {
     email: string
     password?: string | null
@@ -10016,11 +15170,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -10036,11 +15195,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -10071,11 +15235,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -10091,11 +15260,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProjectInput = {
@@ -10110,11 +15284,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectInput = {
@@ -10130,11 +15309,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectInput = {
@@ -10154,11 +15338,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectMembersInput = {
@@ -10174,11 +15363,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectMembersInput = {
@@ -10230,6 +15424,9 @@ export namespace Prisma {
     url: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    webHookId?: number | null
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoUncheckedCreateWithoutProjectInput = {
@@ -10238,6 +15435,9 @@ export namespace Prisma {
     url: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    webHookId?: number | null
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoCreateOrConnectWithoutProjectInput = {
@@ -10273,11 +15473,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectInput = {
@@ -10293,11 +15498,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutProjectMembersInput = {
@@ -10332,6 +15542,8 @@ export namespace Prisma {
     isVerified?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     accessToken?: StringNullableFilter<"User"> | string | null
+    githubToken?: StringNullableFilter<"User"> | string | null
+    githubUsername?: StringNullableFilter<"User"> | string | null
   }
 
   export type TaskUpsertWithWhereUniqueWithoutProjectInput = {
@@ -10376,6 +15588,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     updatedAt?: DateTimeFilter<"GitHubRepo"> | Date | string
     projectId?: IntFilter<"GitHubRepo"> | number
+    webHookId?: IntNullableFilter<"GitHubRepo"> | number | null
   }
 
   export type ProjectCreateWithoutTasksInput = {
@@ -10416,11 +15629,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -10436,11 +15654,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -10460,11 +15683,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCreatedTasksInput = {
@@ -10480,11 +15708,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -10504,11 +15737,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountCreateNestedManyWithoutUserInput
     Project?: ProjectCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUpdatedTasksInput = {
@@ -10524,11 +15762,16 @@ export namespace Prisma {
     isVerified?: boolean
     createdAt?: Date | string
     accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
     Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUpdatedTasksInput = {
@@ -10591,11 +15834,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -10611,11 +15859,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutCreatedTasksInput = {
@@ -10641,11 +15894,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedTasksInput = {
@@ -10661,11 +15919,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutUpdatedTasksInput = {
@@ -10691,11 +15954,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUpdatedTasksInput = {
@@ -10711,11 +15979,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutGithubReposInput = {
@@ -10742,6 +16015,54 @@ export namespace Prisma {
   export type ProjectCreateOrConnectWithoutGithubReposInput = {
     where: ProjectWhereUniqueInput
     create: XOR<ProjectCreateWithoutGithubReposInput, ProjectUncheckedCreateWithoutGithubReposInput>
+  }
+
+  export type GitHubCommitCreateWithoutRepoInput = {
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    user: UserCreateNestedOneWithoutGitHubCommitInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
+  }
+
+  export type GitHubCommitUncheckedCreateWithoutRepoInput = {
+    id?: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitCreateOrConnectWithoutRepoInput = {
+    where: GitHubCommitWhereUniqueInput
+    create: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput>
+  }
+
+  export type GitHubCommitCreateManyRepoInputEnvelope = {
+    data: GitHubCommitCreateManyRepoInput | GitHubCommitCreateManyRepoInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type GitHubCommitGroupCreateWithoutRepoInput = {
+    user: UserCreateNestedOneWithoutGitHubCommitGroupInput
+    commits?: GitHubCommitCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupUncheckedCreateWithoutRepoInput = {
+    id?: number
+    userId: number
+    commits?: GitHubCommitUncheckedCreateNestedManyWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupCreateOrConnectWithoutRepoInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    create: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput>
+  }
+
+  export type GitHubCommitGroupCreateManyRepoInputEnvelope = {
+    data: GitHubCommitGroupCreateManyRepoInput | GitHubCommitGroupCreateManyRepoInput[]
+    skipDuplicates?: boolean
   }
 
   export type ProjectUpsertWithoutGithubReposInput = {
@@ -10774,6 +16095,577 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     members?: UserUncheckedUpdateManyWithoutProjectMembersNestedInput
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
+  }
+
+  export type GitHubCommitUpsertWithWhereUniqueWithoutRepoInput = {
+    where: GitHubCommitWhereUniqueInput
+    update: XOR<GitHubCommitUpdateWithoutRepoInput, GitHubCommitUncheckedUpdateWithoutRepoInput>
+    create: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput>
+  }
+
+  export type GitHubCommitUpdateWithWhereUniqueWithoutRepoInput = {
+    where: GitHubCommitWhereUniqueInput
+    data: XOR<GitHubCommitUpdateWithoutRepoInput, GitHubCommitUncheckedUpdateWithoutRepoInput>
+  }
+
+  export type GitHubCommitUpdateManyWithWhereWithoutRepoInput = {
+    where: GitHubCommitScalarWhereInput
+    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutRepoInput>
+  }
+
+  export type GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    update: XOR<GitHubCommitGroupUpdateWithoutRepoInput, GitHubCommitGroupUncheckedUpdateWithoutRepoInput>
+    create: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput>
+  }
+
+  export type GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    data: XOR<GitHubCommitGroupUpdateWithoutRepoInput, GitHubCommitGroupUncheckedUpdateWithoutRepoInput>
+  }
+
+  export type GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput = {
+    where: GitHubCommitGroupScalarWhereInput
+    data: XOR<GitHubCommitGroupUpdateManyMutationInput, GitHubCommitGroupUncheckedUpdateManyWithoutRepoInput>
+  }
+
+  export type GitHubRepoCreateWithoutGitHubCommitInput = {
+    name: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    webHookId?: number | null
+    project: ProjectCreateNestedOneWithoutGithubReposInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
+  }
+
+  export type GitHubRepoUncheckedCreateWithoutGitHubCommitInput = {
+    id?: number
+    name: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: number
+    webHookId?: number | null
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
+  }
+
+  export type GitHubRepoCreateOrConnectWithoutGitHubCommitInput = {
+    where: GitHubRepoWhereUniqueInput
+    create: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
+  }
+
+  export type UserCreateWithoutGitHubCommitInput = {
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGitHubCommitInput = {
+    id?: number
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGitHubCommitInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
+  }
+
+  export type GitHubCommitGroupCreateWithoutCommitsInput = {
+    user: UserCreateNestedOneWithoutGitHubCommitGroupInput
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput
+  }
+
+  export type GitHubCommitGroupUncheckedCreateWithoutCommitsInput = {
+    id?: number
+    userId: number
+    repoId: number
+  }
+
+  export type GitHubCommitGroupCreateOrConnectWithoutCommitsInput = {
+    where: GitHubCommitGroupWhereUniqueInput
+    create: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
+  }
+
+  export type GitHubRepoUpsertWithoutGitHubCommitInput = {
+    update: XOR<GitHubRepoUpdateWithoutGitHubCommitInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
+    create: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
+    where?: GitHubRepoWhereInput
+  }
+
+  export type GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitInput = {
+    where?: GitHubRepoWhereInput
+    data: XOR<GitHubRepoUpdateWithoutGitHubCommitInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
+  }
+
+  export type GitHubRepoUpdateWithoutGitHubCommitInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
+  }
+
+  export type GitHubRepoUncheckedUpdateWithoutGitHubCommitInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: IntFieldUpdateOperationsInput | number
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
+  }
+
+  export type UserUpsertWithoutGitHubCommitInput = {
+    update: XOR<UserUpdateWithoutGitHubCommitInput, UserUncheckedUpdateWithoutGitHubCommitInput>
+    create: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutGitHubCommitInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutGitHubCommitInput, UserUncheckedUpdateWithoutGitHubCommitInput>
+  }
+
+  export type UserUpdateWithoutGitHubCommitInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGitHubCommitInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type GitHubCommitGroupUpsertWithoutCommitsInput = {
+    update: XOR<GitHubCommitGroupUpdateWithoutCommitsInput, GitHubCommitGroupUncheckedUpdateWithoutCommitsInput>
+    create: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
+    where?: GitHubCommitGroupWhereInput
+  }
+
+  export type GitHubCommitGroupUpdateToOneWithWhereWithoutCommitsInput = {
+    where?: GitHubCommitGroupWhereInput
+    data: XOR<GitHubCommitGroupUpdateWithoutCommitsInput, GitHubCommitGroupUncheckedUpdateWithoutCommitsInput>
+  }
+
+  export type GitHubCommitGroupUpdateWithoutCommitsInput = {
+    user?: UserUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateWithoutCommitsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type UserCreateWithoutGitHubCommitGroupInput = {
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutGitHubCommitGroupInput = {
+    id?: number
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutGitHubCommitGroupInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutGitHubCommitGroupInput, UserUncheckedCreateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubRepoCreateWithoutGitHubCommitGroupInput = {
+    name: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    webHookId?: number | null
+    project: ProjectCreateNestedOneWithoutGithubReposInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
+  }
+
+  export type GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput = {
+    id?: number
+    name: string
+    url: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    projectId: number
+    webHookId?: number | null
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
+  }
+
+  export type GitHubRepoCreateOrConnectWithoutGitHubCommitGroupInput = {
+    where: GitHubRepoWhereUniqueInput
+    create: XOR<GitHubRepoCreateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitCreateWithoutGitHubCommitGroupInput = {
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
+    user: UserCreateNestedOneWithoutGitHubCommitInput
+  }
+
+  export type GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput = {
+    id?: number
+    repoId: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+  }
+
+  export type GitHubCommitCreateOrConnectWithoutGitHubCommitGroupInput = {
+    where: GitHubCommitWhereUniqueInput
+    create: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitCreateManyGitHubCommitGroupInputEnvelope = {
+    data: GitHubCommitCreateManyGitHubCommitGroupInput | GitHubCommitCreateManyGitHubCommitGroupInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutGitHubCommitGroupInput = {
+    update: XOR<UserUpdateWithoutGitHubCommitGroupInput, UserUncheckedUpdateWithoutGitHubCommitGroupInput>
+    create: XOR<UserCreateWithoutGitHubCommitGroupInput, UserUncheckedCreateWithoutGitHubCommitGroupInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutGitHubCommitGroupInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutGitHubCommitGroupInput, UserUncheckedUpdateWithoutGitHubCommitGroupInput>
+  }
+
+  export type UserUpdateWithoutGitHubCommitGroupInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutGitHubCommitGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type GitHubRepoUpsertWithoutGitHubCommitGroupInput = {
+    update: XOR<GitHubRepoUpdateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitGroupInput>
+    create: XOR<GitHubRepoCreateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput>
+    where?: GitHubRepoWhereInput
+  }
+
+  export type GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitGroupInput = {
+    where?: GitHubRepoWhereInput
+    data: XOR<GitHubRepoUpdateWithoutGitHubCommitGroupInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubRepoUpdateWithoutGitHubCommitGroupInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
+  }
+
+  export type GitHubRepoUncheckedUpdateWithoutGitHubCommitGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    projectId?: IntFieldUpdateOperationsInput | number
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
+  }
+
+  export type GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput = {
+    where: GitHubCommitWhereUniqueInput
+    update: XOR<GitHubCommitUpdateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedUpdateWithoutGitHubCommitGroupInput>
+    create: XOR<GitHubCommitCreateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitUpdateWithWhereUniqueWithoutGitHubCommitGroupInput = {
+    where: GitHubCommitWhereUniqueInput
+    data: XOR<GitHubCommitUpdateWithoutGitHubCommitGroupInput, GitHubCommitUncheckedUpdateWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput = {
+    where: GitHubCommitScalarWhereInput
+    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupInput>
+  }
+
+  export type UserCreateWithoutDailyLogInput = {
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutDailyLogInput = {
+    id?: number
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDailyLogInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+  }
+
+  export type UserUpsertWithoutDailyLogInput = {
+    update: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
+    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDailyLogInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
+  }
+
+  export type UserUpdateWithoutDailyLogInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDailyLogInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -10836,6 +16728,28 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedOn?: Date | string | null
+  }
+
+  export type GitHubCommitCreateManyUserInput = {
+    id?: number
+    repoId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitGroupCreateManyUserInput = {
+    id?: number
+    repoId: number
+  }
+
+  export type DailyLogCreateManyUserInput = {
+    id?: number
+    date: Date | string
+    works: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -11055,6 +16969,71 @@ export namespace Prisma {
     completedOn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type GitHubCommitUpdateWithoutUserInput = {
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
+  }
+
+  export type GitHubCommitUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitGroupUpdateWithoutUserInput = {
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+    commits?: GitHubCommitUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    commits?: GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type DailyLogUpdateWithoutUserInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    works?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type TaskCreateManyProjectInput = {
     id?: number
     title: string
@@ -11076,6 +17055,7 @@ export namespace Prisma {
     url: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    webHookId?: number | null
   }
 
   export type UserUpdateWithoutProjectMembersInput = {
@@ -11090,11 +17070,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUpdateManyWithoutUserNestedInput
     Project?: ProjectUpdateManyWithoutOwnerNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectMembersInput = {
@@ -11110,11 +17095,16 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutProjectMembersInput = {
@@ -11130,6 +17120,8 @@ export namespace Prisma {
     isVerified?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TaskUpdateWithoutProjectInput = {
@@ -11181,6 +17173,9 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubRepoUncheckedUpdateWithoutProjectInput = {
@@ -11189,6 +17184,9 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubRepoUncheckedUpdateManyWithoutProjectInput = {
@@ -11197,6 +17195,98 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitCreateManyRepoInput = {
+    id?: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+    gitHubCommitGroupId?: number | null
+  }
+
+  export type GitHubCommitGroupCreateManyRepoInput = {
+    id?: number
+    userId: number
+  }
+
+  export type GitHubCommitUpdateWithoutRepoInput = {
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
+  }
+
+  export type GitHubCommitUncheckedUpdateWithoutRepoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutRepoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type GitHubCommitGroupUpdateWithoutRepoInput = {
+    user?: UserUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
+    commits?: GitHubCommitUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateWithoutRepoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commits?: GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupNestedInput
+  }
+
+  export type GitHubCommitGroupUncheckedUpdateManyWithoutRepoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type GitHubCommitCreateManyGitHubCommitGroupInput = {
+    id?: number
+    repoId: number
+    userId: number
+    commitDate: Date | string
+    timing: Date | string
+    message: string
+  }
+
+  export type GitHubCommitUpdateWithoutGitHubCommitGroupInput = {
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
+    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
+  }
+
+  export type GitHubCommitUncheckedUpdateWithoutGitHubCommitGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    repoId?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    timing?: DateTimeFieldUpdateOperationsInput | Date | string
+    message?: StringFieldUpdateOperationsInput | string
   }
 
 

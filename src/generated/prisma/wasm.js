@@ -132,7 +132,9 @@ exports.Prisma.UserScalarFieldEnum = {
   isAdmin: 'isAdmin',
   isVerified: 'isVerified',
   createdAt: 'createdAt',
-  accessToken: 'accessToken'
+  accessToken: 'accessToken',
+  githubToken: 'githubToken',
+  githubUsername: 'githubUsername'
 };
 
 exports.Prisma.AccountScalarFieldEnum = {
@@ -176,12 +178,42 @@ exports.Prisma.GitHubRepoScalarFieldEnum = {
   url: 'url',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  projectId: 'projectId'
+  projectId: 'projectId',
+  webHookId: 'webHookId'
+};
+
+exports.Prisma.GitHubCommitScalarFieldEnum = {
+  id: 'id',
+  repoId: 'repoId',
+  userId: 'userId',
+  commitDate: 'commitDate',
+  timing: 'timing',
+  message: 'message',
+  gitHubCommitGroupId: 'gitHubCommitGroupId'
+};
+
+exports.Prisma.GitHubCommitGroupScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  repoId: 'repoId'
+};
+
+exports.Prisma.DailyLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  works: 'works',
+  aiSummary: 'aiSummary',
+  export: 'export'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -192,6 +224,12 @@ exports.Prisma.QueryMode = {
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
+};
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.TaskStatus = exports.$Enums.TaskStatus = {
   PENDING: 'PENDING',
@@ -204,7 +242,10 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Project: 'Project',
   Task: 'Task',
-  GitHubRepo: 'GitHubRepo'
+  GitHubRepo: 'GitHubRepo',
+  GitHubCommit: 'GitHubCommit',
+  GitHubCommitGroup: 'GitHubCommitGroup',
+  DailyLog: 'DailyLog'
 };
 
 /**
