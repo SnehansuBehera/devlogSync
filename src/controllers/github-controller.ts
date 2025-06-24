@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import axios from "axios";
 import prisma from "../config/prisma-config";
+import { startOfDay, endOfDay } from 'date-fns';
 
 export const addGithubLinks = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -21,28 +22,15 @@ export const addGithubLinks = async (req: Request, res: Response): Promise<void>
                 projectId
             }
         });
-        console.log("Creating webhook for:", {
-  repo: `${owner?.githubUsername}/${name.toLowerCase()}`,
-  payload: {
-    name: 'web',
-    active: true,
-    events: ['push'],
-    config: {
-      url: 'https://a80c-...ngrok.../api/webhook/github',
-      content_type: 'json',
-      secret: process.env.GITHUB_WEBHOOK_SECRET
-    }
-  }
-});
 
 const response = await axios.post(
   `https://api.github.com/repos/${owner?.githubUsername}/${name.toLowerCase()}/hooks`,
   {
     name: 'web',
     active: true,
-    events: ['push'],
+    events: ['push', 'ping'],
     config: {
-      url: 'https://a80c-...ngrok.../api/webhook/github',
+      url: 'https://8f38-2405-201-8021-50db-2c5d-89f5-ea05-7afe.ngrok-free.app/api/github/github/webhook',
       content_type: 'json',
       secret: process.env.GITHUB_WEBHOOK_SECRET || 'fallback-secret',
       insecure_ssl: '0'
@@ -124,71 +112,62 @@ export const updateGithubTokens = async (req: Request, res: Response): Promise<v
 
 export const handleGitHubWebhook = async (req: Request, res: Response): Promise<void> => {
   const event = req.headers['x-github-event'];
-  console.log("🌐 Received webhook:", event);
-  console.log("🧾 Content-Type:", req.headers['content-type']);
-  console.log("📦 Raw payload body:", JSON.stringify(req.body));
+  console.log("Received webhook:", event);
+  console.log("Content-Type:", req.headers['content-type']);
+  console.log("Raw payload body:", JSON.stringify(req.body));
 
   if (event !== 'push') {
-    console.log("❌ Ignoring non-push event");
+    console.log("Ignoring non-push event");
     res.status(200).send('Ignored');
     return;
   }
 
   try {
-    // ✅ If payload is stringified JSON inside `req.body.payload`, parse it
-    let payload: any;
+    let payload: any = req.body;
     if (typeof req.body.payload === 'string') {
       payload = JSON.parse(req.body.payload);
-    } else {
-      payload = req.body;
     }
 
     const { repository, commits, pusher } = payload;
 
     if (!repository || !commits || !pusher) {
-      console.log("❌ Invalid payload structure:", payload);
-        res.status(400).send("Invalid payload");
-        return;
+      console.log("Invalid payload structure:", payload);
+      res.status(400).send("Invalid payload");
+      return;
     }
-    const url = repository.html_url+".git";
-    // Step 1: Find repo
+
+    const url = repository.html_url + ".git";
+
     const repo = await prisma.gitHubRepo.findFirst({
       where: { url: url },
     });
 
     if (!repo) {
-      console.log("❌ Repo not found:", url);
-        res.status(404).send('Repo not found');
-        return;
+      console.log("Repo not found:", url);
+      res.status(404).send('Repo not found');
+      return;
     }
 
-    // Step 2: Find user
     const user = await prisma.user.findFirst({
       where: { githubUsername: pusher.name },
     });
 
     if (!user) {
-      console.log("❌ User not found:", pusher.name);
-        res.status(404).send('User not found');
-        return;
+      console.log("User not found:", pusher.name);
+      res.status(404).send('User not found');
+      return;
     }
-
-    // Step 3: Create GitHubCommitGroup
     const commitGroup = await prisma.gitHubCommitGroup.create({
       data: {
         repoId: repo.id,
         userId: user.id,
       },
     });
-
-    // Step 4: Insert each commit
     for (const commit of commits) {
       const commitDate = new Date(commit.timestamp);
 
       await prisma.gitHubCommit.create({
         data: {
-          repoId: repo.id,
-          userId: user.id,
           commitDate,
           timing: commitDate,
           message: commit.message,
@@ -196,13 +175,63 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
         },
       });
 
-      console.log(`✅ Commit inserted: "${commit.message}" at ${commit.timestamp}`);
+      console.log(`Commit inserted: "${commit.message}" at ${commit.timestamp}`);
     }
 
-    console.log("✅ All commits recorded successfully");
+    console.log("All commits recorded successfully");
     res.status(200).send('Commits recorded');
   } catch (err) {
-    console.error("🔥 Webhook handler error:", err);
+    console.error("Webhook handler error:", err);
     res.status(500).send('Internal Server Error');
+  }
+};
+
+
+export const getCommitsByDate = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { date } = req.query;
+    const userId = req.user?.id;
+    if (!userId || !date) {
+      res.status(400).json({ message: "Missing userId or date (YYYY-MM-DD)" });
+      return;
+    }
+
+    const parsedDate = new Date(date as string);
+
+    const commits = await prisma.gitHubCommit.findMany({
+      where: {
+        commitDate: {
+          gte: startOfDay(parsedDate),
+          lte: endOfDay(parsedDate),
+        },
+        GitHubCommitGroup: {
+          userId: parseInt(userId as string),
+        },
+      },
+      include: {
+        GitHubCommitGroup: {
+          select: {
+            repo: {
+              select: { name: true, url: true },
+            },
+          },
+        },
+      },
+      orderBy: {
+        timing: 'asc',
+      },
+    });
+
+    const formatted = commits.map(commit => ({
+      message: commit.message,
+      date: commit.commitDate,
+      time: commit.timing,
+      repo: commit.GitHubCommitGroup?.repo,
+    }));
+
+    res.status(200).json({ commits: formatted });
+  } catch (err) {
+    console.error("Error fetching commits:", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 };

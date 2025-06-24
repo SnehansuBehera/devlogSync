@@ -35,7 +35,6 @@ model User {
   assignedTasks     Task[]              @relation("AssignedTo")
   createdTasks      Task[]              @relation("AssignedBy")
   updatedTasks      Task[]              @relation("UpdatedBy")
-  GitHubCommit      GitHubCommit[]
   GitHubCommitGroup GitHubCommitGroup[]
   DailyLog          DailyLog[]
 }
@@ -105,16 +104,11 @@ model GitHubRepo {
   projectId         Int
   webHookId         Int?
   project           Project             @relation(fields: [projectId], references: [id])
-  GitHubCommit      GitHubCommit[]
   GitHubCommitGroup GitHubCommitGroup[]
 }
 
 model GitHubCommit {
   id                  Int                @id @default(autoincrement())
-  repoId              Int
-  userId              Int
-  repo                GitHubRepo         @relation(fields: [repoId], references: [id])
-  user                User               @relation(fields: [userId], references: [id])
   commitDate          DateTime           @db.Date
   timing              DateTime           @db.Time
   message             String

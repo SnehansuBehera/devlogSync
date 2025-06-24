@@ -1530,7 +1530,6 @@ export namespace Prisma {
     assignedTasks: number
     createdTasks: number
     updatedTasks: number
-    GitHubCommit: number
     GitHubCommitGroup: number
     DailyLog: number
   }
@@ -1542,7 +1541,6 @@ export namespace Prisma {
     assignedTasks?: boolean | UserCountOutputTypeCountAssignedTasksArgs
     createdTasks?: boolean | UserCountOutputTypeCountCreatedTasksArgs
     updatedTasks?: boolean | UserCountOutputTypeCountUpdatedTasksArgs
-    GitHubCommit?: boolean | UserCountOutputTypeCountGitHubCommitArgs
     GitHubCommitGroup?: boolean | UserCountOutputTypeCountGitHubCommitGroupArgs
     DailyLog?: boolean | UserCountOutputTypeCountDailyLogArgs
   }
@@ -1598,13 +1596,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountUpdatedTasksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TaskWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountGitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GitHubCommitWhereInput
   }
 
   /**
@@ -1676,12 +1667,10 @@ export namespace Prisma {
    */
 
   export type GitHubRepoCountOutputType = {
-    GitHubCommit: number
     GitHubCommitGroup: number
   }
 
   export type GitHubRepoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    GitHubCommit?: boolean | GitHubRepoCountOutputTypeCountGitHubCommitArgs
     GitHubCommitGroup?: boolean | GitHubRepoCountOutputTypeCountGitHubCommitGroupArgs
   }
 
@@ -1694,13 +1683,6 @@ export namespace Prisma {
      * Select specific fields to fetch from the GitHubRepoCountOutputType
      */
     select?: GitHubRepoCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * GitHubRepoCountOutputType without action
-   */
-  export type GitHubRepoCountOutputTypeCountGitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: GitHubCommitWhereInput
   }
 
   /**
@@ -2022,7 +2004,6 @@ export namespace Prisma {
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
-    GitHubCommit?: boolean | User$GitHubCommitArgs<ExtArgs>
     GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
     DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2087,7 +2068,6 @@ export namespace Prisma {
     assignedTasks?: boolean | User$assignedTasksArgs<ExtArgs>
     createdTasks?: boolean | User$createdTasksArgs<ExtArgs>
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
-    GitHubCommit?: boolean | User$GitHubCommitArgs<ExtArgs>
     GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
     DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2104,7 +2084,6 @@ export namespace Prisma {
       assignedTasks: Prisma.$TaskPayload<ExtArgs>[]
       createdTasks: Prisma.$TaskPayload<ExtArgs>[]
       updatedTasks: Prisma.$TaskPayload<ExtArgs>[]
-      GitHubCommit: Prisma.$GitHubCommitPayload<ExtArgs>[]
       GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs>[]
       DailyLog: Prisma.$DailyLogPayload<ExtArgs>[]
     }
@@ -2523,7 +2502,6 @@ export namespace Prisma {
     assignedTasks<T extends User$assignedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$assignedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     createdTasks<T extends User$createdTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$createdTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     updatedTasks<T extends User$updatedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$updatedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    GitHubCommit<T extends User$GitHubCommitArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubCommitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GitHubCommitGroup<T extends User$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubCommitGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DailyLog<T extends User$DailyLogArgs<ExtArgs> = {}>(args?: Subset<T, User$DailyLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -3098,30 +3076,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TaskScalarFieldEnum | TaskScalarFieldEnum[]
-  }
-
-  /**
-   * User.GitHubCommit
-   */
-  export type User$GitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GitHubCommit
-     */
-    select?: GitHubCommitSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GitHubCommit
-     */
-    omit?: GitHubCommitOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GitHubCommitInclude<ExtArgs> | null
-    where?: GitHubCommitWhereInput
-    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
-    cursor?: GitHubCommitWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
   }
 
   /**
@@ -6986,7 +6940,6 @@ export namespace Prisma {
     projectId?: boolean
     webHookId?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    GitHubCommit?: boolean | GitHubRepo$GitHubCommitArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubRepo$GitHubCommitGroupArgs<ExtArgs>
     _count?: boolean | GitHubRepoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubRepo"]>
@@ -7026,7 +6979,6 @@ export namespace Prisma {
   export type GitHubRepoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "url" | "createdAt" | "updatedAt" | "projectId" | "webHookId", ExtArgs["result"]["gitHubRepo"]>
   export type GitHubRepoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
-    GitHubCommit?: boolean | GitHubRepo$GitHubCommitArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubRepo$GitHubCommitGroupArgs<ExtArgs>
     _count?: boolean | GitHubRepoCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -7041,7 +6993,6 @@ export namespace Prisma {
     name: "GitHubRepo"
     objects: {
       project: Prisma.$ProjectPayload<ExtArgs>
-      GitHubCommit: Prisma.$GitHubCommitPayload<ExtArgs>[]
       GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -7447,7 +7398,6 @@ export namespace Prisma {
   export interface Prisma__GitHubRepoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    GitHubCommit<T extends GitHubRepo$GitHubCommitArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepo$GitHubCommitArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GitHubCommitGroup<T extends GitHubRepo$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepo$GitHubCommitGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7881,30 +7831,6 @@ export namespace Prisma {
   }
 
   /**
-   * GitHubRepo.GitHubCommit
-   */
-  export type GitHubRepo$GitHubCommitArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the GitHubCommit
-     */
-    select?: GitHubCommitSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the GitHubCommit
-     */
-    omit?: GitHubCommitOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GitHubCommitInclude<ExtArgs> | null
-    where?: GitHubCommitWhereInput
-    orderBy?: GitHubCommitOrderByWithRelationInput | GitHubCommitOrderByWithRelationInput[]
-    cursor?: GitHubCommitWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: GitHubCommitScalarFieldEnum | GitHubCommitScalarFieldEnum[]
-  }
-
-  /**
    * GitHubRepo.GitHubCommitGroup
    */
   export type GitHubRepo$GitHubCommitGroupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7961,22 +7887,16 @@ export namespace Prisma {
 
   export type GitHubCommitAvgAggregateOutputType = {
     id: number | null
-    repoId: number | null
-    userId: number | null
     gitHubCommitGroupId: number | null
   }
 
   export type GitHubCommitSumAggregateOutputType = {
     id: number | null
-    repoId: number | null
-    userId: number | null
     gitHubCommitGroupId: number | null
   }
 
   export type GitHubCommitMinAggregateOutputType = {
     id: number | null
-    repoId: number | null
-    userId: number | null
     commitDate: Date | null
     timing: Date | null
     message: string | null
@@ -7985,8 +7905,6 @@ export namespace Prisma {
 
   export type GitHubCommitMaxAggregateOutputType = {
     id: number | null
-    repoId: number | null
-    userId: number | null
     commitDate: Date | null
     timing: Date | null
     message: string | null
@@ -7995,8 +7913,6 @@ export namespace Prisma {
 
   export type GitHubCommitCountAggregateOutputType = {
     id: number
-    repoId: number
-    userId: number
     commitDate: number
     timing: number
     message: number
@@ -8007,22 +7923,16 @@ export namespace Prisma {
 
   export type GitHubCommitAvgAggregateInputType = {
     id?: true
-    repoId?: true
-    userId?: true
     gitHubCommitGroupId?: true
   }
 
   export type GitHubCommitSumAggregateInputType = {
     id?: true
-    repoId?: true
-    userId?: true
     gitHubCommitGroupId?: true
   }
 
   export type GitHubCommitMinAggregateInputType = {
     id?: true
-    repoId?: true
-    userId?: true
     commitDate?: true
     timing?: true
     message?: true
@@ -8031,8 +7941,6 @@ export namespace Prisma {
 
   export type GitHubCommitMaxAggregateInputType = {
     id?: true
-    repoId?: true
-    userId?: true
     commitDate?: true
     timing?: true
     message?: true
@@ -8041,8 +7949,6 @@ export namespace Prisma {
 
   export type GitHubCommitCountAggregateInputType = {
     id?: true
-    repoId?: true
-    userId?: true
     commitDate?: true
     timing?: true
     message?: true
@@ -8138,8 +8044,6 @@ export namespace Prisma {
 
   export type GitHubCommitGroupByOutputType = {
     id: number
-    repoId: number
-    userId: number
     commitDate: Date
     timing: Date
     message: string
@@ -8167,81 +8071,57 @@ export namespace Prisma {
 
   export type GitHubCommitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    repoId?: boolean
-    userId?: boolean
     commitDate?: boolean
     timing?: boolean
     message?: boolean
     gitHubCommitGroupId?: boolean
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubCommit"]>
 
   export type GitHubCommitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    repoId?: boolean
-    userId?: boolean
     commitDate?: boolean
     timing?: boolean
     message?: boolean
     gitHubCommitGroupId?: boolean
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubCommit"]>
 
   export type GitHubCommitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    repoId?: boolean
-    userId?: boolean
     commitDate?: boolean
     timing?: boolean
     message?: boolean
     gitHubCommitGroupId?: boolean
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }, ExtArgs["result"]["gitHubCommit"]>
 
   export type GitHubCommitSelectScalar = {
     id?: boolean
-    repoId?: boolean
-    userId?: boolean
     commitDate?: boolean
     timing?: boolean
     message?: boolean
     gitHubCommitGroupId?: boolean
   }
 
-  export type GitHubCommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repoId" | "userId" | "commitDate" | "timing" | "message" | "gitHubCommitGroupId", ExtArgs["result"]["gitHubCommit"]>
+  export type GitHubCommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "commitDate" | "timing" | "message" | "gitHubCommitGroupId", ExtArgs["result"]["gitHubCommit"]>
   export type GitHubCommitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }
   export type GitHubCommitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }
   export type GitHubCommitIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    repo?: boolean | GitHubRepoDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
     GitHubCommitGroup?: boolean | GitHubCommit$GitHubCommitGroupArgs<ExtArgs>
   }
 
   export type $GitHubCommitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "GitHubCommit"
     objects: {
-      repo: Prisma.$GitHubRepoPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
       GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      repoId: number
-      userId: number
       commitDate: Date
       timing: Date
       message: string
@@ -8640,8 +8520,6 @@ export namespace Prisma {
    */
   export interface Prisma__GitHubCommitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    repo<T extends GitHubRepoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GitHubRepoDefaultArgs<ExtArgs>>): Prisma__GitHubRepoClient<$Result.GetResult<Prisma.$GitHubRepoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     GitHubCommitGroup<T extends GitHubCommit$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, GitHubCommit$GitHubCommitGroupArgs<ExtArgs>>): Prisma__GitHubCommitGroupClient<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -8673,8 +8551,6 @@ export namespace Prisma {
    */
   interface GitHubCommitFieldRefs {
     readonly id: FieldRef<"GitHubCommit", 'Int'>
-    readonly repoId: FieldRef<"GitHubCommit", 'Int'>
-    readonly userId: FieldRef<"GitHubCommit", 'Int'>
     readonly commitDate: FieldRef<"GitHubCommit", 'DateTime'>
     readonly timing: FieldRef<"GitHubCommit", 'DateTime'>
     readonly message: FieldRef<"GitHubCommit", 'String'>
@@ -11422,8 +11298,6 @@ export namespace Prisma {
 
   export const GitHubCommitScalarFieldEnum: {
     id: 'id',
-    repoId: 'repoId',
-    userId: 'userId',
     commitDate: 'commitDate',
     timing: 'timing',
     message: 'message',
@@ -11617,7 +11491,6 @@ export namespace Prisma {
     assignedTasks?: TaskListRelationFilter
     createdTasks?: TaskListRelationFilter
     updatedTasks?: TaskListRelationFilter
-    GitHubCommit?: GitHubCommitListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
     DailyLog?: DailyLogListRelationFilter
   }
@@ -11643,7 +11516,6 @@ export namespace Prisma {
     assignedTasks?: TaskOrderByRelationAggregateInput
     createdTasks?: TaskOrderByRelationAggregateInput
     updatedTasks?: TaskOrderByRelationAggregateInput
-    GitHubCommit?: GitHubCommitOrderByRelationAggregateInput
     GitHubCommitGroup?: GitHubCommitGroupOrderByRelationAggregateInput
     DailyLog?: DailyLogOrderByRelationAggregateInput
   }
@@ -11672,7 +11544,6 @@ export namespace Prisma {
     assignedTasks?: TaskListRelationFilter
     createdTasks?: TaskListRelationFilter
     updatedTasks?: TaskListRelationFilter
-    GitHubCommit?: GitHubCommitListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
     DailyLog?: DailyLogListRelationFilter
   }, "id" | "email" | "username">
@@ -11976,7 +11847,6 @@ export namespace Prisma {
     projectId?: IntFilter<"GitHubRepo"> | number
     webHookId?: IntNullableFilter<"GitHubRepo"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
-    GitHubCommit?: GitHubCommitListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
   }
 
@@ -11989,7 +11859,6 @@ export namespace Prisma {
     projectId?: SortOrder
     webHookId?: SortOrderInput | SortOrder
     project?: ProjectOrderByWithRelationInput
-    GitHubCommit?: GitHubCommitOrderByRelationAggregateInput
     GitHubCommitGroup?: GitHubCommitGroupOrderByRelationAggregateInput
   }
 
@@ -12005,7 +11874,6 @@ export namespace Prisma {
     projectId?: IntFilter<"GitHubRepo"> | number
     webHookId?: IntNullableFilter<"GitHubRepo"> | number | null
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
-    GitHubCommit?: GitHubCommitListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
   }, "id">
 
@@ -12042,27 +11910,19 @@ export namespace Prisma {
     OR?: GitHubCommitWhereInput[]
     NOT?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
     id?: IntFilter<"GitHubCommit"> | number
-    repoId?: IntFilter<"GitHubCommit"> | number
-    userId?: IntFilter<"GitHubCommit"> | number
     commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
     timing?: DateTimeFilter<"GitHubCommit"> | Date | string
     message?: StringFilter<"GitHubCommit"> | string
     gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
-    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     GitHubCommitGroup?: XOR<GitHubCommitGroupNullableScalarRelationFilter, GitHubCommitGroupWhereInput> | null
   }
 
   export type GitHubCommitOrderByWithRelationInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     commitDate?: SortOrder
     timing?: SortOrder
     message?: SortOrder
     gitHubCommitGroupId?: SortOrderInput | SortOrder
-    repo?: GitHubRepoOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
     GitHubCommitGroup?: GitHubCommitGroupOrderByWithRelationInput
   }
 
@@ -12071,21 +11931,15 @@ export namespace Prisma {
     AND?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
     OR?: GitHubCommitWhereInput[]
     NOT?: GitHubCommitWhereInput | GitHubCommitWhereInput[]
-    repoId?: IntFilter<"GitHubCommit"> | number
-    userId?: IntFilter<"GitHubCommit"> | number
     commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
     timing?: DateTimeFilter<"GitHubCommit"> | Date | string
     message?: StringFilter<"GitHubCommit"> | string
     gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
-    repo?: XOR<GitHubRepoScalarRelationFilter, GitHubRepoWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
     GitHubCommitGroup?: XOR<GitHubCommitGroupNullableScalarRelationFilter, GitHubCommitGroupWhereInput> | null
   }, "id">
 
   export type GitHubCommitOrderByWithAggregationInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     commitDate?: SortOrder
     timing?: SortOrder
     message?: SortOrder
@@ -12102,8 +11956,6 @@ export namespace Prisma {
     OR?: GitHubCommitScalarWhereWithAggregatesInput[]
     NOT?: GitHubCommitScalarWhereWithAggregatesInput | GitHubCommitScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"GitHubCommit"> | number
-    repoId?: IntWithAggregatesFilter<"GitHubCommit"> | number
-    userId?: IntWithAggregatesFilter<"GitHubCommit"> | number
     commitDate?: DateTimeWithAggregatesFilter<"GitHubCommit"> | Date | string
     timing?: DateTimeWithAggregatesFilter<"GitHubCommit"> | Date | string
     message?: StringWithAggregatesFilter<"GitHubCommit"> | string
@@ -12245,7 +12097,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -12271,7 +12122,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -12296,7 +12146,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -12322,7 +12171,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -12626,7 +12474,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     webHookId?: number | null
     project: ProjectCreateNestedOneWithoutGithubReposInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
   }
 
@@ -12638,7 +12485,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectId: number
     webHookId?: number | null
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
   }
 
@@ -12649,7 +12495,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
     project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
   }
 
@@ -12661,7 +12506,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: IntFieldUpdateOperationsInput | number
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
   }
 
@@ -12697,15 +12541,11 @@ export namespace Prisma {
     commitDate: Date | string
     timing: Date | string
     message: string
-    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
-    user: UserCreateNestedOneWithoutGitHubCommitInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
   }
 
   export type GitHubCommitUncheckedCreateInput = {
     id?: number
-    repoId: number
-    userId: number
     commitDate: Date | string
     timing: Date | string
     message: string
@@ -12716,15 +12556,11 @@ export namespace Prisma {
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
-    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
-    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
   }
 
   export type GitHubCommitUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
@@ -12733,8 +12569,6 @@ export namespace Prisma {
 
   export type GitHubCommitCreateManyInput = {
     id?: number
-    repoId: number
-    userId: number
     commitDate: Date | string
     timing: Date | string
     message: string
@@ -12749,8 +12583,6 @@ export namespace Prisma {
 
   export type GitHubCommitUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
@@ -12933,12 +12765,6 @@ export namespace Prisma {
     none?: TaskWhereInput
   }
 
-  export type GitHubCommitListRelationFilter = {
-    every?: GitHubCommitWhereInput
-    some?: GitHubCommitWhereInput
-    none?: GitHubCommitWhereInput
-  }
-
   export type GitHubCommitGroupListRelationFilter = {
     every?: GitHubCommitGroupWhereInput
     some?: GitHubCommitGroupWhereInput
@@ -12965,10 +12791,6 @@ export namespace Prisma {
   }
 
   export type TaskOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type GitHubCommitOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13405,11 +13227,6 @@ export namespace Prisma {
     webHookId?: SortOrder
   }
 
-  export type GitHubRepoScalarRelationFilter = {
-    is?: GitHubRepoWhereInput
-    isNot?: GitHubRepoWhereInput
-  }
-
   export type GitHubCommitGroupNullableScalarRelationFilter = {
     is?: GitHubCommitGroupWhereInput | null
     isNot?: GitHubCommitGroupWhereInput | null
@@ -13417,8 +13234,6 @@ export namespace Prisma {
 
   export type GitHubCommitCountOrderByAggregateInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     commitDate?: SortOrder
     timing?: SortOrder
     message?: SortOrder
@@ -13427,15 +13242,11 @@ export namespace Prisma {
 
   export type GitHubCommitAvgOrderByAggregateInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     gitHubCommitGroupId?: SortOrder
   }
 
   export type GitHubCommitMaxOrderByAggregateInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     commitDate?: SortOrder
     timing?: SortOrder
     message?: SortOrder
@@ -13444,8 +13255,6 @@ export namespace Prisma {
 
   export type GitHubCommitMinOrderByAggregateInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     commitDate?: SortOrder
     timing?: SortOrder
     message?: SortOrder
@@ -13454,9 +13263,22 @@ export namespace Prisma {
 
   export type GitHubCommitSumOrderByAggregateInput = {
     id?: SortOrder
-    repoId?: SortOrder
-    userId?: SortOrder
     gitHubCommitGroupId?: SortOrder
+  }
+
+  export type GitHubRepoScalarRelationFilter = {
+    is?: GitHubRepoWhereInput
+    isNot?: GitHubRepoWhereInput
+  }
+
+  export type GitHubCommitListRelationFilter = {
+    every?: GitHubCommitWhereInput
+    some?: GitHubCommitWhereInput
+    none?: GitHubCommitWhereInput
+  }
+
+  export type GitHubCommitOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type GitHubCommitGroupCountOrderByAggregateInput = {
@@ -13614,13 +13436,6 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
-  export type GitHubCommitCreateNestedManyWithoutUserInput = {
-    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
-    createMany?: GitHubCommitCreateManyUserInputEnvelope
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-  }
-
   export type GitHubCommitGroupCreateNestedManyWithoutUserInput = {
     create?: XOR<GitHubCommitGroupCreateWithoutUserInput, GitHubCommitGroupUncheckedCreateWithoutUserInput> | GitHubCommitGroupCreateWithoutUserInput[] | GitHubCommitGroupUncheckedCreateWithoutUserInput[]
     connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutUserInput | GitHubCommitGroupCreateOrConnectWithoutUserInput[]
@@ -13674,13 +13489,6 @@ export namespace Prisma {
     connectOrCreate?: TaskCreateOrConnectWithoutUpdatedByInput | TaskCreateOrConnectWithoutUpdatedByInput[]
     createMany?: TaskCreateManyUpdatedByInputEnvelope
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
-  }
-
-  export type GitHubCommitUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
-    createMany?: GitHubCommitCreateManyUserInputEnvelope
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
   }
 
   export type GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput = {
@@ -13794,20 +13602,6 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutUpdatedByInput | TaskUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutUpdatedByInput | TaskUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
-  }
-
-  export type GitHubCommitUpdateManyWithoutUserNestedInput = {
-    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
-    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutUserInput | GitHubCommitUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: GitHubCommitCreateManyUserInputEnvelope
-    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    update?: GitHubCommitUpdateWithWhereUniqueWithoutUserInput | GitHubCommitUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: GitHubCommitUpdateManyWithWhereWithoutUserInput | GitHubCommitUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
   }
 
   export type GitHubCommitGroupUpdateManyWithoutUserNestedInput = {
@@ -13927,20 +13721,6 @@ export namespace Prisma {
     update?: TaskUpdateWithWhereUniqueWithoutUpdatedByInput | TaskUpdateWithWhereUniqueWithoutUpdatedByInput[]
     updateMany?: TaskUpdateManyWithWhereWithoutUpdatedByInput | TaskUpdateManyWithWhereWithoutUpdatedByInput[]
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
-  }
-
-  export type GitHubCommitUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput> | GitHubCommitCreateWithoutUserInput[] | GitHubCommitUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutUserInput | GitHubCommitCreateOrConnectWithoutUserInput[]
-    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutUserInput | GitHubCommitUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: GitHubCommitCreateManyUserInputEnvelope
-    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    update?: GitHubCommitUpdateWithWhereUniqueWithoutUserInput | GitHubCommitUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: GitHubCommitUpdateManyWithWhereWithoutUserInput | GitHubCommitUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
   }
 
   export type GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput = {
@@ -14201,25 +13981,11 @@ export namespace Prisma {
     connect?: ProjectWhereUniqueInput
   }
 
-  export type GitHubCommitCreateNestedManyWithoutRepoInput = {
-    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
-    createMany?: GitHubCommitCreateManyRepoInputEnvelope
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-  }
-
   export type GitHubCommitGroupCreateNestedManyWithoutRepoInput = {
     create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
     connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
     createMany?: GitHubCommitGroupCreateManyRepoInputEnvelope
     connect?: GitHubCommitGroupWhereUniqueInput | GitHubCommitGroupWhereUniqueInput[]
-  }
-
-  export type GitHubCommitUncheckedCreateNestedManyWithoutRepoInput = {
-    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
-    createMany?: GitHubCommitCreateManyRepoInputEnvelope
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
   }
 
   export type GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput = {
@@ -14237,20 +14003,6 @@ export namespace Prisma {
     update?: XOR<XOR<ProjectUpdateToOneWithWhereWithoutGithubReposInput, ProjectUpdateWithoutGithubReposInput>, ProjectUncheckedUpdateWithoutGithubReposInput>
   }
 
-  export type GitHubCommitUpdateManyWithoutRepoNestedInput = {
-    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
-    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitUpsertWithWhereUniqueWithoutRepoInput[]
-    createMany?: GitHubCommitCreateManyRepoInputEnvelope
-    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    update?: GitHubCommitUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitUpdateWithWhereUniqueWithoutRepoInput[]
-    updateMany?: GitHubCommitUpdateManyWithWhereWithoutRepoInput | GitHubCommitUpdateManyWithWhereWithoutRepoInput[]
-    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
-  }
-
   export type GitHubCommitGroupUpdateManyWithoutRepoNestedInput = {
     create?: XOR<GitHubCommitGroupCreateWithoutRepoInput, GitHubCommitGroupUncheckedCreateWithoutRepoInput> | GitHubCommitGroupCreateWithoutRepoInput[] | GitHubCommitGroupUncheckedCreateWithoutRepoInput[]
     connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutRepoInput | GitHubCommitGroupCreateOrConnectWithoutRepoInput[]
@@ -14263,20 +14015,6 @@ export namespace Prisma {
     update?: GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitGroupUpdateWithWhereUniqueWithoutRepoInput[]
     updateMany?: GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput | GitHubCommitGroupUpdateManyWithWhereWithoutRepoInput[]
     deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
-  }
-
-  export type GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput = {
-    create?: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput> | GitHubCommitCreateWithoutRepoInput[] | GitHubCommitUncheckedCreateWithoutRepoInput[]
-    connectOrCreate?: GitHubCommitCreateOrConnectWithoutRepoInput | GitHubCommitCreateOrConnectWithoutRepoInput[]
-    upsert?: GitHubCommitUpsertWithWhereUniqueWithoutRepoInput | GitHubCommitUpsertWithWhereUniqueWithoutRepoInput[]
-    createMany?: GitHubCommitCreateManyRepoInputEnvelope
-    set?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    disconnect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    delete?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    connect?: GitHubCommitWhereUniqueInput | GitHubCommitWhereUniqueInput[]
-    update?: GitHubCommitUpdateWithWhereUniqueWithoutRepoInput | GitHubCommitUpdateWithWhereUniqueWithoutRepoInput[]
-    updateMany?: GitHubCommitUpdateManyWithWhereWithoutRepoInput | GitHubCommitUpdateManyWithWhereWithoutRepoInput[]
-    deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
   }
 
   export type GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput = {
@@ -14293,38 +14031,10 @@ export namespace Prisma {
     deleteMany?: GitHubCommitGroupScalarWhereInput | GitHubCommitGroupScalarWhereInput[]
   }
 
-  export type GitHubRepoCreateNestedOneWithoutGitHubCommitInput = {
-    create?: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
-    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitInput
-    connect?: GitHubRepoWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutGitHubCommitInput = {
-    create?: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
-    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type GitHubCommitGroupCreateNestedOneWithoutCommitsInput = {
     create?: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
     connectOrCreate?: GitHubCommitGroupCreateOrConnectWithoutCommitsInput
     connect?: GitHubCommitGroupWhereUniqueInput
-  }
-
-  export type GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput = {
-    create?: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
-    connectOrCreate?: GitHubRepoCreateOrConnectWithoutGitHubCommitInput
-    upsert?: GitHubRepoUpsertWithoutGitHubCommitInput
-    connect?: GitHubRepoWhereUniqueInput
-    update?: XOR<XOR<GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitInput, GitHubRepoUpdateWithoutGitHubCommitInput>, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutGitHubCommitNestedInput = {
-    create?: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
-    connectOrCreate?: UserCreateOrConnectWithoutGitHubCommitInput
-    upsert?: UserUpsertWithoutGitHubCommitInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutGitHubCommitInput, UserUpdateWithoutGitHubCommitInput>, UserUncheckedUpdateWithoutGitHubCommitInput>
   }
 
   export type GitHubCommitGroupUpdateOneWithoutCommitsNestedInput = {
@@ -14863,33 +14573,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type GitHubCommitCreateWithoutUserInput = {
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
-    GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
-  }
-
-  export type GitHubCommitUncheckedCreateWithoutUserInput = {
-    id?: number
-    repoId: number
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    gitHubCommitGroupId?: number | null
-  }
-
-  export type GitHubCommitCreateOrConnectWithoutUserInput = {
-    where: GitHubCommitWhereUniqueInput
-    create: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput>
-  }
-
-  export type GitHubCommitCreateManyUserInputEnvelope = {
-    data: GitHubCommitCreateManyUserInput | GitHubCommitCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type GitHubCommitGroupCreateWithoutUserInput = {
     repo: GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput
     commits?: GitHubCommitCreateNestedManyWithoutGitHubCommitGroupInput
@@ -15076,35 +14759,6 @@ export namespace Prisma {
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutUpdatedByInput>
   }
 
-  export type GitHubCommitUpsertWithWhereUniqueWithoutUserInput = {
-    where: GitHubCommitWhereUniqueInput
-    update: XOR<GitHubCommitUpdateWithoutUserInput, GitHubCommitUncheckedUpdateWithoutUserInput>
-    create: XOR<GitHubCommitCreateWithoutUserInput, GitHubCommitUncheckedCreateWithoutUserInput>
-  }
-
-  export type GitHubCommitUpdateWithWhereUniqueWithoutUserInput = {
-    where: GitHubCommitWhereUniqueInput
-    data: XOR<GitHubCommitUpdateWithoutUserInput, GitHubCommitUncheckedUpdateWithoutUserInput>
-  }
-
-  export type GitHubCommitUpdateManyWithWhereWithoutUserInput = {
-    where: GitHubCommitScalarWhereInput
-    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type GitHubCommitScalarWhereInput = {
-    AND?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
-    OR?: GitHubCommitScalarWhereInput[]
-    NOT?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
-    id?: IntFilter<"GitHubCommit"> | number
-    repoId?: IntFilter<"GitHubCommit"> | number
-    userId?: IntFilter<"GitHubCommit"> | number
-    commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
-    timing?: DateTimeFilter<"GitHubCommit"> | Date | string
-    message?: StringFilter<"GitHubCommit"> | string
-    gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
-  }
-
   export type GitHubCommitGroupUpsertWithWhereUniqueWithoutUserInput = {
     where: GitHubCommitGroupWhereUniqueInput
     update: XOR<GitHubCommitGroupUpdateWithoutUserInput, GitHubCommitGroupUncheckedUpdateWithoutUserInput>
@@ -15177,7 +14831,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15202,7 +14855,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15242,7 +14894,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -15267,7 +14918,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -15291,7 +14941,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15316,7 +14965,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15345,7 +14993,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15370,7 +15017,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15425,7 +15071,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     webHookId?: number | null
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
   }
 
@@ -15436,7 +15081,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     webHookId?: number | null
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
   }
 
@@ -15480,7 +15124,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -15505,7 +15148,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -15636,7 +15278,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15661,7 +15302,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15690,7 +15330,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15715,7 +15354,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15744,7 +15382,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
@@ -15769,7 +15406,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
@@ -15841,7 +15477,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -15866,7 +15501,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -15901,7 +15535,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -15926,7 +15559,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -15961,7 +15593,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -15986,7 +15617,6 @@ export namespace Prisma {
     ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -16015,33 +15645,6 @@ export namespace Prisma {
   export type ProjectCreateOrConnectWithoutGithubReposInput = {
     where: ProjectWhereUniqueInput
     create: XOR<ProjectCreateWithoutGithubReposInput, ProjectUncheckedCreateWithoutGithubReposInput>
-  }
-
-  export type GitHubCommitCreateWithoutRepoInput = {
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    user: UserCreateNestedOneWithoutGitHubCommitInput
-    GitHubCommitGroup?: GitHubCommitGroupCreateNestedOneWithoutCommitsInput
-  }
-
-  export type GitHubCommitUncheckedCreateWithoutRepoInput = {
-    id?: number
-    userId: number
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    gitHubCommitGroupId?: number | null
-  }
-
-  export type GitHubCommitCreateOrConnectWithoutRepoInput = {
-    where: GitHubCommitWhereUniqueInput
-    create: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput>
-  }
-
-  export type GitHubCommitCreateManyRepoInputEnvelope = {
-    data: GitHubCommitCreateManyRepoInput | GitHubCommitCreateManyRepoInput[]
-    skipDuplicates?: boolean
   }
 
   export type GitHubCommitGroupCreateWithoutRepoInput = {
@@ -16097,22 +15700,6 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
   }
 
-  export type GitHubCommitUpsertWithWhereUniqueWithoutRepoInput = {
-    where: GitHubCommitWhereUniqueInput
-    update: XOR<GitHubCommitUpdateWithoutRepoInput, GitHubCommitUncheckedUpdateWithoutRepoInput>
-    create: XOR<GitHubCommitCreateWithoutRepoInput, GitHubCommitUncheckedCreateWithoutRepoInput>
-  }
-
-  export type GitHubCommitUpdateWithWhereUniqueWithoutRepoInput = {
-    where: GitHubCommitWhereUniqueInput
-    data: XOR<GitHubCommitUpdateWithoutRepoInput, GitHubCommitUncheckedUpdateWithoutRepoInput>
-  }
-
-  export type GitHubCommitUpdateManyWithWhereWithoutRepoInput = {
-    where: GitHubCommitScalarWhereInput
-    data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutRepoInput>
-  }
-
   export type GitHubCommitGroupUpsertWithWhereUniqueWithoutRepoInput = {
     where: GitHubCommitGroupWhereUniqueInput
     update: XOR<GitHubCommitGroupUpdateWithoutRepoInput, GitHubCommitGroupUncheckedUpdateWithoutRepoInput>
@@ -16129,86 +15716,6 @@ export namespace Prisma {
     data: XOR<GitHubCommitGroupUpdateManyMutationInput, GitHubCommitGroupUncheckedUpdateManyWithoutRepoInput>
   }
 
-  export type GitHubRepoCreateWithoutGitHubCommitInput = {
-    name: string
-    url: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    webHookId?: number | null
-    project: ProjectCreateNestedOneWithoutGithubReposInput
-    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutRepoInput
-  }
-
-  export type GitHubRepoUncheckedCreateWithoutGitHubCommitInput = {
-    id?: number
-    name: string
-    url: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    projectId: number
-    webHookId?: number | null
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutRepoInput
-  }
-
-  export type GitHubRepoCreateOrConnectWithoutGitHubCommitInput = {
-    where: GitHubRepoWhereUniqueInput
-    create: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
-  }
-
-  export type UserCreateWithoutGitHubCommitInput = {
-    email: string
-    password?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    username?: string | null
-    image?: string | null
-    isActive?: boolean
-    isAdmin?: boolean
-    isVerified?: boolean
-    createdAt?: Date | string
-    accessToken?: string | null
-    githubToken?: string | null
-    githubUsername?: string | null
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    Project?: ProjectCreateNestedManyWithoutOwnerInput
-    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
-    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
-    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
-    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
-    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutGitHubCommitInput = {
-    id?: number
-    email: string
-    password?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    username?: string | null
-    image?: string | null
-    isActive?: boolean
-    isAdmin?: boolean
-    isVerified?: boolean
-    createdAt?: Date | string
-    accessToken?: string | null
-    githubToken?: string | null
-    githubUsername?: string | null
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
-    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
-    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
-    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
-    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
-    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutGitHubCommitInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
-  }
-
   export type GitHubCommitGroupCreateWithoutCommitsInput = {
     user: UserCreateNestedOneWithoutGitHubCommitGroupInput
     repo: GitHubRepoCreateNestedOneWithoutGitHubCommitGroupInput
@@ -16223,98 +15730,6 @@ export namespace Prisma {
   export type GitHubCommitGroupCreateOrConnectWithoutCommitsInput = {
     where: GitHubCommitGroupWhereUniqueInput
     create: XOR<GitHubCommitGroupCreateWithoutCommitsInput, GitHubCommitGroupUncheckedCreateWithoutCommitsInput>
-  }
-
-  export type GitHubRepoUpsertWithoutGitHubCommitInput = {
-    update: XOR<GitHubRepoUpdateWithoutGitHubCommitInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
-    create: XOR<GitHubRepoCreateWithoutGitHubCommitInput, GitHubRepoUncheckedCreateWithoutGitHubCommitInput>
-    where?: GitHubRepoWhereInput
-  }
-
-  export type GitHubRepoUpdateToOneWithWhereWithoutGitHubCommitInput = {
-    where?: GitHubRepoWhereInput
-    data: XOR<GitHubRepoUpdateWithoutGitHubCommitInput, GitHubRepoUncheckedUpdateWithoutGitHubCommitInput>
-  }
-
-  export type GitHubRepoUpdateWithoutGitHubCommitInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
-  }
-
-  export type GitHubRepoUncheckedUpdateWithoutGitHubCommitInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    projectId?: IntFieldUpdateOperationsInput | number
-    webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
-  }
-
-  export type UserUpsertWithoutGitHubCommitInput = {
-    update: XOR<UserUpdateWithoutGitHubCommitInput, UserUncheckedUpdateWithoutGitHubCommitInput>
-    create: XOR<UserCreateWithoutGitHubCommitInput, UserUncheckedCreateWithoutGitHubCommitInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutGitHubCommitInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutGitHubCommitInput, UserUncheckedUpdateWithoutGitHubCommitInput>
-  }
-
-  export type UserUpdateWithoutGitHubCommitInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    Project?: ProjectUpdateManyWithoutOwnerNestedInput
-    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
-    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
-    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
-    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
-    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutGitHubCommitInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
-    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
-    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
-    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
-    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
-    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GitHubCommitGroupUpsertWithoutCommitsInput = {
@@ -16359,7 +15774,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
   }
 
@@ -16384,7 +15798,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -16400,7 +15813,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     webHookId?: number | null
     project: ProjectCreateNestedOneWithoutGithubReposInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoUncheckedCreateWithoutGitHubCommitGroupInput = {
@@ -16411,7 +15823,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     projectId: number
     webHookId?: number | null
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutRepoInput
   }
 
   export type GitHubRepoCreateOrConnectWithoutGitHubCommitGroupInput = {
@@ -16423,14 +15834,10 @@ export namespace Prisma {
     commitDate: Date | string
     timing: Date | string
     message: string
-    repo: GitHubRepoCreateNestedOneWithoutGitHubCommitInput
-    user: UserCreateNestedOneWithoutGitHubCommitInput
   }
 
   export type GitHubCommitUncheckedCreateWithoutGitHubCommitGroupInput = {
     id?: number
-    repoId: number
-    userId: number
     commitDate: Date | string
     timing: Date | string
     message: string
@@ -16477,7 +15884,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
 
@@ -16502,7 +15908,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -16524,7 +15929,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
     project?: ProjectUpdateOneRequiredWithoutGithubReposNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubRepoUncheckedUpdateWithoutGitHubCommitGroupInput = {
@@ -16535,7 +15939,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     projectId?: IntFieldUpdateOperationsInput | number
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
   }
 
   export type GitHubCommitUpsertWithWhereUniqueWithoutGitHubCommitGroupInput = {
@@ -16552,6 +15955,17 @@ export namespace Prisma {
   export type GitHubCommitUpdateManyWithWhereWithoutGitHubCommitGroupInput = {
     where: GitHubCommitScalarWhereInput
     data: XOR<GitHubCommitUpdateManyMutationInput, GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupInput>
+  }
+
+  export type GitHubCommitScalarWhereInput = {
+    AND?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+    OR?: GitHubCommitScalarWhereInput[]
+    NOT?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
+    id?: IntFilter<"GitHubCommit"> | number
+    commitDate?: DateTimeFilter<"GitHubCommit"> | Date | string
+    timing?: DateTimeFilter<"GitHubCommit"> | Date | string
+    message?: StringFilter<"GitHubCommit"> | string
+    gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
   }
 
   export type UserCreateWithoutDailyLogInput = {
@@ -16574,7 +15988,6 @@ export namespace Prisma {
     assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
   }
 
@@ -16599,7 +16012,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommit?: GitHubCommitUncheckedCreateNestedManyWithoutUserInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -16639,7 +16051,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
   }
 
@@ -16664,7 +16075,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
   }
 
@@ -16728,15 +16138,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     completedOn?: Date | string | null
-  }
-
-  export type GitHubCommitCreateManyUserInput = {
-    id?: number
-    repoId: number
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    gitHubCommitGroupId?: number | null
   }
 
   export type GitHubCommitGroupCreateManyUserInput = {
@@ -16969,32 +16370,6 @@ export namespace Prisma {
     completedOn?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type GitHubCommitUpdateWithoutUserInput = {
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
-  }
-
-  export type GitHubCommitUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type GitHubCommitUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
   export type GitHubCommitGroupUpdateWithoutUserInput = {
     repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitGroupNestedInput
     commits?: GitHubCommitUpdateManyWithoutGitHubCommitGroupNestedInput
@@ -17077,7 +16452,6 @@ export namespace Prisma {
     assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
   }
@@ -17102,7 +16476,6 @@ export namespace Prisma {
     assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutUserNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -17174,7 +16547,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    GitHubCommit?: GitHubCommitUpdateManyWithoutRepoNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutRepoNestedInput
   }
 
@@ -17185,7 +16557,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
-    GitHubCommit?: GitHubCommitUncheckedUpdateManyWithoutRepoNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutRepoNestedInput
   }
 
@@ -17198,44 +16569,9 @@ export namespace Prisma {
     webHookId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type GitHubCommitCreateManyRepoInput = {
-    id?: number
-    userId: number
-    commitDate: Date | string
-    timing: Date | string
-    message: string
-    gitHubCommitGroupId?: number | null
-  }
-
   export type GitHubCommitGroupCreateManyRepoInput = {
     id?: number
     userId: number
-  }
-
-  export type GitHubCommitUpdateWithoutRepoInput = {
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUpdateOneWithoutCommitsNestedInput
-  }
-
-  export type GitHubCommitUncheckedUpdateWithoutRepoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type GitHubCommitUncheckedUpdateManyWithoutRepoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    timing?: DateTimeFieldUpdateOperationsInput | Date | string
-    message?: StringFieldUpdateOperationsInput | string
-    gitHubCommitGroupId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type GitHubCommitGroupUpdateWithoutRepoInput = {
@@ -17256,8 +16592,6 @@ export namespace Prisma {
 
   export type GitHubCommitCreateManyGitHubCommitGroupInput = {
     id?: number
-    repoId: number
-    userId: number
     commitDate: Date | string
     timing: Date | string
     message: string
@@ -17267,14 +16601,10 @@ export namespace Prisma {
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
-    repo?: GitHubRepoUpdateOneRequiredWithoutGitHubCommitNestedInput
-    user?: UserUpdateOneRequiredWithoutGitHubCommitNestedInput
   }
 
   export type GitHubCommitUncheckedUpdateWithoutGitHubCommitGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
@@ -17282,8 +16612,6 @@ export namespace Prisma {
 
   export type GitHubCommitUncheckedUpdateManyWithoutGitHubCommitGroupInput = {
     id?: IntFieldUpdateOperationsInput | number
-    repoId?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string

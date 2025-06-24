@@ -184,8 +184,6 @@ exports.Prisma.GitHubRepoScalarFieldEnum = {
 
 exports.Prisma.GitHubCommitScalarFieldEnum = {
   id: 'id',
-  repoId: 'repoId',
-  userId: 'userId',
   commitDate: 'commitDate',
   timing: 'timing',
   message: 'message',
