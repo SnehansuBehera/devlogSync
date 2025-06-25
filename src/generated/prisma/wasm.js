@@ -205,6 +205,21 @@ exports.Prisma.DailyLogScalarFieldEnum = {
   export: 'export'
 };
 
+exports.Prisma.VSCodeLogScalarFieldEnum = {
+  id: 'id',
+  activeFileName: 'activeFileName',
+  codingTime: 'codingTime',
+  date: 'date',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CodingDetailsScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  date: 'date',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -243,7 +258,9 @@ exports.Prisma.ModelName = {
   GitHubRepo: 'GitHubRepo',
   GitHubCommit: 'GitHubCommit',
   GitHubCommitGroup: 'GitHubCommitGroup',
-  DailyLog: 'DailyLog'
+  DailyLog: 'DailyLog',
+  VSCodeLog: 'VSCodeLog',
+  CodingDetails: 'CodingDetails'
 };
 
 /**

@@ -53,6 +53,16 @@ export type GitHubCommitGroup = $Result.DefaultSelection<Prisma.$GitHubCommitGro
  * 
  */
 export type DailyLog = $Result.DefaultSelection<Prisma.$DailyLogPayload>
+/**
+ * Model VSCodeLog
+ * 
+ */
+export type VSCodeLog = $Result.DefaultSelection<Prisma.$VSCodeLogPayload>
+/**
+ * Model CodingDetails
+ * 
+ */
+export type CodingDetails = $Result.DefaultSelection<Prisma.$CodingDetailsPayload>
 
 /**
  * Enums
@@ -276,6 +286,26 @@ export class PrismaClient<
     * ```
     */
   get dailyLog(): Prisma.DailyLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.vSCodeLog`: Exposes CRUD operations for the **VSCodeLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VSCodeLogs
+    * const vSCodeLogs = await prisma.vSCodeLog.findMany()
+    * ```
+    */
+  get vSCodeLog(): Prisma.VSCodeLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.codingDetails`: Exposes CRUD operations for the **CodingDetails** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CodingDetails
+    * const codingDetails = await prisma.codingDetails.findMany()
+    * ```
+    */
+  get codingDetails(): Prisma.CodingDetailsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -723,7 +753,9 @@ export namespace Prisma {
     GitHubRepo: 'GitHubRepo',
     GitHubCommit: 'GitHubCommit',
     GitHubCommitGroup: 'GitHubCommitGroup',
-    DailyLog: 'DailyLog'
+    DailyLog: 'DailyLog',
+    VSCodeLog: 'VSCodeLog',
+    CodingDetails: 'CodingDetails'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -742,7 +774,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo" | "gitHubCommit" | "gitHubCommitGroup" | "dailyLog"
+      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo" | "gitHubCommit" | "gitHubCommitGroup" | "dailyLog" | "vSCodeLog" | "codingDetails"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1338,6 +1370,154 @@ export namespace Prisma {
           }
         }
       }
+      VSCodeLog: {
+        payload: Prisma.$VSCodeLogPayload<ExtArgs>
+        fields: Prisma.VSCodeLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VSCodeLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VSCodeLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          findFirst: {
+            args: Prisma.VSCodeLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VSCodeLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          findMany: {
+            args: Prisma.VSCodeLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>[]
+          }
+          create: {
+            args: Prisma.VSCodeLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          createMany: {
+            args: Prisma.VSCodeLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VSCodeLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>[]
+          }
+          delete: {
+            args: Prisma.VSCodeLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          update: {
+            args: Prisma.VSCodeLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.VSCodeLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VSCodeLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VSCodeLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.VSCodeLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VSCodeLogPayload>
+          }
+          aggregate: {
+            args: Prisma.VSCodeLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVSCodeLog>
+          }
+          groupBy: {
+            args: Prisma.VSCodeLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VSCodeLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VSCodeLogCountArgs<ExtArgs>
+            result: $Utils.Optional<VSCodeLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      CodingDetails: {
+        payload: Prisma.$CodingDetailsPayload<ExtArgs>
+        fields: Prisma.CodingDetailsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CodingDetailsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CodingDetailsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          findFirst: {
+            args: Prisma.CodingDetailsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CodingDetailsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          findMany: {
+            args: Prisma.CodingDetailsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>[]
+          }
+          create: {
+            args: Prisma.CodingDetailsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          createMany: {
+            args: Prisma.CodingDetailsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CodingDetailsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>[]
+          }
+          delete: {
+            args: Prisma.CodingDetailsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          update: {
+            args: Prisma.CodingDetailsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          deleteMany: {
+            args: Prisma.CodingDetailsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CodingDetailsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CodingDetailsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>[]
+          }
+          upsert: {
+            args: Prisma.CodingDetailsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CodingDetailsPayload>
+          }
+          aggregate: {
+            args: Prisma.CodingDetailsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCodingDetails>
+          }
+          groupBy: {
+            args: Prisma.CodingDetailsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CodingDetailsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CodingDetailsCountArgs<ExtArgs>
+            result: $Utils.Optional<CodingDetailsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1430,6 +1610,8 @@ export namespace Prisma {
     gitHubCommit?: GitHubCommitOmit
     gitHubCommitGroup?: GitHubCommitGroupOmit
     dailyLog?: DailyLogOmit
+    vSCodeLog?: VSCodeLogOmit
+    codingDetails?: CodingDetailsOmit
   }
 
   /* Types for Logging */
@@ -1532,6 +1714,7 @@ export namespace Prisma {
     updatedTasks: number
     GitHubCommitGroup: number
     DailyLog: number
+    codingSessions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1543,6 +1726,7 @@ export namespace Prisma {
     updatedTasks?: boolean | UserCountOutputTypeCountUpdatedTasksArgs
     GitHubCommitGroup?: boolean | UserCountOutputTypeCountGitHubCommitGroupArgs
     DailyLog?: boolean | UserCountOutputTypeCountDailyLogArgs
+    codingSessions?: boolean | UserCountOutputTypeCountCodingSessionsArgs
   }
 
   // Custom InputTypes
@@ -1610,6 +1794,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountDailyLogArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DailyLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCodingSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CodingDetailsWhereInput
   }
 
 
@@ -1721,6 +1912,68 @@ export namespace Prisma {
    */
   export type GitHubCommitGroupCountOutputTypeCountCommitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GitHubCommitWhereInput
+  }
+
+
+  /**
+   * Count Type VSCodeLogCountOutputType
+   */
+
+  export type VSCodeLogCountOutputType = {
+    codingDetails: number
+  }
+
+  export type VSCodeLogCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    codingDetails?: boolean | VSCodeLogCountOutputTypeCountCodingDetailsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * VSCodeLogCountOutputType without action
+   */
+  export type VSCodeLogCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLogCountOutputType
+     */
+    select?: VSCodeLogCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * VSCodeLogCountOutputType without action
+   */
+  export type VSCodeLogCountOutputTypeCountCodingDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CodingDetailsWhereInput
+  }
+
+
+  /**
+   * Count Type CodingDetailsCountOutputType
+   */
+
+  export type CodingDetailsCountOutputType = {
+    logs: number
+  }
+
+  export type CodingDetailsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logs?: boolean | CodingDetailsCountOutputTypeCountLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CodingDetailsCountOutputType without action
+   */
+  export type CodingDetailsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetailsCountOutputType
+     */
+    select?: CodingDetailsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CodingDetailsCountOutputType without action
+   */
+  export type CodingDetailsCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VSCodeLogWhereInput
   }
 
 
@@ -2006,6 +2259,7 @@ export namespace Prisma {
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
     GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
     DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
+    codingSessions?: boolean | User$codingSessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2070,6 +2324,7 @@ export namespace Prisma {
     updatedTasks?: boolean | User$updatedTasksArgs<ExtArgs>
     GitHubCommitGroup?: boolean | User$GitHubCommitGroupArgs<ExtArgs>
     DailyLog?: boolean | User$DailyLogArgs<ExtArgs>
+    codingSessions?: boolean | User$codingSessionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2086,6 +2341,7 @@ export namespace Prisma {
       updatedTasks: Prisma.$TaskPayload<ExtArgs>[]
       GitHubCommitGroup: Prisma.$GitHubCommitGroupPayload<ExtArgs>[]
       DailyLog: Prisma.$DailyLogPayload<ExtArgs>[]
+      codingSessions: Prisma.$CodingDetailsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2504,6 +2760,7 @@ export namespace Prisma {
     updatedTasks<T extends User$updatedTasksArgs<ExtArgs> = {}>(args?: Subset<T, User$updatedTasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     GitHubCommitGroup<T extends User$GitHubCommitGroupArgs<ExtArgs> = {}>(args?: Subset<T, User$GitHubCommitGroupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GitHubCommitGroupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     DailyLog<T extends User$DailyLogArgs<ExtArgs> = {}>(args?: Subset<T, User$DailyLogArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    codingSessions<T extends User$codingSessionsArgs<ExtArgs> = {}>(args?: Subset<T, User$codingSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3124,6 +3381,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.codingSessions
+   */
+  export type User$codingSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    where?: CodingDetailsWhereInput
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    cursor?: CodingDetailsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CodingDetailsScalarFieldEnum | CodingDetailsScalarFieldEnum[]
   }
 
   /**
@@ -11206,6 +11487,2227 @@ export namespace Prisma {
 
 
   /**
+   * Model VSCodeLog
+   */
+
+  export type AggregateVSCodeLog = {
+    _count: VSCodeLogCountAggregateOutputType | null
+    _avg: VSCodeLogAvgAggregateOutputType | null
+    _sum: VSCodeLogSumAggregateOutputType | null
+    _min: VSCodeLogMinAggregateOutputType | null
+    _max: VSCodeLogMaxAggregateOutputType | null
+  }
+
+  export type VSCodeLogAvgAggregateOutputType = {
+    id: number | null
+    codingTime: number | null
+  }
+
+  export type VSCodeLogSumAggregateOutputType = {
+    id: number | null
+    codingTime: number | null
+  }
+
+  export type VSCodeLogMinAggregateOutputType = {
+    id: number | null
+    activeFileName: string | null
+    codingTime: number | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type VSCodeLogMaxAggregateOutputType = {
+    id: number | null
+    activeFileName: string | null
+    codingTime: number | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type VSCodeLogCountAggregateOutputType = {
+    id: number
+    activeFileName: number
+    codingTime: number
+    date: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type VSCodeLogAvgAggregateInputType = {
+    id?: true
+    codingTime?: true
+  }
+
+  export type VSCodeLogSumAggregateInputType = {
+    id?: true
+    codingTime?: true
+  }
+
+  export type VSCodeLogMinAggregateInputType = {
+    id?: true
+    activeFileName?: true
+    codingTime?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type VSCodeLogMaxAggregateInputType = {
+    id?: true
+    activeFileName?: true
+    codingTime?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type VSCodeLogCountAggregateInputType = {
+    id?: true
+    activeFileName?: true
+    codingTime?: true
+    date?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type VSCodeLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VSCodeLog to aggregate.
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VSCodeLogs to fetch.
+     */
+    orderBy?: VSCodeLogOrderByWithRelationInput | VSCodeLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VSCodeLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VSCodeLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VSCodeLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VSCodeLogs
+    **/
+    _count?: true | VSCodeLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VSCodeLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VSCodeLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VSCodeLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VSCodeLogMaxAggregateInputType
+  }
+
+  export type GetVSCodeLogAggregateType<T extends VSCodeLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateVSCodeLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVSCodeLog[P]>
+      : GetScalarType<T[P], AggregateVSCodeLog[P]>
+  }
+
+
+
+
+  export type VSCodeLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VSCodeLogWhereInput
+    orderBy?: VSCodeLogOrderByWithAggregationInput | VSCodeLogOrderByWithAggregationInput[]
+    by: VSCodeLogScalarFieldEnum[] | VSCodeLogScalarFieldEnum
+    having?: VSCodeLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VSCodeLogCountAggregateInputType | true
+    _avg?: VSCodeLogAvgAggregateInputType
+    _sum?: VSCodeLogSumAggregateInputType
+    _min?: VSCodeLogMinAggregateInputType
+    _max?: VSCodeLogMaxAggregateInputType
+  }
+
+  export type VSCodeLogGroupByOutputType = {
+    id: number
+    activeFileName: string
+    codingTime: number
+    date: Date
+    createdAt: Date
+    _count: VSCodeLogCountAggregateOutputType | null
+    _avg: VSCodeLogAvgAggregateOutputType | null
+    _sum: VSCodeLogSumAggregateOutputType | null
+    _min: VSCodeLogMinAggregateOutputType | null
+    _max: VSCodeLogMaxAggregateOutputType | null
+  }
+
+  type GetVSCodeLogGroupByPayload<T extends VSCodeLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VSCodeLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VSCodeLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VSCodeLogGroupByOutputType[P]>
+            : GetScalarType<T[P], VSCodeLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VSCodeLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    activeFileName?: boolean
+    codingTime?: boolean
+    date?: boolean
+    createdAt?: boolean
+    codingDetails?: boolean | VSCodeLog$codingDetailsArgs<ExtArgs>
+    _count?: boolean | VSCodeLogCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["vSCodeLog"]>
+
+  export type VSCodeLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    activeFileName?: boolean
+    codingTime?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["vSCodeLog"]>
+
+  export type VSCodeLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    activeFileName?: boolean
+    codingTime?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["vSCodeLog"]>
+
+  export type VSCodeLogSelectScalar = {
+    id?: boolean
+    activeFileName?: boolean
+    codingTime?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }
+
+  export type VSCodeLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "activeFileName" | "codingTime" | "date" | "createdAt", ExtArgs["result"]["vSCodeLog"]>
+  export type VSCodeLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    codingDetails?: boolean | VSCodeLog$codingDetailsArgs<ExtArgs>
+    _count?: boolean | VSCodeLogCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type VSCodeLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type VSCodeLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $VSCodeLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VSCodeLog"
+    objects: {
+      codingDetails: Prisma.$CodingDetailsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      activeFileName: string
+      codingTime: number
+      date: Date
+      createdAt: Date
+    }, ExtArgs["result"]["vSCodeLog"]>
+    composites: {}
+  }
+
+  type VSCodeLogGetPayload<S extends boolean | null | undefined | VSCodeLogDefaultArgs> = $Result.GetResult<Prisma.$VSCodeLogPayload, S>
+
+  type VSCodeLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VSCodeLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VSCodeLogCountAggregateInputType | true
+    }
+
+  export interface VSCodeLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VSCodeLog'], meta: { name: 'VSCodeLog' } }
+    /**
+     * Find zero or one VSCodeLog that matches the filter.
+     * @param {VSCodeLogFindUniqueArgs} args - Arguments to find a VSCodeLog
+     * @example
+     * // Get one VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VSCodeLogFindUniqueArgs>(args: SelectSubset<T, VSCodeLogFindUniqueArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VSCodeLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VSCodeLogFindUniqueOrThrowArgs} args - Arguments to find a VSCodeLog
+     * @example
+     * // Get one VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VSCodeLogFindUniqueOrThrowArgs>(args: SelectSubset<T, VSCodeLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VSCodeLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogFindFirstArgs} args - Arguments to find a VSCodeLog
+     * @example
+     * // Get one VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VSCodeLogFindFirstArgs>(args?: SelectSubset<T, VSCodeLogFindFirstArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VSCodeLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogFindFirstOrThrowArgs} args - Arguments to find a VSCodeLog
+     * @example
+     * // Get one VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VSCodeLogFindFirstOrThrowArgs>(args?: SelectSubset<T, VSCodeLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VSCodeLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VSCodeLogs
+     * const vSCodeLogs = await prisma.vSCodeLog.findMany()
+     * 
+     * // Get first 10 VSCodeLogs
+     * const vSCodeLogs = await prisma.vSCodeLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const vSCodeLogWithIdOnly = await prisma.vSCodeLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VSCodeLogFindManyArgs>(args?: SelectSubset<T, VSCodeLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VSCodeLog.
+     * @param {VSCodeLogCreateArgs} args - Arguments to create a VSCodeLog.
+     * @example
+     * // Create one VSCodeLog
+     * const VSCodeLog = await prisma.vSCodeLog.create({
+     *   data: {
+     *     // ... data to create a VSCodeLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends VSCodeLogCreateArgs>(args: SelectSubset<T, VSCodeLogCreateArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VSCodeLogs.
+     * @param {VSCodeLogCreateManyArgs} args - Arguments to create many VSCodeLogs.
+     * @example
+     * // Create many VSCodeLogs
+     * const vSCodeLog = await prisma.vSCodeLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VSCodeLogCreateManyArgs>(args?: SelectSubset<T, VSCodeLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VSCodeLogs and returns the data saved in the database.
+     * @param {VSCodeLogCreateManyAndReturnArgs} args - Arguments to create many VSCodeLogs.
+     * @example
+     * // Create many VSCodeLogs
+     * const vSCodeLog = await prisma.vSCodeLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VSCodeLogs and only return the `id`
+     * const vSCodeLogWithIdOnly = await prisma.vSCodeLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VSCodeLogCreateManyAndReturnArgs>(args?: SelectSubset<T, VSCodeLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VSCodeLog.
+     * @param {VSCodeLogDeleteArgs} args - Arguments to delete one VSCodeLog.
+     * @example
+     * // Delete one VSCodeLog
+     * const VSCodeLog = await prisma.vSCodeLog.delete({
+     *   where: {
+     *     // ... filter to delete one VSCodeLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VSCodeLogDeleteArgs>(args: SelectSubset<T, VSCodeLogDeleteArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VSCodeLog.
+     * @param {VSCodeLogUpdateArgs} args - Arguments to update one VSCodeLog.
+     * @example
+     * // Update one VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VSCodeLogUpdateArgs>(args: SelectSubset<T, VSCodeLogUpdateArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VSCodeLogs.
+     * @param {VSCodeLogDeleteManyArgs} args - Arguments to filter VSCodeLogs to delete.
+     * @example
+     * // Delete a few VSCodeLogs
+     * const { count } = await prisma.vSCodeLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VSCodeLogDeleteManyArgs>(args?: SelectSubset<T, VSCodeLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VSCodeLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VSCodeLogs
+     * const vSCodeLog = await prisma.vSCodeLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VSCodeLogUpdateManyArgs>(args: SelectSubset<T, VSCodeLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VSCodeLogs and returns the data updated in the database.
+     * @param {VSCodeLogUpdateManyAndReturnArgs} args - Arguments to update many VSCodeLogs.
+     * @example
+     * // Update many VSCodeLogs
+     * const vSCodeLog = await prisma.vSCodeLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VSCodeLogs and only return the `id`
+     * const vSCodeLogWithIdOnly = await prisma.vSCodeLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VSCodeLogUpdateManyAndReturnArgs>(args: SelectSubset<T, VSCodeLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VSCodeLog.
+     * @param {VSCodeLogUpsertArgs} args - Arguments to update or create a VSCodeLog.
+     * @example
+     * // Update or create a VSCodeLog
+     * const vSCodeLog = await prisma.vSCodeLog.upsert({
+     *   create: {
+     *     // ... data to create a VSCodeLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VSCodeLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VSCodeLogUpsertArgs>(args: SelectSubset<T, VSCodeLogUpsertArgs<ExtArgs>>): Prisma__VSCodeLogClient<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VSCodeLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogCountArgs} args - Arguments to filter VSCodeLogs to count.
+     * @example
+     * // Count the number of VSCodeLogs
+     * const count = await prisma.vSCodeLog.count({
+     *   where: {
+     *     // ... the filter for the VSCodeLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends VSCodeLogCountArgs>(
+      args?: Subset<T, VSCodeLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VSCodeLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VSCodeLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VSCodeLogAggregateArgs>(args: Subset<T, VSCodeLogAggregateArgs>): Prisma.PrismaPromise<GetVSCodeLogAggregateType<T>>
+
+    /**
+     * Group by VSCodeLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VSCodeLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VSCodeLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VSCodeLogGroupByArgs['orderBy'] }
+        : { orderBy?: VSCodeLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VSCodeLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVSCodeLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VSCodeLog model
+   */
+  readonly fields: VSCodeLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VSCodeLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VSCodeLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    codingDetails<T extends VSCodeLog$codingDetailsArgs<ExtArgs> = {}>(args?: Subset<T, VSCodeLog$codingDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VSCodeLog model
+   */
+  interface VSCodeLogFieldRefs {
+    readonly id: FieldRef<"VSCodeLog", 'Int'>
+    readonly activeFileName: FieldRef<"VSCodeLog", 'String'>
+    readonly codingTime: FieldRef<"VSCodeLog", 'Int'>
+    readonly date: FieldRef<"VSCodeLog", 'DateTime'>
+    readonly createdAt: FieldRef<"VSCodeLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VSCodeLog findUnique
+   */
+  export type VSCodeLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter, which VSCodeLog to fetch.
+     */
+    where: VSCodeLogWhereUniqueInput
+  }
+
+  /**
+   * VSCodeLog findUniqueOrThrow
+   */
+  export type VSCodeLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter, which VSCodeLog to fetch.
+     */
+    where: VSCodeLogWhereUniqueInput
+  }
+
+  /**
+   * VSCodeLog findFirst
+   */
+  export type VSCodeLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter, which VSCodeLog to fetch.
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VSCodeLogs to fetch.
+     */
+    orderBy?: VSCodeLogOrderByWithRelationInput | VSCodeLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VSCodeLogs.
+     */
+    cursor?: VSCodeLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VSCodeLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VSCodeLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VSCodeLogs.
+     */
+    distinct?: VSCodeLogScalarFieldEnum | VSCodeLogScalarFieldEnum[]
+  }
+
+  /**
+   * VSCodeLog findFirstOrThrow
+   */
+  export type VSCodeLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter, which VSCodeLog to fetch.
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VSCodeLogs to fetch.
+     */
+    orderBy?: VSCodeLogOrderByWithRelationInput | VSCodeLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VSCodeLogs.
+     */
+    cursor?: VSCodeLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VSCodeLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VSCodeLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VSCodeLogs.
+     */
+    distinct?: VSCodeLogScalarFieldEnum | VSCodeLogScalarFieldEnum[]
+  }
+
+  /**
+   * VSCodeLog findMany
+   */
+  export type VSCodeLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter, which VSCodeLogs to fetch.
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VSCodeLogs to fetch.
+     */
+    orderBy?: VSCodeLogOrderByWithRelationInput | VSCodeLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VSCodeLogs.
+     */
+    cursor?: VSCodeLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VSCodeLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VSCodeLogs.
+     */
+    skip?: number
+    distinct?: VSCodeLogScalarFieldEnum | VSCodeLogScalarFieldEnum[]
+  }
+
+  /**
+   * VSCodeLog create
+   */
+  export type VSCodeLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VSCodeLog.
+     */
+    data: XOR<VSCodeLogCreateInput, VSCodeLogUncheckedCreateInput>
+  }
+
+  /**
+   * VSCodeLog createMany
+   */
+  export type VSCodeLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VSCodeLogs.
+     */
+    data: VSCodeLogCreateManyInput | VSCodeLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VSCodeLog createManyAndReturn
+   */
+  export type VSCodeLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many VSCodeLogs.
+     */
+    data: VSCodeLogCreateManyInput | VSCodeLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VSCodeLog update
+   */
+  export type VSCodeLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VSCodeLog.
+     */
+    data: XOR<VSCodeLogUpdateInput, VSCodeLogUncheckedUpdateInput>
+    /**
+     * Choose, which VSCodeLog to update.
+     */
+    where: VSCodeLogWhereUniqueInput
+  }
+
+  /**
+   * VSCodeLog updateMany
+   */
+  export type VSCodeLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VSCodeLogs.
+     */
+    data: XOR<VSCodeLogUpdateManyMutationInput, VSCodeLogUncheckedUpdateManyInput>
+    /**
+     * Filter which VSCodeLogs to update
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * Limit how many VSCodeLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VSCodeLog updateManyAndReturn
+   */
+  export type VSCodeLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * The data used to update VSCodeLogs.
+     */
+    data: XOR<VSCodeLogUpdateManyMutationInput, VSCodeLogUncheckedUpdateManyInput>
+    /**
+     * Filter which VSCodeLogs to update
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * Limit how many VSCodeLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VSCodeLog upsert
+   */
+  export type VSCodeLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VSCodeLog to update in case it exists.
+     */
+    where: VSCodeLogWhereUniqueInput
+    /**
+     * In case the VSCodeLog found by the `where` argument doesn't exist, create a new VSCodeLog with this data.
+     */
+    create: XOR<VSCodeLogCreateInput, VSCodeLogUncheckedCreateInput>
+    /**
+     * In case the VSCodeLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VSCodeLogUpdateInput, VSCodeLogUncheckedUpdateInput>
+  }
+
+  /**
+   * VSCodeLog delete
+   */
+  export type VSCodeLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    /**
+     * Filter which VSCodeLog to delete.
+     */
+    where: VSCodeLogWhereUniqueInput
+  }
+
+  /**
+   * VSCodeLog deleteMany
+   */
+  export type VSCodeLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VSCodeLogs to delete
+     */
+    where?: VSCodeLogWhereInput
+    /**
+     * Limit how many VSCodeLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VSCodeLog.codingDetails
+   */
+  export type VSCodeLog$codingDetailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    where?: CodingDetailsWhereInput
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    cursor?: CodingDetailsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CodingDetailsScalarFieldEnum | CodingDetailsScalarFieldEnum[]
+  }
+
+  /**
+   * VSCodeLog without action
+   */
+  export type VSCodeLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CodingDetails
+   */
+
+  export type AggregateCodingDetails = {
+    _count: CodingDetailsCountAggregateOutputType | null
+    _avg: CodingDetailsAvgAggregateOutputType | null
+    _sum: CodingDetailsSumAggregateOutputType | null
+    _min: CodingDetailsMinAggregateOutputType | null
+    _max: CodingDetailsMaxAggregateOutputType | null
+  }
+
+  export type CodingDetailsAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type CodingDetailsSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type CodingDetailsMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodingDetailsMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    createdAt: Date | null
+  }
+
+  export type CodingDetailsCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CodingDetailsAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type CodingDetailsSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type CodingDetailsMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type CodingDetailsMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    createdAt?: true
+  }
+
+  export type CodingDetailsCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CodingDetailsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodingDetails to aggregate.
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodingDetails to fetch.
+     */
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CodingDetailsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CodingDetails
+    **/
+    _count?: true | CodingDetailsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CodingDetailsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CodingDetailsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CodingDetailsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CodingDetailsMaxAggregateInputType
+  }
+
+  export type GetCodingDetailsAggregateType<T extends CodingDetailsAggregateArgs> = {
+        [P in keyof T & keyof AggregateCodingDetails]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCodingDetails[P]>
+      : GetScalarType<T[P], AggregateCodingDetails[P]>
+  }
+
+
+
+
+  export type CodingDetailsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CodingDetailsWhereInput
+    orderBy?: CodingDetailsOrderByWithAggregationInput | CodingDetailsOrderByWithAggregationInput[]
+    by: CodingDetailsScalarFieldEnum[] | CodingDetailsScalarFieldEnum
+    having?: CodingDetailsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CodingDetailsCountAggregateInputType | true
+    _avg?: CodingDetailsAvgAggregateInputType
+    _sum?: CodingDetailsSumAggregateInputType
+    _min?: CodingDetailsMinAggregateInputType
+    _max?: CodingDetailsMaxAggregateInputType
+  }
+
+  export type CodingDetailsGroupByOutputType = {
+    id: number
+    userId: number
+    date: Date
+    createdAt: Date
+    _count: CodingDetailsCountAggregateOutputType | null
+    _avg: CodingDetailsAvgAggregateOutputType | null
+    _sum: CodingDetailsSumAggregateOutputType | null
+    _min: CodingDetailsMinAggregateOutputType | null
+    _max: CodingDetailsMaxAggregateOutputType | null
+  }
+
+  type GetCodingDetailsGroupByPayload<T extends CodingDetailsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CodingDetailsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CodingDetailsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CodingDetailsGroupByOutputType[P]>
+            : GetScalarType<T[P], CodingDetailsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CodingDetailsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    logs?: boolean | CodingDetails$logsArgs<ExtArgs>
+    _count?: boolean | CodingDetailsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["codingDetails"]>
+
+  export type CodingDetailsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["codingDetails"]>
+
+  export type CodingDetailsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["codingDetails"]>
+
+  export type CodingDetailsSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    createdAt?: boolean
+  }
+
+  export type CodingDetailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "createdAt", ExtArgs["result"]["codingDetails"]>
+  export type CodingDetailsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    logs?: boolean | CodingDetails$logsArgs<ExtArgs>
+    _count?: boolean | CodingDetailsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CodingDetailsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type CodingDetailsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $CodingDetailsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CodingDetails"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      logs: Prisma.$VSCodeLogPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      date: Date
+      createdAt: Date
+    }, ExtArgs["result"]["codingDetails"]>
+    composites: {}
+  }
+
+  type CodingDetailsGetPayload<S extends boolean | null | undefined | CodingDetailsDefaultArgs> = $Result.GetResult<Prisma.$CodingDetailsPayload, S>
+
+  type CodingDetailsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CodingDetailsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CodingDetailsCountAggregateInputType | true
+    }
+
+  export interface CodingDetailsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CodingDetails'], meta: { name: 'CodingDetails' } }
+    /**
+     * Find zero or one CodingDetails that matches the filter.
+     * @param {CodingDetailsFindUniqueArgs} args - Arguments to find a CodingDetails
+     * @example
+     * // Get one CodingDetails
+     * const codingDetails = await prisma.codingDetails.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CodingDetailsFindUniqueArgs>(args: SelectSubset<T, CodingDetailsFindUniqueArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CodingDetails that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CodingDetailsFindUniqueOrThrowArgs} args - Arguments to find a CodingDetails
+     * @example
+     * // Get one CodingDetails
+     * const codingDetails = await prisma.codingDetails.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CodingDetailsFindUniqueOrThrowArgs>(args: SelectSubset<T, CodingDetailsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodingDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsFindFirstArgs} args - Arguments to find a CodingDetails
+     * @example
+     * // Get one CodingDetails
+     * const codingDetails = await prisma.codingDetails.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CodingDetailsFindFirstArgs>(args?: SelectSubset<T, CodingDetailsFindFirstArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CodingDetails that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsFindFirstOrThrowArgs} args - Arguments to find a CodingDetails
+     * @example
+     * // Get one CodingDetails
+     * const codingDetails = await prisma.codingDetails.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CodingDetailsFindFirstOrThrowArgs>(args?: SelectSubset<T, CodingDetailsFindFirstOrThrowArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CodingDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CodingDetails
+     * const codingDetails = await prisma.codingDetails.findMany()
+     * 
+     * // Get first 10 CodingDetails
+     * const codingDetails = await prisma.codingDetails.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const codingDetailsWithIdOnly = await prisma.codingDetails.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CodingDetailsFindManyArgs>(args?: SelectSubset<T, CodingDetailsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CodingDetails.
+     * @param {CodingDetailsCreateArgs} args - Arguments to create a CodingDetails.
+     * @example
+     * // Create one CodingDetails
+     * const CodingDetails = await prisma.codingDetails.create({
+     *   data: {
+     *     // ... data to create a CodingDetails
+     *   }
+     * })
+     * 
+     */
+    create<T extends CodingDetailsCreateArgs>(args: SelectSubset<T, CodingDetailsCreateArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CodingDetails.
+     * @param {CodingDetailsCreateManyArgs} args - Arguments to create many CodingDetails.
+     * @example
+     * // Create many CodingDetails
+     * const codingDetails = await prisma.codingDetails.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CodingDetailsCreateManyArgs>(args?: SelectSubset<T, CodingDetailsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CodingDetails and returns the data saved in the database.
+     * @param {CodingDetailsCreateManyAndReturnArgs} args - Arguments to create many CodingDetails.
+     * @example
+     * // Create many CodingDetails
+     * const codingDetails = await prisma.codingDetails.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CodingDetails and only return the `id`
+     * const codingDetailsWithIdOnly = await prisma.codingDetails.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CodingDetailsCreateManyAndReturnArgs>(args?: SelectSubset<T, CodingDetailsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CodingDetails.
+     * @param {CodingDetailsDeleteArgs} args - Arguments to delete one CodingDetails.
+     * @example
+     * // Delete one CodingDetails
+     * const CodingDetails = await prisma.codingDetails.delete({
+     *   where: {
+     *     // ... filter to delete one CodingDetails
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CodingDetailsDeleteArgs>(args: SelectSubset<T, CodingDetailsDeleteArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CodingDetails.
+     * @param {CodingDetailsUpdateArgs} args - Arguments to update one CodingDetails.
+     * @example
+     * // Update one CodingDetails
+     * const codingDetails = await prisma.codingDetails.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CodingDetailsUpdateArgs>(args: SelectSubset<T, CodingDetailsUpdateArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CodingDetails.
+     * @param {CodingDetailsDeleteManyArgs} args - Arguments to filter CodingDetails to delete.
+     * @example
+     * // Delete a few CodingDetails
+     * const { count } = await prisma.codingDetails.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CodingDetailsDeleteManyArgs>(args?: SelectSubset<T, CodingDetailsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CodingDetails
+     * const codingDetails = await prisma.codingDetails.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CodingDetailsUpdateManyArgs>(args: SelectSubset<T, CodingDetailsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CodingDetails and returns the data updated in the database.
+     * @param {CodingDetailsUpdateManyAndReturnArgs} args - Arguments to update many CodingDetails.
+     * @example
+     * // Update many CodingDetails
+     * const codingDetails = await prisma.codingDetails.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CodingDetails and only return the `id`
+     * const codingDetailsWithIdOnly = await prisma.codingDetails.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CodingDetailsUpdateManyAndReturnArgs>(args: SelectSubset<T, CodingDetailsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CodingDetails.
+     * @param {CodingDetailsUpsertArgs} args - Arguments to update or create a CodingDetails.
+     * @example
+     * // Update or create a CodingDetails
+     * const codingDetails = await prisma.codingDetails.upsert({
+     *   create: {
+     *     // ... data to create a CodingDetails
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CodingDetails we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CodingDetailsUpsertArgs>(args: SelectSubset<T, CodingDetailsUpsertArgs<ExtArgs>>): Prisma__CodingDetailsClient<$Result.GetResult<Prisma.$CodingDetailsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CodingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsCountArgs} args - Arguments to filter CodingDetails to count.
+     * @example
+     * // Count the number of CodingDetails
+     * const count = await prisma.codingDetails.count({
+     *   where: {
+     *     // ... the filter for the CodingDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends CodingDetailsCountArgs>(
+      args?: Subset<T, CodingDetailsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CodingDetailsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CodingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CodingDetailsAggregateArgs>(args: Subset<T, CodingDetailsAggregateArgs>): Prisma.PrismaPromise<GetCodingDetailsAggregateType<T>>
+
+    /**
+     * Group by CodingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CodingDetailsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CodingDetailsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CodingDetailsGroupByArgs['orderBy'] }
+        : { orderBy?: CodingDetailsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CodingDetailsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCodingDetailsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CodingDetails model
+   */
+  readonly fields: CodingDetailsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CodingDetails.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CodingDetailsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    logs<T extends CodingDetails$logsArgs<ExtArgs> = {}>(args?: Subset<T, CodingDetails$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VSCodeLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CodingDetails model
+   */
+  interface CodingDetailsFieldRefs {
+    readonly id: FieldRef<"CodingDetails", 'Int'>
+    readonly userId: FieldRef<"CodingDetails", 'Int'>
+    readonly date: FieldRef<"CodingDetails", 'DateTime'>
+    readonly createdAt: FieldRef<"CodingDetails", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CodingDetails findUnique
+   */
+  export type CodingDetailsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CodingDetails to fetch.
+     */
+    where: CodingDetailsWhereUniqueInput
+  }
+
+  /**
+   * CodingDetails findUniqueOrThrow
+   */
+  export type CodingDetailsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CodingDetails to fetch.
+     */
+    where: CodingDetailsWhereUniqueInput
+  }
+
+  /**
+   * CodingDetails findFirst
+   */
+  export type CodingDetailsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CodingDetails to fetch.
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodingDetails to fetch.
+     */
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodingDetails.
+     */
+    cursor?: CodingDetailsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodingDetails.
+     */
+    distinct?: CodingDetailsScalarFieldEnum | CodingDetailsScalarFieldEnum[]
+  }
+
+  /**
+   * CodingDetails findFirstOrThrow
+   */
+  export type CodingDetailsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CodingDetails to fetch.
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodingDetails to fetch.
+     */
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CodingDetails.
+     */
+    cursor?: CodingDetailsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CodingDetails.
+     */
+    distinct?: CodingDetailsScalarFieldEnum | CodingDetailsScalarFieldEnum[]
+  }
+
+  /**
+   * CodingDetails findMany
+   */
+  export type CodingDetailsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter, which CodingDetails to fetch.
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CodingDetails to fetch.
+     */
+    orderBy?: CodingDetailsOrderByWithRelationInput | CodingDetailsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CodingDetails.
+     */
+    cursor?: CodingDetailsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CodingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CodingDetails.
+     */
+    skip?: number
+    distinct?: CodingDetailsScalarFieldEnum | CodingDetailsScalarFieldEnum[]
+  }
+
+  /**
+   * CodingDetails create
+   */
+  export type CodingDetailsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CodingDetails.
+     */
+    data: XOR<CodingDetailsCreateInput, CodingDetailsUncheckedCreateInput>
+  }
+
+  /**
+   * CodingDetails createMany
+   */
+  export type CodingDetailsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CodingDetails.
+     */
+    data: CodingDetailsCreateManyInput | CodingDetailsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CodingDetails createManyAndReturn
+   */
+  export type CodingDetailsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * The data used to create many CodingDetails.
+     */
+    data: CodingDetailsCreateManyInput | CodingDetailsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CodingDetails update
+   */
+  export type CodingDetailsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CodingDetails.
+     */
+    data: XOR<CodingDetailsUpdateInput, CodingDetailsUncheckedUpdateInput>
+    /**
+     * Choose, which CodingDetails to update.
+     */
+    where: CodingDetailsWhereUniqueInput
+  }
+
+  /**
+   * CodingDetails updateMany
+   */
+  export type CodingDetailsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CodingDetails.
+     */
+    data: XOR<CodingDetailsUpdateManyMutationInput, CodingDetailsUncheckedUpdateManyInput>
+    /**
+     * Filter which CodingDetails to update
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * Limit how many CodingDetails to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodingDetails updateManyAndReturn
+   */
+  export type CodingDetailsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * The data used to update CodingDetails.
+     */
+    data: XOR<CodingDetailsUpdateManyMutationInput, CodingDetailsUncheckedUpdateManyInput>
+    /**
+     * Filter which CodingDetails to update
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * Limit how many CodingDetails to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CodingDetails upsert
+   */
+  export type CodingDetailsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CodingDetails to update in case it exists.
+     */
+    where: CodingDetailsWhereUniqueInput
+    /**
+     * In case the CodingDetails found by the `where` argument doesn't exist, create a new CodingDetails with this data.
+     */
+    create: XOR<CodingDetailsCreateInput, CodingDetailsUncheckedCreateInput>
+    /**
+     * In case the CodingDetails was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CodingDetailsUpdateInput, CodingDetailsUncheckedUpdateInput>
+  }
+
+  /**
+   * CodingDetails delete
+   */
+  export type CodingDetailsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+    /**
+     * Filter which CodingDetails to delete.
+     */
+    where: CodingDetailsWhereUniqueInput
+  }
+
+  /**
+   * CodingDetails deleteMany
+   */
+  export type CodingDetailsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CodingDetails to delete
+     */
+    where?: CodingDetailsWhereInput
+    /**
+     * Limit how many CodingDetails to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CodingDetails.logs
+   */
+  export type CodingDetails$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VSCodeLog
+     */
+    select?: VSCodeLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VSCodeLog
+     */
+    omit?: VSCodeLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VSCodeLogInclude<ExtArgs> | null
+    where?: VSCodeLogWhereInput
+    orderBy?: VSCodeLogOrderByWithRelationInput | VSCodeLogOrderByWithRelationInput[]
+    cursor?: VSCodeLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VSCodeLogScalarFieldEnum | VSCodeLogScalarFieldEnum[]
+  }
+
+  /**
+   * CodingDetails without action
+   */
+  export type CodingDetailsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CodingDetails
+     */
+    select?: CodingDetailsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CodingDetails
+     */
+    omit?: CodingDetailsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CodingDetailsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11326,6 +13828,27 @@ export namespace Prisma {
   };
 
   export type DailyLogScalarFieldEnum = (typeof DailyLogScalarFieldEnum)[keyof typeof DailyLogScalarFieldEnum]
+
+
+  export const VSCodeLogScalarFieldEnum: {
+    id: 'id',
+    activeFileName: 'activeFileName',
+    codingTime: 'codingTime',
+    date: 'date',
+    createdAt: 'createdAt'
+  };
+
+  export type VSCodeLogScalarFieldEnum = (typeof VSCodeLogScalarFieldEnum)[keyof typeof VSCodeLogScalarFieldEnum]
+
+
+  export const CodingDetailsScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    createdAt: 'createdAt'
+  };
+
+  export type CodingDetailsScalarFieldEnum = (typeof CodingDetailsScalarFieldEnum)[keyof typeof CodingDetailsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11493,6 +14016,7 @@ export namespace Prisma {
     updatedTasks?: TaskListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
     DailyLog?: DailyLogListRelationFilter
+    codingSessions?: CodingDetailsListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11518,6 +14042,7 @@ export namespace Prisma {
     updatedTasks?: TaskOrderByRelationAggregateInput
     GitHubCommitGroup?: GitHubCommitGroupOrderByRelationAggregateInput
     DailyLog?: DailyLogOrderByRelationAggregateInput
+    codingSessions?: CodingDetailsOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11546,6 +14071,7 @@ export namespace Prisma {
     updatedTasks?: TaskListRelationFilter
     GitHubCommitGroup?: GitHubCommitGroupListRelationFilter
     DailyLog?: DailyLogListRelationFilter
+    codingSessions?: CodingDetailsListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -12077,6 +14603,118 @@ export namespace Prisma {
     export?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
   }
 
+  export type VSCodeLogWhereInput = {
+    AND?: VSCodeLogWhereInput | VSCodeLogWhereInput[]
+    OR?: VSCodeLogWhereInput[]
+    NOT?: VSCodeLogWhereInput | VSCodeLogWhereInput[]
+    id?: IntFilter<"VSCodeLog"> | number
+    activeFileName?: StringFilter<"VSCodeLog"> | string
+    codingTime?: IntFilter<"VSCodeLog"> | number
+    date?: DateTimeFilter<"VSCodeLog"> | Date | string
+    createdAt?: DateTimeFilter<"VSCodeLog"> | Date | string
+    codingDetails?: CodingDetailsListRelationFilter
+  }
+
+  export type VSCodeLogOrderByWithRelationInput = {
+    id?: SortOrder
+    activeFileName?: SortOrder
+    codingTime?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    codingDetails?: CodingDetailsOrderByRelationAggregateInput
+  }
+
+  export type VSCodeLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: VSCodeLogWhereInput | VSCodeLogWhereInput[]
+    OR?: VSCodeLogWhereInput[]
+    NOT?: VSCodeLogWhereInput | VSCodeLogWhereInput[]
+    activeFileName?: StringFilter<"VSCodeLog"> | string
+    codingTime?: IntFilter<"VSCodeLog"> | number
+    date?: DateTimeFilter<"VSCodeLog"> | Date | string
+    createdAt?: DateTimeFilter<"VSCodeLog"> | Date | string
+    codingDetails?: CodingDetailsListRelationFilter
+  }, "id">
+
+  export type VSCodeLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    activeFileName?: SortOrder
+    codingTime?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    _count?: VSCodeLogCountOrderByAggregateInput
+    _avg?: VSCodeLogAvgOrderByAggregateInput
+    _max?: VSCodeLogMaxOrderByAggregateInput
+    _min?: VSCodeLogMinOrderByAggregateInput
+    _sum?: VSCodeLogSumOrderByAggregateInput
+  }
+
+  export type VSCodeLogScalarWhereWithAggregatesInput = {
+    AND?: VSCodeLogScalarWhereWithAggregatesInput | VSCodeLogScalarWhereWithAggregatesInput[]
+    OR?: VSCodeLogScalarWhereWithAggregatesInput[]
+    NOT?: VSCodeLogScalarWhereWithAggregatesInput | VSCodeLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"VSCodeLog"> | number
+    activeFileName?: StringWithAggregatesFilter<"VSCodeLog"> | string
+    codingTime?: IntWithAggregatesFilter<"VSCodeLog"> | number
+    date?: DateTimeWithAggregatesFilter<"VSCodeLog"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"VSCodeLog"> | Date | string
+  }
+
+  export type CodingDetailsWhereInput = {
+    AND?: CodingDetailsWhereInput | CodingDetailsWhereInput[]
+    OR?: CodingDetailsWhereInput[]
+    NOT?: CodingDetailsWhereInput | CodingDetailsWhereInput[]
+    id?: IntFilter<"CodingDetails"> | number
+    userId?: IntFilter<"CodingDetails"> | number
+    date?: DateTimeFilter<"CodingDetails"> | Date | string
+    createdAt?: DateTimeFilter<"CodingDetails"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    logs?: VSCodeLogListRelationFilter
+  }
+
+  export type CodingDetailsOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    logs?: VSCodeLogOrderByRelationAggregateInput
+  }
+
+  export type CodingDetailsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CodingDetailsWhereInput | CodingDetailsWhereInput[]
+    OR?: CodingDetailsWhereInput[]
+    NOT?: CodingDetailsWhereInput | CodingDetailsWhereInput[]
+    userId?: IntFilter<"CodingDetails"> | number
+    date?: DateTimeFilter<"CodingDetails"> | Date | string
+    createdAt?: DateTimeFilter<"CodingDetails"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    logs?: VSCodeLogListRelationFilter
+  }, "id">
+
+  export type CodingDetailsOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+    _count?: CodingDetailsCountOrderByAggregateInput
+    _avg?: CodingDetailsAvgOrderByAggregateInput
+    _max?: CodingDetailsMaxOrderByAggregateInput
+    _min?: CodingDetailsMinOrderByAggregateInput
+    _sum?: CodingDetailsSumOrderByAggregateInput
+  }
+
+  export type CodingDetailsScalarWhereWithAggregatesInput = {
+    AND?: CodingDetailsScalarWhereWithAggregatesInput | CodingDetailsScalarWhereWithAggregatesInput[]
+    OR?: CodingDetailsScalarWhereWithAggregatesInput[]
+    NOT?: CodingDetailsScalarWhereWithAggregatesInput | CodingDetailsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CodingDetails"> | number
+    userId?: IntWithAggregatesFilter<"CodingDetails"> | number
+    date?: DateTimeWithAggregatesFilter<"CodingDetails"> | Date | string
+    createdAt?: DateTimeWithAggregatesFilter<"CodingDetails"> | Date | string
+  }
+
   export type UserCreateInput = {
     email: string
     password?: string | null
@@ -12099,6 +14737,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -12124,6 +14763,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -12148,6 +14788,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -12173,6 +14814,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12690,6 +15332,112 @@ export namespace Prisma {
     export?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type VSCodeLogCreateInput = {
+    activeFileName: string
+    codingTime: number
+    date: Date | string
+    createdAt?: Date | string
+    codingDetails?: CodingDetailsCreateNestedManyWithoutLogsInput
+  }
+
+  export type VSCodeLogUncheckedCreateInput = {
+    id?: number
+    activeFileName: string
+    codingTime: number
+    date: Date | string
+    createdAt?: Date | string
+    codingDetails?: CodingDetailsUncheckedCreateNestedManyWithoutLogsInput
+  }
+
+  export type VSCodeLogUpdateInput = {
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    codingDetails?: CodingDetailsUpdateManyWithoutLogsNestedInput
+  }
+
+  export type VSCodeLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    codingDetails?: CodingDetailsUncheckedUpdateManyWithoutLogsNestedInput
+  }
+
+  export type VSCodeLogCreateManyInput = {
+    id?: number
+    activeFileName: string
+    codingTime: number
+    date: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VSCodeLogUpdateManyMutationInput = {
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VSCodeLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodingDetailsCreateInput = {
+    date: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCodingSessionsInput
+    logs?: VSCodeLogCreateNestedManyWithoutCodingDetailsInput
+  }
+
+  export type CodingDetailsUncheckedCreateInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    createdAt?: Date | string
+    logs?: VSCodeLogUncheckedCreateNestedManyWithoutCodingDetailsInput
+  }
+
+  export type CodingDetailsUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCodingSessionsNestedInput
+    logs?: VSCodeLogUpdateManyWithoutCodingDetailsNestedInput
+  }
+
+  export type CodingDetailsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: VSCodeLogUncheckedUpdateManyWithoutCodingDetailsNestedInput
+  }
+
+  export type CodingDetailsCreateManyInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    createdAt?: Date | string
+  }
+
+  export type CodingDetailsUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodingDetailsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12777,6 +15525,12 @@ export namespace Prisma {
     none?: DailyLogWhereInput
   }
 
+  export type CodingDetailsListRelationFilter = {
+    every?: CodingDetailsWhereInput
+    some?: CodingDetailsWhereInput
+    none?: CodingDetailsWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -12799,6 +15553,10 @@ export namespace Prisma {
   }
 
   export type DailyLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CodingDetailsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13395,6 +16153,81 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
+  export type VSCodeLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    activeFileName?: SortOrder
+    codingTime?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VSCodeLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    codingTime?: SortOrder
+  }
+
+  export type VSCodeLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    activeFileName?: SortOrder
+    codingTime?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VSCodeLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    activeFileName?: SortOrder
+    codingTime?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type VSCodeLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    codingTime?: SortOrder
+  }
+
+  export type VSCodeLogListRelationFilter = {
+    every?: VSCodeLogWhereInput
+    some?: VSCodeLogWhereInput
+    none?: VSCodeLogWhereInput
+  }
+
+  export type VSCodeLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CodingDetailsCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodingDetailsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CodingDetailsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodingDetailsMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CodingDetailsSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -13450,6 +16283,13 @@ export namespace Prisma {
     connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
   }
 
+  export type CodingDetailsCreateNestedManyWithoutUserInput = {
+    create?: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput> | CodingDetailsCreateWithoutUserInput[] | CodingDetailsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutUserInput | CodingDetailsCreateOrConnectWithoutUserInput[]
+    createMany?: CodingDetailsCreateManyUserInputEnvelope
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+  }
+
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -13503,6 +16343,13 @@ export namespace Prisma {
     connectOrCreate?: DailyLogCreateOrConnectWithoutUserInput | DailyLogCreateOrConnectWithoutUserInput[]
     createMany?: DailyLogCreateManyUserInputEnvelope
     connect?: DailyLogWhereUniqueInput | DailyLogWhereUniqueInput[]
+  }
+
+  export type CodingDetailsUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput> | CodingDetailsCreateWithoutUserInput[] | CodingDetailsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutUserInput | CodingDetailsCreateOrConnectWithoutUserInput[]
+    createMany?: CodingDetailsCreateManyUserInputEnvelope
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -13632,6 +16479,20 @@ export namespace Prisma {
     deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
   }
 
+  export type CodingDetailsUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput> | CodingDetailsCreateWithoutUserInput[] | CodingDetailsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutUserInput | CodingDetailsCreateOrConnectWithoutUserInput[]
+    upsert?: CodingDetailsUpsertWithWhereUniqueWithoutUserInput | CodingDetailsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CodingDetailsCreateManyUserInputEnvelope
+    set?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    disconnect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    delete?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    update?: CodingDetailsUpdateWithWhereUniqueWithoutUserInput | CodingDetailsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CodingDetailsUpdateManyWithWhereWithoutUserInput | CodingDetailsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -13749,6 +16610,20 @@ export namespace Prisma {
     update?: DailyLogUpdateWithWhereUniqueWithoutUserInput | DailyLogUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: DailyLogUpdateManyWithWhereWithoutUserInput | DailyLogUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: DailyLogScalarWhereInput | DailyLogScalarWhereInput[]
+  }
+
+  export type CodingDetailsUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput> | CodingDetailsCreateWithoutUserInput[] | CodingDetailsUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutUserInput | CodingDetailsCreateOrConnectWithoutUserInput[]
+    upsert?: CodingDetailsUpsertWithWhereUniqueWithoutUserInput | CodingDetailsUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CodingDetailsCreateManyUserInputEnvelope
+    set?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    disconnect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    delete?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    update?: CodingDetailsUpdateWithWhereUniqueWithoutUserInput | CodingDetailsUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CodingDetailsUpdateManyWithWhereWithoutUserInput | CodingDetailsUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAccountsInput = {
@@ -14129,6 +17004,96 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutDailyLogInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyLogInput, UserUpdateWithoutDailyLogInput>, UserUncheckedUpdateWithoutDailyLogInput>
+  }
+
+  export type CodingDetailsCreateNestedManyWithoutLogsInput = {
+    create?: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput> | CodingDetailsCreateWithoutLogsInput[] | CodingDetailsUncheckedCreateWithoutLogsInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutLogsInput | CodingDetailsCreateOrConnectWithoutLogsInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+  }
+
+  export type CodingDetailsUncheckedCreateNestedManyWithoutLogsInput = {
+    create?: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput> | CodingDetailsCreateWithoutLogsInput[] | CodingDetailsUncheckedCreateWithoutLogsInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutLogsInput | CodingDetailsCreateOrConnectWithoutLogsInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+  }
+
+  export type CodingDetailsUpdateManyWithoutLogsNestedInput = {
+    create?: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput> | CodingDetailsCreateWithoutLogsInput[] | CodingDetailsUncheckedCreateWithoutLogsInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutLogsInput | CodingDetailsCreateOrConnectWithoutLogsInput[]
+    upsert?: CodingDetailsUpsertWithWhereUniqueWithoutLogsInput | CodingDetailsUpsertWithWhereUniqueWithoutLogsInput[]
+    set?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    disconnect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    delete?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    update?: CodingDetailsUpdateWithWhereUniqueWithoutLogsInput | CodingDetailsUpdateWithWhereUniqueWithoutLogsInput[]
+    updateMany?: CodingDetailsUpdateManyWithWhereWithoutLogsInput | CodingDetailsUpdateManyWithWhereWithoutLogsInput[]
+    deleteMany?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
+  }
+
+  export type CodingDetailsUncheckedUpdateManyWithoutLogsNestedInput = {
+    create?: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput> | CodingDetailsCreateWithoutLogsInput[] | CodingDetailsUncheckedCreateWithoutLogsInput[]
+    connectOrCreate?: CodingDetailsCreateOrConnectWithoutLogsInput | CodingDetailsCreateOrConnectWithoutLogsInput[]
+    upsert?: CodingDetailsUpsertWithWhereUniqueWithoutLogsInput | CodingDetailsUpsertWithWhereUniqueWithoutLogsInput[]
+    set?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    disconnect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    delete?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    connect?: CodingDetailsWhereUniqueInput | CodingDetailsWhereUniqueInput[]
+    update?: CodingDetailsUpdateWithWhereUniqueWithoutLogsInput | CodingDetailsUpdateWithWhereUniqueWithoutLogsInput[]
+    updateMany?: CodingDetailsUpdateManyWithWhereWithoutLogsInput | CodingDetailsUpdateManyWithWhereWithoutLogsInput[]
+    deleteMany?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutCodingSessionsInput = {
+    create?: XOR<UserCreateWithoutCodingSessionsInput, UserUncheckedCreateWithoutCodingSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCodingSessionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type VSCodeLogCreateNestedManyWithoutCodingDetailsInput = {
+    create?: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput> | VSCodeLogCreateWithoutCodingDetailsInput[] | VSCodeLogUncheckedCreateWithoutCodingDetailsInput[]
+    connectOrCreate?: VSCodeLogCreateOrConnectWithoutCodingDetailsInput | VSCodeLogCreateOrConnectWithoutCodingDetailsInput[]
+    connect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+  }
+
+  export type VSCodeLogUncheckedCreateNestedManyWithoutCodingDetailsInput = {
+    create?: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput> | VSCodeLogCreateWithoutCodingDetailsInput[] | VSCodeLogUncheckedCreateWithoutCodingDetailsInput[]
+    connectOrCreate?: VSCodeLogCreateOrConnectWithoutCodingDetailsInput | VSCodeLogCreateOrConnectWithoutCodingDetailsInput[]
+    connect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCodingSessionsNestedInput = {
+    create?: XOR<UserCreateWithoutCodingSessionsInput, UserUncheckedCreateWithoutCodingSessionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCodingSessionsInput
+    upsert?: UserUpsertWithoutCodingSessionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCodingSessionsInput, UserUpdateWithoutCodingSessionsInput>, UserUncheckedUpdateWithoutCodingSessionsInput>
+  }
+
+  export type VSCodeLogUpdateManyWithoutCodingDetailsNestedInput = {
+    create?: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput> | VSCodeLogCreateWithoutCodingDetailsInput[] | VSCodeLogUncheckedCreateWithoutCodingDetailsInput[]
+    connectOrCreate?: VSCodeLogCreateOrConnectWithoutCodingDetailsInput | VSCodeLogCreateOrConnectWithoutCodingDetailsInput[]
+    upsert?: VSCodeLogUpsertWithWhereUniqueWithoutCodingDetailsInput | VSCodeLogUpsertWithWhereUniqueWithoutCodingDetailsInput[]
+    set?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    disconnect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    delete?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    connect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    update?: VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput | VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput[]
+    updateMany?: VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput | VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput[]
+    deleteMany?: VSCodeLogScalarWhereInput | VSCodeLogScalarWhereInput[]
+  }
+
+  export type VSCodeLogUncheckedUpdateManyWithoutCodingDetailsNestedInput = {
+    create?: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput> | VSCodeLogCreateWithoutCodingDetailsInput[] | VSCodeLogUncheckedCreateWithoutCodingDetailsInput[]
+    connectOrCreate?: VSCodeLogCreateOrConnectWithoutCodingDetailsInput | VSCodeLogCreateOrConnectWithoutCodingDetailsInput[]
+    upsert?: VSCodeLogUpsertWithWhereUniqueWithoutCodingDetailsInput | VSCodeLogUpsertWithWhereUniqueWithoutCodingDetailsInput[]
+    set?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    disconnect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    delete?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    connect?: VSCodeLogWhereUniqueInput | VSCodeLogWhereUniqueInput[]
+    update?: VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput | VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput[]
+    updateMany?: VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput | VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput[]
+    deleteMany?: VSCodeLogScalarWhereInput | VSCodeLogScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -14619,6 +17584,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CodingDetailsCreateWithoutUserInput = {
+    date: Date | string
+    createdAt?: Date | string
+    logs?: VSCodeLogCreateNestedManyWithoutCodingDetailsInput
+  }
+
+  export type CodingDetailsUncheckedCreateWithoutUserInput = {
+    id?: number
+    date: Date | string
+    createdAt?: Date | string
+    logs?: VSCodeLogUncheckedCreateNestedManyWithoutCodingDetailsInput
+  }
+
+  export type CodingDetailsCreateOrConnectWithoutUserInput = {
+    where: CodingDetailsWhereUniqueInput
+    create: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CodingDetailsCreateManyUserInputEnvelope = {
+    data: CodingDetailsCreateManyUserInput | CodingDetailsCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -14812,6 +17800,32 @@ export namespace Prisma {
     export?: StringNullableFilter<"DailyLog"> | string | null
   }
 
+  export type CodingDetailsUpsertWithWhereUniqueWithoutUserInput = {
+    where: CodingDetailsWhereUniqueInput
+    update: XOR<CodingDetailsUpdateWithoutUserInput, CodingDetailsUncheckedUpdateWithoutUserInput>
+    create: XOR<CodingDetailsCreateWithoutUserInput, CodingDetailsUncheckedCreateWithoutUserInput>
+  }
+
+  export type CodingDetailsUpdateWithWhereUniqueWithoutUserInput = {
+    where: CodingDetailsWhereUniqueInput
+    data: XOR<CodingDetailsUpdateWithoutUserInput, CodingDetailsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CodingDetailsUpdateManyWithWhereWithoutUserInput = {
+    where: CodingDetailsScalarWhereInput
+    data: XOR<CodingDetailsUpdateManyMutationInput, CodingDetailsUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CodingDetailsScalarWhereInput = {
+    AND?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
+    OR?: CodingDetailsScalarWhereInput[]
+    NOT?: CodingDetailsScalarWhereInput | CodingDetailsScalarWhereInput[]
+    id?: IntFilter<"CodingDetails"> | number
+    userId?: IntFilter<"CodingDetails"> | number
+    date?: DateTimeFilter<"CodingDetails"> | Date | string
+    createdAt?: DateTimeFilter<"CodingDetails"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     email: string
     password?: string | null
@@ -14833,6 +17847,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -14857,6 +17872,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -14896,6 +17912,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -14920,6 +17937,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutProjectInput = {
@@ -14943,6 +17961,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectInput = {
@@ -14967,6 +17986,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectInput = {
@@ -14995,6 +18015,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutProjectMembersInput = {
@@ -15019,6 +18040,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutProjectMembersInput = {
@@ -15126,6 +18148,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectInput = {
@@ -15150,6 +18173,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutProjectMembersInput = {
@@ -15280,6 +18304,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAssignedTasksInput = {
@@ -15304,6 +18329,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAssignedTasksInput = {
@@ -15332,6 +18358,7 @@ export namespace Prisma {
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCreatedTasksInput = {
@@ -15356,6 +18383,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCreatedTasksInput = {
@@ -15384,6 +18412,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutUpdatedTasksInput = {
@@ -15408,6 +18437,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutUpdatedTasksInput = {
@@ -15479,6 +18509,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAssignedTasksInput = {
@@ -15503,6 +18534,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutCreatedTasksInput = {
@@ -15537,6 +18569,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCreatedTasksInput = {
@@ -15561,6 +18594,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutUpdatedTasksInput = {
@@ -15595,6 +18629,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutUpdatedTasksInput = {
@@ -15619,6 +18654,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ProjectCreateWithoutGithubReposInput = {
@@ -15775,6 +18811,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutGitHubCommitGroupInput = {
@@ -15799,6 +18836,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutGitHubCommitGroupInput = {
@@ -15885,6 +18923,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutGitHubCommitGroupInput = {
@@ -15909,6 +18948,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type GitHubRepoUpsertWithoutGitHubCommitGroupInput = {
@@ -15989,6 +19029,7 @@ export namespace Prisma {
     createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutDailyLogInput = {
@@ -16013,6 +19054,7 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
     updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutDailyLogInput = {
@@ -16052,6 +19094,7 @@ export namespace Prisma {
     createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutDailyLogInput = {
@@ -16076,6 +19119,202 @@ export namespace Prisma {
     createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CodingDetailsCreateWithoutLogsInput = {
+    date: Date | string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutCodingSessionsInput
+  }
+
+  export type CodingDetailsUncheckedCreateWithoutLogsInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    createdAt?: Date | string
+  }
+
+  export type CodingDetailsCreateOrConnectWithoutLogsInput = {
+    where: CodingDetailsWhereUniqueInput
+    create: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput>
+  }
+
+  export type CodingDetailsUpsertWithWhereUniqueWithoutLogsInput = {
+    where: CodingDetailsWhereUniqueInput
+    update: XOR<CodingDetailsUpdateWithoutLogsInput, CodingDetailsUncheckedUpdateWithoutLogsInput>
+    create: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput>
+  }
+
+  export type CodingDetailsUpdateWithWhereUniqueWithoutLogsInput = {
+    where: CodingDetailsWhereUniqueInput
+    data: XOR<CodingDetailsUpdateWithoutLogsInput, CodingDetailsUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type CodingDetailsUpdateManyWithWhereWithoutLogsInput = {
+    where: CodingDetailsScalarWhereInput
+    data: XOR<CodingDetailsUpdateManyMutationInput, CodingDetailsUncheckedUpdateManyWithoutLogsInput>
+  }
+
+  export type UserCreateWithoutCodingSessionsInput = {
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCodingSessionsInput = {
+    id?: number
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    DailyLog?: DailyLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCodingSessionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCodingSessionsInput, UserUncheckedCreateWithoutCodingSessionsInput>
+  }
+
+  export type VSCodeLogCreateWithoutCodingDetailsInput = {
+    activeFileName: string
+    codingTime: number
+    date: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VSCodeLogUncheckedCreateWithoutCodingDetailsInput = {
+    id?: number
+    activeFileName: string
+    codingTime: number
+    date: Date | string
+    createdAt?: Date | string
+  }
+
+  export type VSCodeLogCreateOrConnectWithoutCodingDetailsInput = {
+    where: VSCodeLogWhereUniqueInput
+    create: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput>
+  }
+
+  export type UserUpsertWithoutCodingSessionsInput = {
+    update: XOR<UserUpdateWithoutCodingSessionsInput, UserUncheckedUpdateWithoutCodingSessionsInput>
+    create: XOR<UserCreateWithoutCodingSessionsInput, UserUncheckedCreateWithoutCodingSessionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCodingSessionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCodingSessionsInput, UserUncheckedUpdateWithoutCodingSessionsInput>
+  }
+
+  export type UserUpdateWithoutCodingSessionsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCodingSessionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type VSCodeLogUpsertWithWhereUniqueWithoutCodingDetailsInput = {
+    where: VSCodeLogWhereUniqueInput
+    update: XOR<VSCodeLogUpdateWithoutCodingDetailsInput, VSCodeLogUncheckedUpdateWithoutCodingDetailsInput>
+    create: XOR<VSCodeLogCreateWithoutCodingDetailsInput, VSCodeLogUncheckedCreateWithoutCodingDetailsInput>
+  }
+
+  export type VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput = {
+    where: VSCodeLogWhereUniqueInput
+    data: XOR<VSCodeLogUpdateWithoutCodingDetailsInput, VSCodeLogUncheckedUpdateWithoutCodingDetailsInput>
+  }
+
+  export type VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput = {
+    where: VSCodeLogScalarWhereInput
+    data: XOR<VSCodeLogUpdateManyMutationInput, VSCodeLogUncheckedUpdateManyWithoutCodingDetailsInput>
+  }
+
+  export type VSCodeLogScalarWhereInput = {
+    AND?: VSCodeLogScalarWhereInput | VSCodeLogScalarWhereInput[]
+    OR?: VSCodeLogScalarWhereInput[]
+    NOT?: VSCodeLogScalarWhereInput | VSCodeLogScalarWhereInput[]
+    id?: IntFilter<"VSCodeLog"> | number
+    activeFileName?: StringFilter<"VSCodeLog"> | string
+    codingTime?: IntFilter<"VSCodeLog"> | number
+    date?: DateTimeFilter<"VSCodeLog"> | Date | string
+    createdAt?: DateTimeFilter<"VSCodeLog"> | Date | string
   }
 
   export type AccountCreateManyUserInput = {
@@ -16151,6 +19390,12 @@ export namespace Prisma {
     works: JsonNullValueInput | InputJsonValue
     aiSummary?: string | null
     export?: string | null
+  }
+
+  export type CodingDetailsCreateManyUserInput = {
+    id?: number
+    date: Date | string
+    createdAt?: Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -16409,6 +19654,25 @@ export namespace Prisma {
     export?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type CodingDetailsUpdateWithoutUserInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: VSCodeLogUpdateManyWithoutCodingDetailsNestedInput
+  }
+
+  export type CodingDetailsUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    logs?: VSCodeLogUncheckedUpdateManyWithoutCodingDetailsNestedInput
+  }
+
+  export type CodingDetailsUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type TaskCreateManyProjectInput = {
     id?: number
     title: string
@@ -16454,6 +19718,7 @@ export namespace Prisma {
     updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectMembersInput = {
@@ -16478,6 +19743,7 @@ export namespace Prisma {
     updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
     GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
     DailyLog?: DailyLogUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutProjectMembersInput = {
@@ -16615,6 +19881,49 @@ export namespace Prisma {
     commitDate?: DateTimeFieldUpdateOperationsInput | Date | string
     timing?: DateTimeFieldUpdateOperationsInput | Date | string
     message?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CodingDetailsUpdateWithoutLogsInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCodingSessionsNestedInput
+  }
+
+  export type CodingDetailsUncheckedUpdateWithoutLogsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CodingDetailsUncheckedUpdateManyWithoutLogsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VSCodeLogUpdateWithoutCodingDetailsInput = {
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VSCodeLogUncheckedUpdateWithoutCodingDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VSCodeLogUncheckedUpdateManyWithoutCodingDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    activeFileName?: StringFieldUpdateOperationsInput | string
+    codingTime?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

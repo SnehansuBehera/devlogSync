@@ -37,6 +37,7 @@ model User {
   updatedTasks      Task[]              @relation("UpdatedBy")
   GitHubCommitGroup GitHubCommitGroup[]
   DailyLog          DailyLog[]
+  codingSessions    CodingDetails[]
 }
 
 model Account {
@@ -133,4 +134,23 @@ model DailyLog {
   works     Json // stores [{ commitId: Int, time: Float }]
   aiSummary String?
   export    String?
+}
+
+model VSCodeLog {
+  id             Int      @id @default(autoincrement())
+  activeFileName String
+  codingTime     Int // in minutes
+  date           DateTime @db.Date
+  createdAt      DateTime @default(now())
+
+  codingDetails CodingDetails[] @relation()
+}
+
+model CodingDetails {
+  id        Int         @id @default(autoincrement())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    Int
+  logs      VSCodeLog[] @relation()
+  date      DateTime    @db.Date
+  createdAt DateTime    @default(now())
 }
