@@ -126,16 +126,6 @@ model GitHubCommitGroup {
   commits GitHubCommit[] @relation()
 }
 
-model DailyLog {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  date      DateTime
-  works     Json // stores [{ commitId: Int, time: Float }]
-  aiSummary String?
-  export    String?
-}
-
 model VSCodeLog {
   id             Int      @id @default(autoincrement())
   activeFileName String
@@ -153,4 +143,15 @@ model CodingDetails {
   logs      VSCodeLog[] @relation()
   date      DateTime    @db.Date
   createdAt DateTime    @default(now())
+}
+
+model DailyLog {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  date       DateTime
+  commitLogs Json
+  codingLogs Json
+  aiSummary  String?
+  export     String?
 }

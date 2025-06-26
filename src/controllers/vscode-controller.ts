@@ -219,3 +219,89 @@ export const getCodingDetailsByDate = async (req: Request, res: Response):Promis
   }
 };
 
+export const getAllDetailsOfUser = async(req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+
+    if (isNaN(userId)) {
+      res.status(400).json({status:400, error: 'Unauthorized' });
+      return;
+    }
+
+    const codingDetails = await prisma.codingDetails.findMany({
+      where: { userId },
+      include: {
+        logs: true,
+      },
+    });
+
+    if (codingDetails.length === 0) {
+      res.status(404).json({ message: 'No coding logs found for the given user.' });
+      return;
+    }
+
+    res.status(200).json({status: 200, message: "Coding details fetched successfully", data: codingDetails });
+  } catch (error) {
+    console.error('Error fetching coding details:', error);
+    res.status(500).json({status: 500, error: 'Internal server error' });
+  }
+}
+
+export const getTotalCodingTimeOfUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+
+    if (isNaN(userId)) {
+      res.status(400).json({status:400, error: 'Unauthorized' });
+      return;
+    }
+
+    const codingDetails = await prisma.codingDetails.findMany({
+      where: { userId },
+      include: {
+        logs: true,
+      },
+    });
+
+    if (codingDetails.length === 0) {
+      res.status(404).json({ message: 'No coding logs found for the given user.' });
+      return;
+    }
+
+    const totalCodingTime = codingDetails.reduce((total, detail) => {
+      return total + detail.logs.reduce((sum, log) => sum + log.codingTime, 0);
+    }, 0);
+
+    res.status(200).json({status: 200, message: "Total coding time fetched successfully", data: totalCodingTime });
+  } catch (error) {
+    console.error('Error fetching total coding time:', error);
+    res.status(500).json({status: 500, error: 'Internal server error' });
+  }
+}
+
+export const getAllVSCodeLogs = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+
+    if (isNaN(userId)) {
+      res.status(400).json({status:400, error: 'Unauthorized' });
+      return;
+    }
+
+    const logss = await prisma.codingDetails.findMany({
+      include: {
+        logs: true
+      },
+    });
+
+    if (logss.length === 0) {
+      res.status(404).json({ message: 'No VS Code logs found for the given user.' });
+      return;
+    }
+
+    res.status(200).json({status: 200, message: "VS Code logs fetched successfully", data: logss });
+  } catch (error) {
+    console.error('Error fetching VS Code logs:', error);
+    res.status(500).json({status: 500, error: 'Internal server error' });
+  }
+}

@@ -49,11 +49,6 @@ export type GitHubCommit = $Result.DefaultSelection<Prisma.$GitHubCommitPayload>
  */
 export type GitHubCommitGroup = $Result.DefaultSelection<Prisma.$GitHubCommitGroupPayload>
 /**
- * Model DailyLog
- * 
- */
-export type DailyLog = $Result.DefaultSelection<Prisma.$DailyLogPayload>
-/**
  * Model VSCodeLog
  * 
  */
@@ -63,6 +58,11 @@ export type VSCodeLog = $Result.DefaultSelection<Prisma.$VSCodeLogPayload>
  * 
  */
 export type CodingDetails = $Result.DefaultSelection<Prisma.$CodingDetailsPayload>
+/**
+ * Model DailyLog
+ * 
+ */
+export type DailyLog = $Result.DefaultSelection<Prisma.$DailyLogPayload>
 
 /**
  * Enums
@@ -278,16 +278,6 @@ export class PrismaClient<
   get gitHubCommitGroup(): Prisma.GitHubCommitGroupDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.dailyLog`: Exposes CRUD operations for the **DailyLog** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more DailyLogs
-    * const dailyLogs = await prisma.dailyLog.findMany()
-    * ```
-    */
-  get dailyLog(): Prisma.DailyLogDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.vSCodeLog`: Exposes CRUD operations for the **VSCodeLog** model.
     * Example usage:
     * ```ts
@@ -306,6 +296,16 @@ export class PrismaClient<
     * ```
     */
   get codingDetails(): Prisma.CodingDetailsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dailyLog`: Exposes CRUD operations for the **DailyLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DailyLogs
+    * const dailyLogs = await prisma.dailyLog.findMany()
+    * ```
+    */
+  get dailyLog(): Prisma.DailyLogDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -753,9 +753,9 @@ export namespace Prisma {
     GitHubRepo: 'GitHubRepo',
     GitHubCommit: 'GitHubCommit',
     GitHubCommitGroup: 'GitHubCommitGroup',
-    DailyLog: 'DailyLog',
     VSCodeLog: 'VSCodeLog',
-    CodingDetails: 'CodingDetails'
+    CodingDetails: 'CodingDetails',
+    DailyLog: 'DailyLog'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -774,7 +774,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo" | "gitHubCommit" | "gitHubCommitGroup" | "dailyLog" | "vSCodeLog" | "codingDetails"
+      modelProps: "user" | "account" | "project" | "task" | "gitHubRepo" | "gitHubCommit" | "gitHubCommitGroup" | "vSCodeLog" | "codingDetails" | "dailyLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1296,80 +1296,6 @@ export namespace Prisma {
           }
         }
       }
-      DailyLog: {
-        payload: Prisma.$DailyLogPayload<ExtArgs>
-        fields: Prisma.DailyLogFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.DailyLogFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.DailyLogFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          findFirst: {
-            args: Prisma.DailyLogFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.DailyLogFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          findMany: {
-            args: Prisma.DailyLogFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
-          }
-          create: {
-            args: Prisma.DailyLogCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          createMany: {
-            args: Prisma.DailyLogCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.DailyLogCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
-          }
-          delete: {
-            args: Prisma.DailyLogDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          update: {
-            args: Prisma.DailyLogUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          deleteMany: {
-            args: Prisma.DailyLogDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.DailyLogUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.DailyLogUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
-          }
-          upsert: {
-            args: Prisma.DailyLogUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
-          }
-          aggregate: {
-            args: Prisma.DailyLogAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateDailyLog>
-          }
-          groupBy: {
-            args: Prisma.DailyLogGroupByArgs<ExtArgs>
-            result: $Utils.Optional<DailyLogGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.DailyLogCountArgs<ExtArgs>
-            result: $Utils.Optional<DailyLogCountAggregateOutputType> | number
-          }
-        }
-      }
       VSCodeLog: {
         payload: Prisma.$VSCodeLogPayload<ExtArgs>
         fields: Prisma.VSCodeLogFieldRefs
@@ -1518,6 +1444,80 @@ export namespace Prisma {
           }
         }
       }
+      DailyLog: {
+        payload: Prisma.$DailyLogPayload<ExtArgs>
+        fields: Prisma.DailyLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DailyLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DailyLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findFirst: {
+            args: Prisma.DailyLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DailyLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          findMany: {
+            args: Prisma.DailyLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          create: {
+            args: Prisma.DailyLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          createMany: {
+            args: Prisma.DailyLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DailyLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          delete: {
+            args: Prisma.DailyLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          update: {
+            args: Prisma.DailyLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.DailyLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DailyLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DailyLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.DailyLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DailyLogPayload>
+          }
+          aggregate: {
+            args: Prisma.DailyLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDailyLog>
+          }
+          groupBy: {
+            args: Prisma.DailyLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DailyLogCountArgs<ExtArgs>
+            result: $Utils.Optional<DailyLogCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1609,9 +1609,9 @@ export namespace Prisma {
     gitHubRepo?: GitHubRepoOmit
     gitHubCommit?: GitHubCommitOmit
     gitHubCommitGroup?: GitHubCommitGroupOmit
-    dailyLog?: DailyLogOmit
     vSCodeLog?: VSCodeLogOmit
     codingDetails?: CodingDetailsOmit
+    dailyLog?: DailyLogOmit
   }
 
   /* Types for Logging */
@@ -10382,1111 +10382,6 @@ export namespace Prisma {
 
 
   /**
-   * Model DailyLog
-   */
-
-  export type AggregateDailyLog = {
-    _count: DailyLogCountAggregateOutputType | null
-    _avg: DailyLogAvgAggregateOutputType | null
-    _sum: DailyLogSumAggregateOutputType | null
-    _min: DailyLogMinAggregateOutputType | null
-    _max: DailyLogMaxAggregateOutputType | null
-  }
-
-  export type DailyLogAvgAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type DailyLogSumAggregateOutputType = {
-    id: number | null
-    userId: number | null
-  }
-
-  export type DailyLogMinAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    date: Date | null
-    aiSummary: string | null
-    export: string | null
-  }
-
-  export type DailyLogMaxAggregateOutputType = {
-    id: number | null
-    userId: number | null
-    date: Date | null
-    aiSummary: string | null
-    export: string | null
-  }
-
-  export type DailyLogCountAggregateOutputType = {
-    id: number
-    userId: number
-    date: number
-    works: number
-    aiSummary: number
-    export: number
-    _all: number
-  }
-
-
-  export type DailyLogAvgAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type DailyLogSumAggregateInputType = {
-    id?: true
-    userId?: true
-  }
-
-  export type DailyLogMinAggregateInputType = {
-    id?: true
-    userId?: true
-    date?: true
-    aiSummary?: true
-    export?: true
-  }
-
-  export type DailyLogMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    date?: true
-    aiSummary?: true
-    export?: true
-  }
-
-  export type DailyLogCountAggregateInputType = {
-    id?: true
-    userId?: true
-    date?: true
-    works?: true
-    aiSummary?: true
-    export?: true
-    _all?: true
-  }
-
-  export type DailyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DailyLog to aggregate.
-     */
-    where?: DailyLogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DailyLogs to fetch.
-     */
-    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: DailyLogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DailyLogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DailyLogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned DailyLogs
-    **/
-    _count?: true | DailyLogCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: DailyLogAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: DailyLogSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: DailyLogMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: DailyLogMaxAggregateInputType
-  }
-
-  export type GetDailyLogAggregateType<T extends DailyLogAggregateArgs> = {
-        [P in keyof T & keyof AggregateDailyLog]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateDailyLog[P]>
-      : GetScalarType<T[P], AggregateDailyLog[P]>
-  }
-
-
-
-
-  export type DailyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DailyLogWhereInput
-    orderBy?: DailyLogOrderByWithAggregationInput | DailyLogOrderByWithAggregationInput[]
-    by: DailyLogScalarFieldEnum[] | DailyLogScalarFieldEnum
-    having?: DailyLogScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: DailyLogCountAggregateInputType | true
-    _avg?: DailyLogAvgAggregateInputType
-    _sum?: DailyLogSumAggregateInputType
-    _min?: DailyLogMinAggregateInputType
-    _max?: DailyLogMaxAggregateInputType
-  }
-
-  export type DailyLogGroupByOutputType = {
-    id: number
-    userId: number
-    date: Date
-    works: JsonValue
-    aiSummary: string | null
-    export: string | null
-    _count: DailyLogCountAggregateOutputType | null
-    _avg: DailyLogAvgAggregateOutputType | null
-    _sum: DailyLogSumAggregateOutputType | null
-    _min: DailyLogMinAggregateOutputType | null
-    _max: DailyLogMaxAggregateOutputType | null
-  }
-
-  type GetDailyLogGroupByPayload<T extends DailyLogGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<DailyLogGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof DailyLogGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
-            : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type DailyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    date?: boolean
-    works?: boolean
-    aiSummary?: boolean
-    export?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["dailyLog"]>
-
-  export type DailyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    date?: boolean
-    works?: boolean
-    aiSummary?: boolean
-    export?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["dailyLog"]>
-
-  export type DailyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    date?: boolean
-    works?: boolean
-    aiSummary?: boolean
-    export?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["dailyLog"]>
-
-  export type DailyLogSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    date?: boolean
-    works?: boolean
-    aiSummary?: boolean
-    export?: boolean
-  }
-
-  export type DailyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "works" | "aiSummary" | "export", ExtArgs["result"]["dailyLog"]>
-  export type DailyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type DailyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type DailyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $DailyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "DailyLog"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      userId: number
-      date: Date
-      works: Prisma.JsonValue
-      aiSummary: string | null
-      export: string | null
-    }, ExtArgs["result"]["dailyLog"]>
-    composites: {}
-  }
-
-  type DailyLogGetPayload<S extends boolean | null | undefined | DailyLogDefaultArgs> = $Result.GetResult<Prisma.$DailyLogPayload, S>
-
-  type DailyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<DailyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: DailyLogCountAggregateInputType | true
-    }
-
-  export interface DailyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyLog'], meta: { name: 'DailyLog' } }
-    /**
-     * Find zero or one DailyLog that matches the filter.
-     * @param {DailyLogFindUniqueArgs} args - Arguments to find a DailyLog
-     * @example
-     * // Get one DailyLog
-     * const dailyLog = await prisma.dailyLog.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends DailyLogFindUniqueArgs>(args: SelectSubset<T, DailyLogFindUniqueArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one DailyLog that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {DailyLogFindUniqueOrThrowArgs} args - Arguments to find a DailyLog
-     * @example
-     * // Get one DailyLog
-     * const dailyLog = await prisma.dailyLog.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends DailyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DailyLog that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogFindFirstArgs} args - Arguments to find a DailyLog
-     * @example
-     * // Get one DailyLog
-     * const dailyLog = await prisma.dailyLog.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends DailyLogFindFirstArgs>(args?: SelectSubset<T, DailyLogFindFirstArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first DailyLog that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogFindFirstOrThrowArgs} args - Arguments to find a DailyLog
-     * @example
-     * // Get one DailyLog
-     * const dailyLog = await prisma.dailyLog.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends DailyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more DailyLogs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all DailyLogs
-     * const dailyLogs = await prisma.dailyLog.findMany()
-     * 
-     * // Get first 10 DailyLogs
-     * const dailyLogs = await prisma.dailyLog.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const dailyLogWithIdOnly = await prisma.dailyLog.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends DailyLogFindManyArgs>(args?: SelectSubset<T, DailyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a DailyLog.
-     * @param {DailyLogCreateArgs} args - Arguments to create a DailyLog.
-     * @example
-     * // Create one DailyLog
-     * const DailyLog = await prisma.dailyLog.create({
-     *   data: {
-     *     // ... data to create a DailyLog
-     *   }
-     * })
-     * 
-     */
-    create<T extends DailyLogCreateArgs>(args: SelectSubset<T, DailyLogCreateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many DailyLogs.
-     * @param {DailyLogCreateManyArgs} args - Arguments to create many DailyLogs.
-     * @example
-     * // Create many DailyLogs
-     * const dailyLog = await prisma.dailyLog.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends DailyLogCreateManyArgs>(args?: SelectSubset<T, DailyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many DailyLogs and returns the data saved in the database.
-     * @param {DailyLogCreateManyAndReturnArgs} args - Arguments to create many DailyLogs.
-     * @example
-     * // Create many DailyLogs
-     * const dailyLog = await prisma.dailyLog.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many DailyLogs and only return the `id`
-     * const dailyLogWithIdOnly = await prisma.dailyLog.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends DailyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a DailyLog.
-     * @param {DailyLogDeleteArgs} args - Arguments to delete one DailyLog.
-     * @example
-     * // Delete one DailyLog
-     * const DailyLog = await prisma.dailyLog.delete({
-     *   where: {
-     *     // ... filter to delete one DailyLog
-     *   }
-     * })
-     * 
-     */
-    delete<T extends DailyLogDeleteArgs>(args: SelectSubset<T, DailyLogDeleteArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one DailyLog.
-     * @param {DailyLogUpdateArgs} args - Arguments to update one DailyLog.
-     * @example
-     * // Update one DailyLog
-     * const dailyLog = await prisma.dailyLog.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends DailyLogUpdateArgs>(args: SelectSubset<T, DailyLogUpdateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more DailyLogs.
-     * @param {DailyLogDeleteManyArgs} args - Arguments to filter DailyLogs to delete.
-     * @example
-     * // Delete a few DailyLogs
-     * const { count } = await prisma.dailyLog.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends DailyLogDeleteManyArgs>(args?: SelectSubset<T, DailyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DailyLogs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many DailyLogs
-     * const dailyLog = await prisma.dailyLog.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends DailyLogUpdateManyArgs>(args: SelectSubset<T, DailyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more DailyLogs and returns the data updated in the database.
-     * @param {DailyLogUpdateManyAndReturnArgs} args - Arguments to update many DailyLogs.
-     * @example
-     * // Update many DailyLogs
-     * const dailyLog = await prisma.dailyLog.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more DailyLogs and only return the `id`
-     * const dailyLogWithIdOnly = await prisma.dailyLog.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends DailyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one DailyLog.
-     * @param {DailyLogUpsertArgs} args - Arguments to update or create a DailyLog.
-     * @example
-     * // Update or create a DailyLog
-     * const dailyLog = await prisma.dailyLog.upsert({
-     *   create: {
-     *     // ... data to create a DailyLog
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the DailyLog we want to update
-     *   }
-     * })
-     */
-    upsert<T extends DailyLogUpsertArgs>(args: SelectSubset<T, DailyLogUpsertArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of DailyLogs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogCountArgs} args - Arguments to filter DailyLogs to count.
-     * @example
-     * // Count the number of DailyLogs
-     * const count = await prisma.dailyLog.count({
-     *   where: {
-     *     // ... the filter for the DailyLogs we want to count
-     *   }
-     * })
-    **/
-    count<T extends DailyLogCountArgs>(
-      args?: Subset<T, DailyLogCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], DailyLogCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a DailyLog.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends DailyLogAggregateArgs>(args: Subset<T, DailyLogAggregateArgs>): Prisma.PrismaPromise<GetDailyLogAggregateType<T>>
-
-    /**
-     * Group by DailyLog.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DailyLogGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends DailyLogGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: DailyLogGroupByArgs['orderBy'] }
-        : { orderBy?: DailyLogGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, DailyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the DailyLog model
-   */
-  readonly fields: DailyLogFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for DailyLog.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__DailyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the DailyLog model
-   */
-  interface DailyLogFieldRefs {
-    readonly id: FieldRef<"DailyLog", 'Int'>
-    readonly userId: FieldRef<"DailyLog", 'Int'>
-    readonly date: FieldRef<"DailyLog", 'DateTime'>
-    readonly works: FieldRef<"DailyLog", 'Json'>
-    readonly aiSummary: FieldRef<"DailyLog", 'String'>
-    readonly export: FieldRef<"DailyLog", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * DailyLog findUnique
-   */
-  export type DailyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter, which DailyLog to fetch.
-     */
-    where: DailyLogWhereUniqueInput
-  }
-
-  /**
-   * DailyLog findUniqueOrThrow
-   */
-  export type DailyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter, which DailyLog to fetch.
-     */
-    where: DailyLogWhereUniqueInput
-  }
-
-  /**
-   * DailyLog findFirst
-   */
-  export type DailyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter, which DailyLog to fetch.
-     */
-    where?: DailyLogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DailyLogs to fetch.
-     */
-    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DailyLogs.
-     */
-    cursor?: DailyLogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DailyLogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DailyLogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DailyLogs.
-     */
-    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
-  }
-
-  /**
-   * DailyLog findFirstOrThrow
-   */
-  export type DailyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter, which DailyLog to fetch.
-     */
-    where?: DailyLogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DailyLogs to fetch.
-     */
-    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DailyLogs.
-     */
-    cursor?: DailyLogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DailyLogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DailyLogs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DailyLogs.
-     */
-    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
-  }
-
-  /**
-   * DailyLog findMany
-   */
-  export type DailyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter, which DailyLogs to fetch.
-     */
-    where?: DailyLogWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DailyLogs to fetch.
-     */
-    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing DailyLogs.
-     */
-    cursor?: DailyLogWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DailyLogs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DailyLogs.
-     */
-    skip?: number
-    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
-  }
-
-  /**
-   * DailyLog create
-   */
-  export type DailyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * The data needed to create a DailyLog.
-     */
-    data: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
-  }
-
-  /**
-   * DailyLog createMany
-   */
-  export type DailyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many DailyLogs.
-     */
-    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * DailyLog createManyAndReturn
-   */
-  export type DailyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * The data used to create many DailyLogs.
-     */
-    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DailyLog update
-   */
-  export type DailyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * The data needed to update a DailyLog.
-     */
-    data: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
-    /**
-     * Choose, which DailyLog to update.
-     */
-    where: DailyLogWhereUniqueInput
-  }
-
-  /**
-   * DailyLog updateMany
-   */
-  export type DailyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update DailyLogs.
-     */
-    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
-    /**
-     * Filter which DailyLogs to update
-     */
-    where?: DailyLogWhereInput
-    /**
-     * Limit how many DailyLogs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * DailyLog updateManyAndReturn
-   */
-  export type DailyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * The data used to update DailyLogs.
-     */
-    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
-    /**
-     * Filter which DailyLogs to update
-     */
-    where?: DailyLogWhereInput
-    /**
-     * Limit how many DailyLogs to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * DailyLog upsert
-   */
-  export type DailyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * The filter to search for the DailyLog to update in case it exists.
-     */
-    where: DailyLogWhereUniqueInput
-    /**
-     * In case the DailyLog found by the `where` argument doesn't exist, create a new DailyLog with this data.
-     */
-    create: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
-    /**
-     * In case the DailyLog was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
-  }
-
-  /**
-   * DailyLog delete
-   */
-  export type DailyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-    /**
-     * Filter which DailyLog to delete.
-     */
-    where: DailyLogWhereUniqueInput
-  }
-
-  /**
-   * DailyLog deleteMany
-   */
-  export type DailyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DailyLogs to delete
-     */
-    where?: DailyLogWhereInput
-    /**
-     * Limit how many DailyLogs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * DailyLog without action
-   */
-  export type DailyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DailyLog
-     */
-    select?: DailyLogSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the DailyLog
-     */
-    omit?: DailyLogOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DailyLogInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model VSCodeLog
    */
 
@@ -13708,6 +12603,1120 @@ export namespace Prisma {
 
 
   /**
+   * Model DailyLog
+   */
+
+  export type AggregateDailyLog = {
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  export type DailyLogAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type DailyLogSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type DailyLogMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    aiSummary: string | null
+    export: string | null
+  }
+
+  export type DailyLogMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    date: Date | null
+    aiSummary: string | null
+    export: string | null
+  }
+
+  export type DailyLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    date: number
+    commitLogs: number
+    codingLogs: number
+    aiSummary: number
+    export: number
+    _all: number
+  }
+
+
+  export type DailyLogAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type DailyLogSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type DailyLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    aiSummary?: true
+    export?: true
+  }
+
+  export type DailyLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    aiSummary?: true
+    export?: true
+  }
+
+  export type DailyLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    date?: true
+    commitLogs?: true
+    codingLogs?: true
+    aiSummary?: true
+    export?: true
+    _all?: true
+  }
+
+  export type DailyLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLog to aggregate.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DailyLogs
+    **/
+    _count?: true | DailyLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DailyLogAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DailyLogSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DailyLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type GetDailyLogAggregateType<T extends DailyLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateDailyLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDailyLog[P]>
+      : GetScalarType<T[P], AggregateDailyLog[P]>
+  }
+
+
+
+
+  export type DailyLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DailyLogWhereInput
+    orderBy?: DailyLogOrderByWithAggregationInput | DailyLogOrderByWithAggregationInput[]
+    by: DailyLogScalarFieldEnum[] | DailyLogScalarFieldEnum
+    having?: DailyLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DailyLogCountAggregateInputType | true
+    _avg?: DailyLogAvgAggregateInputType
+    _sum?: DailyLogSumAggregateInputType
+    _min?: DailyLogMinAggregateInputType
+    _max?: DailyLogMaxAggregateInputType
+  }
+
+  export type DailyLogGroupByOutputType = {
+    id: number
+    userId: number
+    date: Date
+    commitLogs: JsonValue
+    codingLogs: JsonValue
+    aiSummary: string | null
+    export: string | null
+    _count: DailyLogCountAggregateOutputType | null
+    _avg: DailyLogAvgAggregateOutputType | null
+    _sum: DailyLogSumAggregateOutputType | null
+    _min: DailyLogMinAggregateOutputType | null
+    _max: DailyLogMaxAggregateOutputType | null
+  }
+
+  type GetDailyLogGroupByPayload<T extends DailyLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DailyLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DailyLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+            : GetScalarType<T[P], DailyLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DailyLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    commitLogs?: boolean
+    codingLogs?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    commitLogs?: boolean
+    codingLogs?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    commitLogs?: boolean
+    codingLogs?: boolean
+    aiSummary?: boolean
+    export?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dailyLog"]>
+
+  export type DailyLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    date?: boolean
+    commitLogs?: boolean
+    codingLogs?: boolean
+    aiSummary?: boolean
+    export?: boolean
+  }
+
+  export type DailyLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "date" | "commitLogs" | "codingLogs" | "aiSummary" | "export", ExtArgs["result"]["dailyLog"]>
+  export type DailyLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type DailyLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $DailyLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DailyLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      date: Date
+      commitLogs: Prisma.JsonValue
+      codingLogs: Prisma.JsonValue
+      aiSummary: string | null
+      export: string | null
+    }, ExtArgs["result"]["dailyLog"]>
+    composites: {}
+  }
+
+  type DailyLogGetPayload<S extends boolean | null | undefined | DailyLogDefaultArgs> = $Result.GetResult<Prisma.$DailyLogPayload, S>
+
+  type DailyLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DailyLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DailyLogCountAggregateInputType | true
+    }
+
+  export interface DailyLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DailyLog'], meta: { name: 'DailyLog' } }
+    /**
+     * Find zero or one DailyLog that matches the filter.
+     * @param {DailyLogFindUniqueArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DailyLogFindUniqueArgs>(args: SelectSubset<T, DailyLogFindUniqueArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DailyLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DailyLogFindUniqueOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DailyLogFindUniqueOrThrowArgs>(args: SelectSubset<T, DailyLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DailyLogFindFirstArgs>(args?: SelectSubset<T, DailyLogFindFirstArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DailyLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindFirstOrThrowArgs} args - Arguments to find a DailyLog
+     * @example
+     * // Get one DailyLog
+     * const dailyLog = await prisma.dailyLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DailyLogFindFirstOrThrowArgs>(args?: SelectSubset<T, DailyLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DailyLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany()
+     * 
+     * // Get first 10 DailyLogs
+     * const dailyLogs = await prisma.dailyLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DailyLogFindManyArgs>(args?: SelectSubset<T, DailyLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DailyLog.
+     * @param {DailyLogCreateArgs} args - Arguments to create a DailyLog.
+     * @example
+     * // Create one DailyLog
+     * const DailyLog = await prisma.dailyLog.create({
+     *   data: {
+     *     // ... data to create a DailyLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends DailyLogCreateArgs>(args: SelectSubset<T, DailyLogCreateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DailyLogs.
+     * @param {DailyLogCreateManyArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DailyLogCreateManyArgs>(args?: SelectSubset<T, DailyLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DailyLogs and returns the data saved in the database.
+     * @param {DailyLogCreateManyAndReturnArgs} args - Arguments to create many DailyLogs.
+     * @example
+     * // Create many DailyLogs
+     * const dailyLog = await prisma.dailyLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DailyLogCreateManyAndReturnArgs>(args?: SelectSubset<T, DailyLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DailyLog.
+     * @param {DailyLogDeleteArgs} args - Arguments to delete one DailyLog.
+     * @example
+     * // Delete one DailyLog
+     * const DailyLog = await prisma.dailyLog.delete({
+     *   where: {
+     *     // ... filter to delete one DailyLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DailyLogDeleteArgs>(args: SelectSubset<T, DailyLogDeleteArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DailyLog.
+     * @param {DailyLogUpdateArgs} args - Arguments to update one DailyLog.
+     * @example
+     * // Update one DailyLog
+     * const dailyLog = await prisma.dailyLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DailyLogUpdateArgs>(args: SelectSubset<T, DailyLogUpdateArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DailyLogs.
+     * @param {DailyLogDeleteManyArgs} args - Arguments to filter DailyLogs to delete.
+     * @example
+     * // Delete a few DailyLogs
+     * const { count } = await prisma.dailyLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DailyLogDeleteManyArgs>(args?: SelectSubset<T, DailyLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DailyLogUpdateManyArgs>(args: SelectSubset<T, DailyLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DailyLogs and returns the data updated in the database.
+     * @param {DailyLogUpdateManyAndReturnArgs} args - Arguments to update many DailyLogs.
+     * @example
+     * // Update many DailyLogs
+     * const dailyLog = await prisma.dailyLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DailyLogs and only return the `id`
+     * const dailyLogWithIdOnly = await prisma.dailyLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DailyLogUpdateManyAndReturnArgs>(args: SelectSubset<T, DailyLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DailyLog.
+     * @param {DailyLogUpsertArgs} args - Arguments to update or create a DailyLog.
+     * @example
+     * // Update or create a DailyLog
+     * const dailyLog = await prisma.dailyLog.upsert({
+     *   create: {
+     *     // ... data to create a DailyLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DailyLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DailyLogUpsertArgs>(args: SelectSubset<T, DailyLogUpsertArgs<ExtArgs>>): Prisma__DailyLogClient<$Result.GetResult<Prisma.$DailyLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DailyLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogCountArgs} args - Arguments to filter DailyLogs to count.
+     * @example
+     * // Count the number of DailyLogs
+     * const count = await prisma.dailyLog.count({
+     *   where: {
+     *     // ... the filter for the DailyLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends DailyLogCountArgs>(
+      args?: Subset<T, DailyLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DailyLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DailyLogAggregateArgs>(args: Subset<T, DailyLogAggregateArgs>): Prisma.PrismaPromise<GetDailyLogAggregateType<T>>
+
+    /**
+     * Group by DailyLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DailyLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DailyLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DailyLogGroupByArgs['orderBy'] }
+        : { orderBy?: DailyLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DailyLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDailyLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DailyLog model
+   */
+  readonly fields: DailyLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DailyLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DailyLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DailyLog model
+   */
+  interface DailyLogFieldRefs {
+    readonly id: FieldRef<"DailyLog", 'Int'>
+    readonly userId: FieldRef<"DailyLog", 'Int'>
+    readonly date: FieldRef<"DailyLog", 'DateTime'>
+    readonly commitLogs: FieldRef<"DailyLog", 'Json'>
+    readonly codingLogs: FieldRef<"DailyLog", 'Json'>
+    readonly aiSummary: FieldRef<"DailyLog", 'String'>
+    readonly export: FieldRef<"DailyLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DailyLog findUnique
+   */
+  export type DailyLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findUniqueOrThrow
+   */
+  export type DailyLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog findFirst
+   */
+  export type DailyLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findFirstOrThrow
+   */
+  export type DailyLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLog to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DailyLogs.
+     */
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog findMany
+   */
+  export type DailyLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter, which DailyLogs to fetch.
+     */
+    where?: DailyLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DailyLogs to fetch.
+     */
+    orderBy?: DailyLogOrderByWithRelationInput | DailyLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DailyLogs.
+     */
+    cursor?: DailyLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DailyLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DailyLogs.
+     */
+    skip?: number
+    distinct?: DailyLogScalarFieldEnum | DailyLogScalarFieldEnum[]
+  }
+
+  /**
+   * DailyLog create
+   */
+  export type DailyLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DailyLog.
+     */
+    data: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+  }
+
+  /**
+   * DailyLog createMany
+   */
+  export type DailyLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DailyLog createManyAndReturn
+   */
+  export type DailyLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many DailyLogs.
+     */
+    data: DailyLogCreateManyInput | DailyLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog update
+   */
+  export type DailyLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DailyLog.
+     */
+    data: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+    /**
+     * Choose, which DailyLog to update.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog updateMany
+   */
+  export type DailyLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog updateManyAndReturn
+   */
+  export type DailyLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * The data used to update DailyLogs.
+     */
+    data: XOR<DailyLogUpdateManyMutationInput, DailyLogUncheckedUpdateManyInput>
+    /**
+     * Filter which DailyLogs to update
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * DailyLog upsert
+   */
+  export type DailyLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DailyLog to update in case it exists.
+     */
+    where: DailyLogWhereUniqueInput
+    /**
+     * In case the DailyLog found by the `where` argument doesn't exist, create a new DailyLog with this data.
+     */
+    create: XOR<DailyLogCreateInput, DailyLogUncheckedCreateInput>
+    /**
+     * In case the DailyLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DailyLogUpdateInput, DailyLogUncheckedUpdateInput>
+  }
+
+  /**
+   * DailyLog delete
+   */
+  export type DailyLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+    /**
+     * Filter which DailyLog to delete.
+     */
+    where: DailyLogWhereUniqueInput
+  }
+
+  /**
+   * DailyLog deleteMany
+   */
+  export type DailyLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DailyLogs to delete
+     */
+    where?: DailyLogWhereInput
+    /**
+     * Limit how many DailyLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DailyLog without action
+   */
+  export type DailyLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DailyLog
+     */
+    select?: DailyLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DailyLog
+     */
+    omit?: DailyLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DailyLogInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -13818,18 +13827,6 @@ export namespace Prisma {
   export type GitHubCommitGroupScalarFieldEnum = (typeof GitHubCommitGroupScalarFieldEnum)[keyof typeof GitHubCommitGroupScalarFieldEnum]
 
 
-  export const DailyLogScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    date: 'date',
-    works: 'works',
-    aiSummary: 'aiSummary',
-    export: 'export'
-  };
-
-  export type DailyLogScalarFieldEnum = (typeof DailyLogScalarFieldEnum)[keyof typeof DailyLogScalarFieldEnum]
-
-
   export const VSCodeLogScalarFieldEnum: {
     id: 'id',
     activeFileName: 'activeFileName',
@@ -13849,6 +13846,19 @@ export namespace Prisma {
   };
 
   export type CodingDetailsScalarFieldEnum = (typeof CodingDetailsScalarFieldEnum)[keyof typeof CodingDetailsScalarFieldEnum]
+
+
+  export const DailyLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    date: 'date',
+    commitLogs: 'commitLogs',
+    codingLogs: 'codingLogs',
+    aiSummary: 'aiSummary',
+    export: 'export'
+  };
+
+  export type DailyLogScalarFieldEnum = (typeof DailyLogScalarFieldEnum)[keyof typeof DailyLogScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -14541,68 +14551,6 @@ export namespace Prisma {
     repoId?: IntWithAggregatesFilter<"GitHubCommitGroup"> | number
   }
 
-  export type DailyLogWhereInput = {
-    AND?: DailyLogWhereInput | DailyLogWhereInput[]
-    OR?: DailyLogWhereInput[]
-    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
-    id?: IntFilter<"DailyLog"> | number
-    userId?: IntFilter<"DailyLog"> | number
-    date?: DateTimeFilter<"DailyLog"> | Date | string
-    works?: JsonFilter<"DailyLog">
-    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
-    export?: StringNullableFilter<"DailyLog"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type DailyLogOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    date?: SortOrder
-    works?: SortOrder
-    aiSummary?: SortOrderInput | SortOrder
-    export?: SortOrderInput | SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type DailyLogWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: DailyLogWhereInput | DailyLogWhereInput[]
-    OR?: DailyLogWhereInput[]
-    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
-    userId?: IntFilter<"DailyLog"> | number
-    date?: DateTimeFilter<"DailyLog"> | Date | string
-    works?: JsonFilter<"DailyLog">
-    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
-    export?: StringNullableFilter<"DailyLog"> | string | null
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type DailyLogOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    date?: SortOrder
-    works?: SortOrder
-    aiSummary?: SortOrderInput | SortOrder
-    export?: SortOrderInput | SortOrder
-    _count?: DailyLogCountOrderByAggregateInput
-    _avg?: DailyLogAvgOrderByAggregateInput
-    _max?: DailyLogMaxOrderByAggregateInput
-    _min?: DailyLogMinOrderByAggregateInput
-    _sum?: DailyLogSumOrderByAggregateInput
-  }
-
-  export type DailyLogScalarWhereWithAggregatesInput = {
-    AND?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
-    OR?: DailyLogScalarWhereWithAggregatesInput[]
-    NOT?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"DailyLog"> | number
-    userId?: IntWithAggregatesFilter<"DailyLog"> | number
-    date?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
-    works?: JsonWithAggregatesFilter<"DailyLog">
-    aiSummary?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
-    export?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
-  }
-
   export type VSCodeLogWhereInput = {
     AND?: VSCodeLogWhereInput | VSCodeLogWhereInput[]
     OR?: VSCodeLogWhereInput[]
@@ -14713,6 +14661,73 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"CodingDetails"> | number
     date?: DateTimeWithAggregatesFilter<"CodingDetails"> | Date | string
     createdAt?: DateTimeWithAggregatesFilter<"CodingDetails"> | Date | string
+  }
+
+  export type DailyLogWhereInput = {
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    id?: IntFilter<"DailyLog"> | number
+    userId?: IntFilter<"DailyLog"> | number
+    date?: DateTimeFilter<"DailyLog"> | Date | string
+    commitLogs?: JsonFilter<"DailyLog">
+    codingLogs?: JsonFilter<"DailyLog">
+    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
+    export?: StringNullableFilter<"DailyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type DailyLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    commitLogs?: SortOrder
+    codingLogs?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    export?: SortOrderInput | SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type DailyLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: DailyLogWhereInput | DailyLogWhereInput[]
+    OR?: DailyLogWhereInput[]
+    NOT?: DailyLogWhereInput | DailyLogWhereInput[]
+    userId?: IntFilter<"DailyLog"> | number
+    date?: DateTimeFilter<"DailyLog"> | Date | string
+    commitLogs?: JsonFilter<"DailyLog">
+    codingLogs?: JsonFilter<"DailyLog">
+    aiSummary?: StringNullableFilter<"DailyLog"> | string | null
+    export?: StringNullableFilter<"DailyLog"> | string | null
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type DailyLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    commitLogs?: SortOrder
+    codingLogs?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
+    export?: SortOrderInput | SortOrder
+    _count?: DailyLogCountOrderByAggregateInput
+    _avg?: DailyLogAvgOrderByAggregateInput
+    _max?: DailyLogMaxOrderByAggregateInput
+    _min?: DailyLogMinOrderByAggregateInput
+    _sum?: DailyLogSumOrderByAggregateInput
+  }
+
+  export type DailyLogScalarWhereWithAggregatesInput = {
+    AND?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    OR?: DailyLogScalarWhereWithAggregatesInput[]
+    NOT?: DailyLogScalarWhereWithAggregatesInput | DailyLogScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"DailyLog"> | number
+    userId?: IntWithAggregatesFilter<"DailyLog"> | number
+    date?: DateTimeWithAggregatesFilter<"DailyLog"> | Date | string
+    commitLogs?: JsonWithAggregatesFilter<"DailyLog">
+    codingLogs?: JsonWithAggregatesFilter<"DailyLog">
+    aiSummary?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
+    export?: StringNullableWithAggregatesFilter<"DailyLog"> | string | null
   }
 
   export type UserCreateInput = {
@@ -15273,65 +15288,6 @@ export namespace Prisma {
     repoId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type DailyLogCreateInput = {
-    date: Date | string
-    works: JsonNullValueInput | InputJsonValue
-    aiSummary?: string | null
-    export?: string | null
-    user: UserCreateNestedOneWithoutDailyLogInput
-  }
-
-  export type DailyLogUncheckedCreateInput = {
-    id?: number
-    userId: number
-    date: Date | string
-    works: JsonNullValueInput | InputJsonValue
-    aiSummary?: string | null
-    export?: string | null
-  }
-
-  export type DailyLogUpdateInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
-    export?: NullableStringFieldUpdateOperationsInput | string | null
-    user?: UserUpdateOneRequiredWithoutDailyLogNestedInput
-  }
-
-  export type DailyLogUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
-    export?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type DailyLogCreateManyInput = {
-    id?: number
-    userId: number
-    date: Date | string
-    works: JsonNullValueInput | InputJsonValue
-    aiSummary?: string | null
-    export?: string | null
-  }
-
-  export type DailyLogUpdateManyMutationInput = {
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
-    export?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type DailyLogUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
-    export?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type VSCodeLogCreateInput = {
     activeFileName: string
     codingTime: number
@@ -15436,6 +15392,72 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DailyLogCreateInput = {
+    date: Date | string
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+    user: UserCreateNestedOneWithoutDailyLogInput
+  }
+
+  export type DailyLogUncheckedCreateInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogUpdateInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+    user?: UserUpdateOneRequiredWithoutDailyLogNestedInput
+  }
+
+  export type DailyLogUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogCreateManyInput = {
+    id?: number
+    userId: number
+    date: Date | string
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
+    aiSummary?: string | null
+    export?: string | null
+  }
+
+  export type DailyLogUpdateManyMutationInput = {
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type DailyLogUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
+    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    export?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -16068,90 +16090,6 @@ export namespace Prisma {
     userId?: SortOrder
     repoId?: SortOrder
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
-
-  export type DailyLogCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    date?: SortOrder
-    works?: SortOrder
-    aiSummary?: SortOrder
-    export?: SortOrder
-  }
-
-  export type DailyLogAvgOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type DailyLogMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    date?: SortOrder
-    aiSummary?: SortOrder
-    export?: SortOrder
-  }
-
-  export type DailyLogMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    date?: SortOrder
-    aiSummary?: SortOrder
-    export?: SortOrder
-  }
-
-  export type DailyLogSumOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
-  }
 
   export type VSCodeLogCountOrderByAggregateInput = {
     id?: SortOrder
@@ -16226,6 +16164,91 @@ export namespace Prisma {
   export type CodingDetailsSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DailyLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    commitLogs?: SortOrder
+    codingLogs?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type DailyLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    date?: SortOrder
+    aiSummary?: SortOrder
+    export?: SortOrder
+  }
+
+  export type DailyLogSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type AccountCreateNestedManyWithoutUserInput = {
@@ -16992,20 +17015,6 @@ export namespace Prisma {
     deleteMany?: GitHubCommitScalarWhereInput | GitHubCommitScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutDailyLogInput = {
-    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutDailyLogNestedInput = {
-    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
-    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
-    upsert?: UserUpsertWithoutDailyLogInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyLogInput, UserUpdateWithoutDailyLogInput>, UserUncheckedUpdateWithoutDailyLogInput>
-  }
-
   export type CodingDetailsCreateNestedManyWithoutLogsInput = {
     create?: XOR<CodingDetailsCreateWithoutLogsInput, CodingDetailsUncheckedCreateWithoutLogsInput> | CodingDetailsCreateWithoutLogsInput[] | CodingDetailsUncheckedCreateWithoutLogsInput[]
     connectOrCreate?: CodingDetailsCreateOrConnectWithoutLogsInput | CodingDetailsCreateOrConnectWithoutLogsInput[]
@@ -17094,6 +17103,20 @@ export namespace Prisma {
     update?: VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput | VSCodeLogUpdateWithWhereUniqueWithoutCodingDetailsInput[]
     updateMany?: VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput | VSCodeLogUpdateManyWithWhereWithoutCodingDetailsInput[]
     deleteMany?: VSCodeLogScalarWhereInput | VSCodeLogScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutDailyLogInput = {
+    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutDailyLogNestedInput = {
+    create?: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    connectOrCreate?: UserCreateOrConnectWithoutDailyLogInput
+    upsert?: UserUpsertWithoutDailyLogInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutDailyLogInput, UserUpdateWithoutDailyLogInput>, UserUncheckedUpdateWithoutDailyLogInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -17561,7 +17584,8 @@ export namespace Prisma {
 
   export type DailyLogCreateWithoutUserInput = {
     date: Date | string
-    works: JsonNullValueInput | InputJsonValue
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
     aiSummary?: string | null
     export?: string | null
   }
@@ -17569,7 +17593,8 @@ export namespace Prisma {
   export type DailyLogUncheckedCreateWithoutUserInput = {
     id?: number
     date: Date | string
-    works: JsonNullValueInput | InputJsonValue
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
     aiSummary?: string | null
     export?: string | null
   }
@@ -17795,7 +17820,8 @@ export namespace Prisma {
     id?: IntFilter<"DailyLog"> | number
     userId?: IntFilter<"DailyLog"> | number
     date?: DateTimeFilter<"DailyLog"> | Date | string
-    works?: JsonFilter<"DailyLog">
+    commitLogs?: JsonFilter<"DailyLog">
+    codingLogs?: JsonFilter<"DailyLog">
     aiSummary?: StringNullableFilter<"DailyLog"> | string | null
     export?: StringNullableFilter<"DailyLog"> | string | null
   }
@@ -19008,120 +19034,6 @@ export namespace Prisma {
     gitHubCommitGroupId?: IntNullableFilter<"GitHubCommit"> | number | null
   }
 
-  export type UserCreateWithoutDailyLogInput = {
-    email: string
-    password?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    username?: string | null
-    image?: string | null
-    isActive?: boolean
-    isAdmin?: boolean
-    isVerified?: boolean
-    createdAt?: Date | string
-    accessToken?: string | null
-    githubToken?: string | null
-    githubUsername?: string | null
-    accounts?: AccountCreateNestedManyWithoutUserInput
-    Project?: ProjectCreateNestedManyWithoutOwnerInput
-    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
-    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
-    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
-    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
-    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
-    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutDailyLogInput = {
-    id?: number
-    email: string
-    password?: string | null
-    firstName?: string | null
-    lastName?: string | null
-    username?: string | null
-    image?: string | null
-    isActive?: boolean
-    isAdmin?: boolean
-    isVerified?: boolean
-    createdAt?: Date | string
-    accessToken?: string | null
-    githubToken?: string | null
-    githubUsername?: string | null
-    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
-    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
-    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
-    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
-    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
-    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutDailyLogInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
-  }
-
-  export type UserUpsertWithoutDailyLogInput = {
-    update: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
-    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutDailyLogInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
-  }
-
-  export type UserUpdateWithoutDailyLogInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUpdateManyWithoutUserNestedInput
-    Project?: ProjectUpdateManyWithoutOwnerNestedInput
-    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
-    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
-    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
-    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
-    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutDailyLogInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    username?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    isActive?: BoolFieldUpdateOperationsInput | boolean
-    isAdmin?: BoolFieldUpdateOperationsInput | boolean
-    isVerified?: BoolFieldUpdateOperationsInput | boolean
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
-    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
-    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
-    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
-    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
-    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
-    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
-    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
-    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type CodingDetailsCreateWithoutLogsInput = {
     date: Date | string
     createdAt?: Date | string
@@ -19317,6 +19229,120 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"VSCodeLog"> | Date | string
   }
 
+  export type UserCreateWithoutDailyLogInput = {
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    Project?: ProjectCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutDailyLogInput = {
+    id?: number
+    email: string
+    password?: string | null
+    firstName?: string | null
+    lastName?: string | null
+    username?: string | null
+    image?: string | null
+    isActive?: boolean
+    isAdmin?: boolean
+    isVerified?: boolean
+    createdAt?: Date | string
+    accessToken?: string | null
+    githubToken?: string | null
+    githubUsername?: string | null
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Project?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
+    ProjectMembers?: ProjectUncheckedCreateNestedManyWithoutMembersInput
+    assignedTasks?: TaskUncheckedCreateNestedManyWithoutAssignedToInput
+    createdTasks?: TaskUncheckedCreateNestedManyWithoutAssignedByInput
+    updatedTasks?: TaskUncheckedCreateNestedManyWithoutUpdatedByInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedCreateNestedManyWithoutUserInput
+    codingSessions?: CodingDetailsUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutDailyLogInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+  }
+
+  export type UserUpsertWithoutDailyLogInput = {
+    update: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
+    create: XOR<UserCreateWithoutDailyLogInput, UserUncheckedCreateWithoutDailyLogInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutDailyLogInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutDailyLogInput, UserUncheckedUpdateWithoutDailyLogInput>
+  }
+
+  export type UserUpdateWithoutDailyLogInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    Project?: ProjectUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutDailyLogInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    isAdmin?: BoolFieldUpdateOperationsInput | boolean
+    isVerified?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accessToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubToken?: NullableStringFieldUpdateOperationsInput | string | null
+    githubUsername?: NullableStringFieldUpdateOperationsInput | string | null
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Project?: ProjectUncheckedUpdateManyWithoutOwnerNestedInput
+    ProjectMembers?: ProjectUncheckedUpdateManyWithoutMembersNestedInput
+    assignedTasks?: TaskUncheckedUpdateManyWithoutAssignedToNestedInput
+    createdTasks?: TaskUncheckedUpdateManyWithoutAssignedByNestedInput
+    updatedTasks?: TaskUncheckedUpdateManyWithoutUpdatedByNestedInput
+    GitHubCommitGroup?: GitHubCommitGroupUncheckedUpdateManyWithoutUserNestedInput
+    codingSessions?: CodingDetailsUncheckedUpdateManyWithoutUserNestedInput
+  }
+
   export type AccountCreateManyUserInput = {
     id?: number
     provider: string
@@ -19387,7 +19413,8 @@ export namespace Prisma {
   export type DailyLogCreateManyUserInput = {
     id?: number
     date: Date | string
-    works: JsonNullValueInput | InputJsonValue
+    commitLogs: JsonNullValueInput | InputJsonValue
+    codingLogs: JsonNullValueInput | InputJsonValue
     aiSummary?: string | null
     export?: string | null
   }
@@ -19633,7 +19660,8 @@ export namespace Prisma {
 
   export type DailyLogUpdateWithoutUserInput = {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     export?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -19641,7 +19669,8 @@ export namespace Prisma {
   export type DailyLogUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     export?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -19649,7 +19678,8 @@ export namespace Prisma {
   export type DailyLogUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    works?: JsonNullValueInput | InputJsonValue
+    commitLogs?: JsonNullValueInput | InputJsonValue
+    codingLogs?: JsonNullValueInput | InputJsonValue
     aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     export?: NullableStringFieldUpdateOperationsInput | string | null
   }
