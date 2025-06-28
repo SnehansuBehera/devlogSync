@@ -30,7 +30,7 @@ const response = await axios.post(
     active: true,
     events: ['push', 'ping'],
     config: {
-      url: 'https://8f38-2405-201-8021-50db-2c5d-89f5-ea05-7afe.ngrok-free.app/api/github/github/webhook',
+      url: 'https://5fe0-2405-201-8021-50db-2940-c0ae-141e-da94.ngrok-free.app/api/github/github/webhook',
       content_type: 'json',
       secret: process.env.GITHUB_WEBHOOK_SECRET || 'fallback-secret',
       insecure_ssl: '0'
@@ -94,9 +94,8 @@ export const updateGithubTokens = async (req: Request, res: Response): Promise<v
 
     const githubUsername = userRes.data.login;
 
-    // Use your auth logic to find current user
     await prisma.user.update({
-      where: { email: req.user.email }, // this assumes req.user is already set via auth middleware
+      where: { email: req.user.email }, 
       data: {
         githubToken: accessToken,
         githubUsername: githubUsername
@@ -112,9 +111,6 @@ export const updateGithubTokens = async (req: Request, res: Response): Promise<v
 
 export const handleGitHubWebhook = async (req: Request, res: Response): Promise<void> => {
   const event = req.headers['x-github-event'];
-  console.log("Received webhook:", event);
-  console.log("Content-Type:", req.headers['content-type']);
-  console.log("Raw payload body:", JSON.stringify(req.body));
 
   if (event !== 'push') {
     console.log("Ignoring non-push event");
@@ -131,51 +127,81 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
     const { repository, commits, pusher } = payload;
 
     if (!repository || !commits || !pusher) {
-      console.log("Invalid payload structure:", payload);
       res.status(400).send("Invalid payload");
       return;
     }
 
     const url = repository.html_url + ".git";
 
-    const repo = await prisma.gitHubRepo.findFirst({
-      where: { url: url },
-    });
-
+    const repo = await prisma.gitHubRepo.findFirst({ where: { url } });
     if (!repo) {
       console.log("Repo not found:", url);
       res.status(404).send('Repo not found');
       return;
     }
 
-    const user = await prisma.user.findFirst({
-      where: { githubUsername: pusher.name },
-    });
-
+    const user = await prisma.user.findFirst({ where: { githubUsername: pusher.name } });
     if (!user) {
       console.log("User not found:", pusher.name);
       res.status(404).send('User not found');
       return;
     }
+
     const commitGroup = await prisma.gitHubCommitGroup.create({
       data: {
         repoId: repo.id,
         userId: user.id,
       },
     });
-    for (const commit of commits) {
-      const commitDate = new Date(commit.timestamp);
 
-      await prisma.gitHubCommit.create({
+    for (const commit of commits) {
+      const commitDateTime = new Date(commit.timestamp);
+      const commitDate = new Date(commitDateTime);
+      commitDate.setHours(0, 0, 0, 0); // Normalize to date only
+
+      const newCommit = await prisma.gitHubCommit.create({
         data: {
-          commitDate,
-          timing: commitDate,
+          commitDate: commitDate,
+          timing: commitDateTime,
           message: commit.message,
           gitHubCommitGroupId: commitGroup.id,
         },
       });
 
-      console.log(`Commit inserted: "${commit.message}" at ${commit.timestamp}`);
+      const newCommitLog = {
+        commitId: newCommit.id,
+        time: newCommit.timing, 
+      };
+
+      const existingDailyLog = await prisma.dailyLog.findFirst({
+        where: {
+          userId: user.id,
+          date: commitDate,
+        },
+      });
+
+      if (!existingDailyLog) {
+        await prisma.dailyLog.create({
+          data: {
+            userId: user.id,
+            date: commitDate,
+            commitLogs: [newCommitLog],
+            codingLogs: [],
+          },
+        });
+      } else {
+        const currentCommits = (existingDailyLog.commitLogs as any[]) || [];
+        currentCommits.push(newCommitLog);
+
+        await prisma.dailyLog.update({
+          where: { id: existingDailyLog.id },
+          data: {
+            commitLogs: currentCommits,
+          },
+        });
+      }
+
+      console.log(`Commit inserted: "${commit.message}" at ${commitDateTime.toISOString()}`);
     }
 
     console.log("All commits recorded successfully");
@@ -185,6 +211,8 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
     res.status(500).send('Internal Server Error');
   }
 };
+
+
 
 
 export const getCommitsByDate = async (req: Request, res: Response): Promise<void> => {
@@ -235,3 +263,5 @@ export const getCommitsByDate = async (req: Request, res: Response): Promise<voi
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+

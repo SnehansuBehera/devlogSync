@@ -2,34 +2,30 @@
 import { Request, Response } from 'express';
 import prisma from '../config/prisma-config';
 
-export const logVSCodeSession = async (req: Request, res: Response):Promise<void> => {
-    try {
-      const userId = req.user?.id; 
-        if (!userId) {
-            res.status(400).json({status: 400, message: 'User ID is required' });
-            return;
-        }
-    const { activeFileName, codingTime, date} = req.body;
-    if (!activeFileName || !codingTime || !date) {
-      res.status(400).json({status: 400, message: 'activeFileName, codingTime, and date are required' });
+export const logVSCodeSession = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(400).json({ status: 400, message: 'User ID is required' });
       return;
     }
+
+    const { activeFileName, codingTime, date } = req.body;
+    if (!activeFileName || !codingTime || !date) {
+      res.status(400).json({ status: 400, message: 'activeFileName, codingTime, and date are required' });
+      return;
+    }
+
     const logDate = new Date(date);
     logDate.setHours(0, 0, 0, 0);
 
     let details = await prisma.codingDetails.findFirst({
-      where: {
-        userId,
-        date: logDate,
-      },
+      where: { userId, date: logDate },
     });
 
     if (!details) {
       details = await prisma.codingDetails.create({
-        data: {
-          userId,
-          date: logDate,
-        },
+        data: { userId, date: logDate },
       });
     }
 
@@ -37,11 +33,7 @@ export const logVSCodeSession = async (req: Request, res: Response):Promise<void
       where: {
         activeFileName,
         date: logDate,
-        codingDetails: {
-          some: {
-            id: details.id,
-          },
-        },
+        codingDetails: { some: { id: details.id } },
       },
     });
 
@@ -49,9 +41,7 @@ export const logVSCodeSession = async (req: Request, res: Response):Promise<void
     if (existingLog) {
       await prisma.vSCodeLog.update({
         where: { id: existingLog.id },
-        data: {
-          codingTime: { increment: codingTime },
-        },
+        data: { codingTime: { increment: codingTime } },
       });
     } else {
       newLog = await prisma.vSCodeLog.create({
@@ -59,19 +49,51 @@ export const logVSCodeSession = async (req: Request, res: Response):Promise<void
           activeFileName,
           codingTime,
           date: logDate,
-          codingDetails: {
-            connect: { id: details.id },
-          },
+          codingDetails: { connect: { id: details.id } },
         },
       });
     }
 
-    res.status(200).json({status: 200, message: 'VS Code log updated successfully', log: newLog || existingLog });
+    const existingDailyLog = await prisma.dailyLog.findFirst({
+      where: { userId, date: logDate },
+    });
+
+    const newCodingLog = { activeFileName, codingTime, include: false };
+
+    if (!existingDailyLog) {
+      await prisma.dailyLog.create({
+        data: {
+          userId,
+          date: logDate,
+          commitLogs: [],
+          codingLogs: [newCodingLog],
+        },
+      });
+    } else {
+      const currentCodingLogs = (existingDailyLog.codingLogs as any[]) || [];
+      currentCodingLogs.push(newCodingLog);
+
+      await prisma.dailyLog.update({
+        where: { id: existingDailyLog.id },
+        data: {
+          codingLogs: currentCodingLogs,
+        },
+      });
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: 'VS Code log updated successfully',
+      log: newLog || existingLog,
+    });
+
   } catch (err) {
     console.error(err);
     res.status(500).json({ status: 500, message: 'Internal Server error' });
   }
 };
+
+
 
 export const getCodingTimeByDate = async (req: Request, res: Response):Promise<void> => {
   try {

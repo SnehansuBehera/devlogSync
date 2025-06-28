@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.9.0",
     "@prisma/extension-accelerate": "^2.0.1",
     "axios": "^1.10.0",
@@ -26,7 +27,9 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "node": "^24.2.0",
-    "nodemailer": "^7.0.3"
+    "node-cron": "^4.1.1",
+    "nodemailer": "^7.0.3",
+    "openai": "^5.8.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^3.0.0",
@@ -36,6 +39,7 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.1",
+    "@types/node-cron": "^3.0.11",
     "@types/nodemailer": "^6.4.17",
     "ngrok": "^5.0.0-beta.2",
     "nodemon": "^3.1.10",

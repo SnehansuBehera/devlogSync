@@ -149,7 +149,7 @@ model DailyLog {
   id         Int      @id @default(autoincrement())
   user       User     @relation(fields: [userId], references: [id])
   userId     Int
-  date       DateTime
+  date       DateTime @db.Date
   commitLogs Json
   codingLogs Json
   aiSummary  String?
