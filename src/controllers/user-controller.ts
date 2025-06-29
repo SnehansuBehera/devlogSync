@@ -251,3 +251,70 @@ export const resendOtp = async (req: Request, res: Response): Promise<void> => {
     }
   
 };
+
+export const updateUserProfile = async (req: Request, res: Response) => {
+  try {
+    const userId = req.user.id;
+    const { username, email, firstName, lastName, image } = req.body;
+
+    if (!userId) {
+      res.status(400).json({ status: 400, message: "User ID is required" });
+      return;
+    }
+    if (email) {
+      const emailExists = await prisma.user.findFirst({
+        where: {
+          email,
+          NOT: { id: userId },
+        },
+      });
+      if (emailExists) {
+        res.status(409).json({ status: 409, message: "Email already in use" });
+        return;
+      }
+    }
+
+    if (username) {
+      const usernameExists = await prisma.user.findFirst({
+        where: {
+          username,
+          NOT: { id: userId },
+        },
+      });
+      if (usernameExists) {
+        res.status(409).json({ status: 409, message: "Username already in use" });
+        return;
+      }
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        username,
+        email,
+        firstName,
+        lastName,
+        image,
+      },
+    });
+
+    res.status(200).json({
+      status: 200,
+      message: "Profile updated successfully",
+      user: {
+        id: updatedUser.id,
+        username: updatedUser.username,
+        email: updatedUser.email,
+        firstName: updatedUser.firstName,
+        lastName: updatedUser.lastName,
+        image: updatedUser.image,
+      },
+    });
+  } catch (error) {
+    console.error("Error updating user profile:", error);
+    res.status(500).json({
+      status: 500,
+      message: "Internal server error while updating profile",
+    });
+  }
+};

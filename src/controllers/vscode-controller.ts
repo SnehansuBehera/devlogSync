@@ -333,3 +333,86 @@ export const getAllVSCodeLogs = async (req: Request, res: Response): Promise<voi
     res.status(500).json({status: 500, error: 'Internal server error' });
   }
 }
+
+export const updateIncludeStatus = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const userId = req.user.id;
+    const { fileName, include } = req.body;
+
+    if (!fileName || typeof include !== 'boolean') {
+      res.status(400).json({
+        status: 400,
+        message: 'Both fileName and include (true/false) are required.',
+      });
+      return;
+    }
+
+    const today = new Date();
+    const start = new Date(today);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(today);
+    end.setHours(23, 59, 59, 999);
+
+    const log = await prisma.dailyLog.findFirst({
+      where: {
+        userId,
+        date: {
+          gte: start,
+          lte: end,
+        },
+      },
+    });
+
+    if (!log) {
+      res.status(404).json({ status: 404, message: 'No DailyLog found for today.' });
+      return;
+    }
+
+    let codingLogs = [];
+
+    if (Array.isArray(log.codingLogs)) {
+      codingLogs = log.codingLogs;
+    } else if (typeof log.codingLogs === 'string') {
+      codingLogs = JSON.parse(log.codingLogs);
+    }
+
+    let updated = false;
+
+    codingLogs = codingLogs.map((log: any) => {
+      if (log.activeFileName === fileName) {
+        updated = true;
+        return {
+          ...log,
+          include: include,
+        };
+      }
+      return log;
+    });
+
+    if (!updated) {
+      res.status(404).json({
+        status: 404,
+        message: 'File not found in codingLogs for today.',
+      });
+      return;
+    }
+
+    await prisma.dailyLog.update({
+      where: { id: log.id },
+      data: {
+        codingLogs,
+      },
+    });
+
+    res.status(200).json({
+      status: 200,
+      message: `Updated include status of "${fileName}" to ${include}`,
+    });
+  } catch (error) {
+    console.error('Error updating include status:', error);
+    res.status(500).json({
+      status: 500,
+      message: 'Internal server error while updating include status.',
+    });
+  }
+};

@@ -1,6 +1,6 @@
 import express from 'express';
 import { jwtVerify } from '../middleware/user-middleware';
-import { getAllDetailsOfUser, getAllVSCodeLogs, getCodingDetailsByDate, getCodingTimeByDate, getFileNamesByDate, getTotalCodingTimeOfUser, logVSCodeSession } from '../controllers/vscode-controller';
+import { getAllDetailsOfUser, getAllVSCodeLogs, getCodingDetailsByDate, getCodingTimeByDate, getFileNamesByDate, getTotalCodingTimeOfUser, logVSCodeSession, updateIncludeStatus } from '../controllers/vscode-controller';
 
 
 
@@ -13,4 +13,5 @@ router.get("/vscode/getCodingDetails", jwtVerify, getCodingDetailsByDate);
 router.get("/vscode/getAllDetailsOfUser", jwtVerify, getAllDetailsOfUser);
 router.get("/vscode/getTotalCodingTime", jwtVerify, getTotalCodingTimeOfUser);
 router.get("/vscode/all", jwtVerify, getAllVSCodeLogs)
+router.put("/vscode/dailylog/updateStatus", jwtVerify, updateIncludeStatus)
 export default router;
