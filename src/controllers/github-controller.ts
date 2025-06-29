@@ -30,7 +30,7 @@ const response = await axios.post(
     active: true,
     events: ['push', 'ping'],
     config: {
-      url: 'https://5fe0-2405-201-8021-50db-2940-c0ae-141e-da94.ngrok-free.app/api/github/github/webhook',
+      url: 'https://16ed-2405-201-8021-50db-7d51-f520-71e2-644f.ngrok-free.app/api/github/github/webhook',
       content_type: 'json',
       secret: process.env.GITHUB_WEBHOOK_SECRET || 'fallback-secret',
       insecure_ssl: '0'
@@ -132,7 +132,6 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
     }
 
     const url = repository.html_url + ".git";
-
     const repo = await prisma.gitHubRepo.findFirst({ where: { url } });
     if (!repo) {
       console.log("Repo not found:", url);
@@ -147,17 +146,45 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
       return;
     }
 
-    const commitGroup = await prisma.gitHubCommitGroup.create({
-      data: {
-        repoId: repo.id,
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to start of day
+
+    // ✅ Check for existing group for user+repo+today
+    let commitGroup = await prisma.gitHubCommitGroup.findFirst({
+      where: {
         userId: user.id,
+        repoId: repo.id,
+        commits: {
+          some: {
+            commitDate: today,
+          },
+        },
+      },
+      include: {
+        commits: true,
       },
     });
+
+    // ❌ If not found, create a new one
+    if (!commitGroup) {
+      commitGroup = await prisma.gitHubCommitGroup.create({
+        data: {
+          repoId: repo.id,
+          userId: user.id,
+          commits: {
+            create: []
+          }
+        },
+        include: {
+          commits: true
+        }
+      });
+    }
 
     for (const commit of commits) {
       const commitDateTime = new Date(commit.timestamp);
       const commitDate = new Date(commitDateTime);
-      commitDate.setHours(0, 0, 0, 0); // Normalize to date only
+      commitDate.setHours(0, 0, 0, 0);
 
       const newCommit = await prisma.gitHubCommit.create({
         data: {
@@ -170,7 +197,7 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
 
       const newCommitLog = {
         commitId: newCommit.id,
-        time: newCommit.timing, 
+        time: newCommit.timing,
       };
 
       const existingDailyLog = await prisma.dailyLog.findFirst({
@@ -211,6 +238,7 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
     res.status(500).send('Internal Server Error');
   }
 };
+
 
 
 

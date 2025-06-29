@@ -23,3 +23,23 @@ export const sendOtpEmail = async (email: string, otp: string) => {
     `,
   });
 };
+
+export const emailDailyReport = async (userdetails: any, ownerEmail: string, exportUrl: string) => {
+  try {
+    await transporter.sendMail({
+      from: `${userdetails.firstName} ${userdetails.lastName}" <${process.env.EMAIL_USER}>`,
+      to: ownerEmail,
+      replyTo: userdetails.email,
+      subject: `${userdetails.username} Daily Report [ ${new Date().toISOString().slice(0, 10)} ]`,
+      html: `
+        <h3>${userdetails.firstName} ${userdetails.lastName},</h3>
+        <p>Daily development report is ready. You can download it using the link below:</p>
+        <a href="${exportUrl}">Download Daily Report PDF</a>
+        <br><br>
+        <p>Thanks,<br>DevLogSync</p>
+      `,
+    })
+  } catch (error) {
+    console.error("Error in nodemailer to send report:", error);
+  }
+} 

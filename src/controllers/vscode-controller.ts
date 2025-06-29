@@ -58,20 +58,26 @@ export const logVSCodeSession = async (req: Request, res: Response): Promise<voi
       where: { userId, date: logDate },
     });
 
-    const newCodingLog = { activeFileName, codingTime, include: false };
-
     if (!existingDailyLog) {
       await prisma.dailyLog.create({
         data: {
           userId,
           date: logDate,
           commitLogs: [],
-          codingLogs: [newCodingLog],
+          codingLogs: [{ activeFileName, codingTime, include: false }],
         },
       });
     } else {
       const currentCodingLogs = (existingDailyLog.codingLogs as any[]) || [];
-      currentCodingLogs.push(newCodingLog);
+      const fileIndex = currentCodingLogs.findIndex(
+        (log) => log.activeFileName === activeFileName
+      );
+
+      if (fileIndex !== -1) {
+        currentCodingLogs[fileIndex].codingTime += codingTime;
+      } else {
+        currentCodingLogs.push({ activeFileName, codingTime, include: false });
+      }
 
       await prisma.dailyLog.update({
         where: { id: existingDailyLog.id },
