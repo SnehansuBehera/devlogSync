@@ -9,11 +9,16 @@ import summaryRouter from "./routes/summary-routes"
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import bodyParser from 'body-parser';
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(cors({
+  origin: "http://localhost:3000", 
+  credentials: true
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

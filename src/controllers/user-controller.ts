@@ -66,6 +66,13 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     });
 
     setRefreshCookie(res, refreshToken);
+    res.cookie("accessToken", accessToken, {
+      httpOnly: false, 
+      secure: true,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 1 * 24 * 60 * 60 * 1000
+    });
 
     setOtp(email, otp, otpExpiryMin, cooldownSec);
     await sendOtpEmail(email, otp);
@@ -108,7 +115,7 @@ export const login = async (req: Request, res: Response):Promise<void> => {
             return;
         }
         if (!user.password) {
-            res.status(500).json({ status: 500, message: "User password is missing" });
+            res.status(500).json({ status: 500, message: "User password is missing, try different login." });
             return;
         }
         const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -126,7 +133,15 @@ export const login = async (req: Request, res: Response):Promise<void> => {
             email: user.email,
             id: user.id
         });
-        setRefreshCookie(res, refreshToken)
+      setRefreshCookie(res, refreshToken)
+      res.cookie("accessToken", accessToken, {
+        httpOnly: false,
+        secure: true,
+        sameSite: "lax",
+        path: "/",
+        maxAge: 1 * 24 * 60 * 60 * 1000
+      });
+
         await prisma.user.update({
             where: { email },
             data: { accessToken }
@@ -158,8 +173,23 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
         }
         const decode = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
         if (typeof decode === "object" && decode !== null && "username" in decode && "email" in decode) {
-            const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
-          res.status(201).json({status: 201,message:"Access token created successfully", accessToken: newAccessToken });
+          const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
+          res.cookie("accessToken", newAccessToken, {
+            httpOnly: false, 
+            secure: true,
+            sameSite: "lax",
+            path: "/",
+            maxAge: 1 * 24 * 60 * 60 * 1000
+          })
+          const updateAccessToken = await prisma.user.update({
+            where: {
+                id: (decode as any).id
+            },
+            data: {
+              accessToken: newAccessToken
+            }
+          });
+          res.status(201).json({status: 201,message:"Access token created successfully", accessToken: newAccessToken })
         } else {
             res.status(401).json({ status: 401, message: "Invalid refresh token" });
             return;
@@ -168,6 +198,28 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
         console.error("Error in creating accessToken:", error);
         res.status(500).json({ error: "Internal Server Error" });
     }
+}
+
+export const getUserFromAccessToken = async (req: Request, res:Response) => {
+  const userId = (req as any).user?.id;
+
+  if (!userId) {
+    res.status(401).json({ message: "Unauthorized" });
+    return;
+  }
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      id: true,
+      firstName: true,
+      lastName: true,
+      email: true,
+      username: true,
+    },
+  });
+
+  res.status(200).json({ user });
 }
 
 export const logout = (req: Request, res: Response) => {

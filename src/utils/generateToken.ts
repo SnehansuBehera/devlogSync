@@ -7,7 +7,7 @@ export const generateAccessToken = (payload: object | string | Buffer) => {
         throw new Error('ACCESS_TOKEN_SECRET is not defined');
     }
     const options: jwt.SignOptions = {
-        expiresIn: '15m',
+        expiresIn: '1d',
     }
     return jwt.sign(payload, secret, options);
 };
