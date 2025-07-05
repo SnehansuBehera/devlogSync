@@ -15,19 +15,29 @@ datasource db {
 }
 
 model User {
-  id          Int       @id @default(autoincrement())
-  email       String    @unique
-  password    String?
-  firstName   String?
-  lastName    String?
-  username    String?   @unique
-  image       String?
-  isActive    Boolean   @default(false)
-  isAdmin     Boolean   @default(false)
-  isVerified  Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  accessToken String?
-  accounts    Account[]
+  id                Int                 @id @default(autoincrement())
+  email             String              @unique
+  password          String?
+  firstName         String?
+  lastName          String?
+  username          String?             @unique
+  image             String?
+  isActive          Boolean             @default(false)
+  isAdmin           Boolean             @default(false)
+  isVerified        Boolean             @default(false)
+  createdAt         DateTime            @default(now())
+  accessToken       String?
+  githubToken       String?
+  githubUsername    String?
+  accounts          Account[]
+  Project           Project[]
+  ProjectMembers    Project[]           @relation("ProjectMembers")
+  assignedTasks     Task[]              @relation("AssignedTo")
+  createdTasks      Task[]              @relation("AssignedBy")
+  updatedTasks      Task[]              @relation("UpdatedBy")
+  GitHubCommitGroup GitHubCommitGroup[]
+  DailyLog          DailyLog[]
+  codingSessions    CodingDetails[]
 }
 
 model Account {
@@ -42,4 +52,106 @@ model Account {
   user User @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
+}
+
+model Project {
+  id          Int          @id @default(autoincrement())
+  name        String
+  description String?
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  userId      Int
+  owner       User         @relation(fields: [userId], references: [id])
+  members     User[]       @relation("ProjectMembers")
+  tasks       Task[]
+  githubRepos GitHubRepo[]
+
+  @@index([userId])
+}
+
+model Task {
+  id           Int        @id @default(autoincrement())
+  title        String
+  description  String?
+  startDate    DateTime
+  dueDate      DateTime
+  status       TaskStatus @default(PENDING)
+  projectId    Int
+  assignedToId Int
+  assignedById Int
+  updatedById  Int?
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  completedOn  DateTime?
+
+  project    Project @relation(fields: [projectId], references: [id])
+  assignedTo User    @relation("AssignedTo", fields: [assignedToId], references: [id])
+  assignedBy User    @relation("AssignedBy", fields: [assignedById], references: [id])
+  updatedBy  User?   @relation("UpdatedBy", fields: [updatedById], references: [id])
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+  OVERDUE
+}
+
+model GitHubRepo {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  url               String
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  projectId         Int
+  webHookId         Int?
+  project           Project             @relation(fields: [projectId], references: [id])
+  GitHubCommitGroup GitHubCommitGroup[]
+}
+
+model GitHubCommit {
+  id                  Int                @id @default(autoincrement())
+  commitDate          DateTime           @db.Date
+  timing              DateTime           @db.Time
+  message             String
+  GitHubCommitGroup   GitHubCommitGroup? @relation(fields: [gitHubCommitGroupId], references: [id])
+  gitHubCommitGroupId Int?
+}
+
+model GitHubCommitGroup {
+  id      Int            @id @default(autoincrement())
+  user    User           @relation(fields: [userId], references: [id])
+  userId  Int
+  repo    GitHubRepo     @relation(fields: [repoId], references: [id])
+  repoId  Int
+  commits GitHubCommit[] @relation()
+}
+
+model VSCodeLog {
+  id             Int      @id @default(autoincrement())
+  activeFileName String
+  codingTime     Int // in minutes
+  date           DateTime @db.Date
+  createdAt      DateTime @default(now())
+
+  codingDetails CodingDetails[] @relation()
+}
+
+model CodingDetails {
+  id        Int         @id @default(autoincrement())
+  user      User        @relation(fields: [userId], references: [id])
+  userId    Int
+  logs      VSCodeLog[] @relation()
+  date      DateTime    @db.Date
+  createdAt DateTime    @default(now())
+}
+
+model DailyLog {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  date       DateTime @db.Date
+  commitLogs Json
+  codingLogs Json
+  aiSummary  String?
+  export     String?
 }
