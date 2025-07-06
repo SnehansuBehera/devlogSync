@@ -68,8 +68,8 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     setRefreshCookie(res, refreshToken);
     res.cookie("accessToken", accessToken, {
       httpOnly: false, 
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
       path: "/",
       maxAge: 1 * 24 * 60 * 60 * 1000
     });
@@ -136,8 +136,8 @@ export const login = async (req: Request, res: Response):Promise<void> => {
       setRefreshCookie(res, refreshToken)
       res.cookie("accessToken", accessToken, {
         httpOnly: false,
-        secure: true,
-        sameSite: "none",
+        secure: false,
+        sameSite: "lax",
         path: "/",
         maxAge: 1 * 24 * 60 * 60 * 1000
       });
@@ -176,8 +176,8 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
           const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
           res.cookie("accessToken", newAccessToken, {
             httpOnly: false, 
-            secure: true,
-            sameSite: "none",
+            secure: false,
+            sameSite: "lax",
             path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000
           })
@@ -225,8 +225,13 @@ export const getUserFromAccessToken = async (req: Request, res:Response) => {
 export const logout = (req: Request, res: Response) => {
   res.clearCookie("refreshToken", {
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+    secure: false,
+    sameSite: "lax",
+  });
+  res.clearCookie("accessToken", {
+    httpOnly: false,
+    secure: false,
+    sameSite: "lax",
   });
   res.json({ message: "Logged out successfully" });
 };

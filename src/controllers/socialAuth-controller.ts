@@ -95,15 +95,15 @@ export const socialAuthController = async (req: Request, res: Response): Promise
     }
     res.cookie("accessToken", user.accessToken, {
       httpOnly: false, 
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
       path: "/",
       maxAge: 1 * 24 * 60 * 60 * 1000
     });
     res.cookie('refreshToken', refreshToken, {
         httpOnly: true,
-        secure: true,
-      sameSite: "none",
+        secure: false,
+      sameSite: "lax",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000
     });
