@@ -69,7 +69,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     res.cookie("accessToken", accessToken, {
       httpOnly: false, 
       secure: true,
-      sameSite: "lax",
+      sameSite: "none",
       path: "/",
       maxAge: 1 * 24 * 60 * 60 * 1000
     });
@@ -137,7 +137,7 @@ export const login = async (req: Request, res: Response):Promise<void> => {
       res.cookie("accessToken", accessToken, {
         httpOnly: false,
         secure: true,
-        sameSite: "lax",
+        sameSite: "none",
         path: "/",
         maxAge: 1 * 24 * 60 * 60 * 1000
       });
@@ -177,7 +177,7 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
           res.cookie("accessToken", newAccessToken, {
             httpOnly: false, 
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000
           })
@@ -226,7 +226,7 @@ export const logout = (req: Request, res: Response) => {
   res.clearCookie("refreshToken", {
     httpOnly: true,
     secure: true,
-    sameSite: "strict",
+    sameSite: "none",
   });
   res.json({ message: "Logged out successfully" });
 };
