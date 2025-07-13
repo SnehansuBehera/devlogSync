@@ -67,7 +67,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
     const isProd = process.env.NODE_ENV === "production";
     setRefreshCookie(res, refreshToken);
     res.cookie("accessToken", accessToken, {
-      httpOnly: false, 
+      httpOnly: true, 
       secure: isProd,
       sameSite: isProd ? "none" : "lax",
       path: "/",
@@ -136,7 +136,7 @@ export const login = async (req: Request, res: Response):Promise<void> => {
       setRefreshCookie(res, refreshToken)
       const isProd = process.env.NODE_ENV === "production";
       res.cookie("accessToken", accessToken, {
-        httpOnly: false,
+        httpOnly: true,
         secure: isProd,
         sameSite: isProd ? "none" : "lax",
         path: "/",
@@ -177,7 +177,7 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
           const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
           const isProd = process.env.NODE_ENV === "production";
           res.cookie("accessToken", newAccessToken, {
-            httpOnly: false, 
+            httpOnly: true, 
             secure: isProd,
             sameSite: isProd ? "none" : "lax",
             path: "/",
@@ -240,7 +240,7 @@ export const logout = (req: Request, res: Response) => {
   });
 
   res.clearCookie("accessToken", {
-    httpOnly: false,
+    httpOnly: true,
     secure: isProd,
     sameSite: isProd ? "none" : "lax",
     path: "/",

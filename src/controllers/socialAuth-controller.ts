@@ -122,7 +122,7 @@ export const socialAuthController = async (req: Request, res: Response): Promise
     }
      const isProd = process.env.NODE_ENV === "production";
     res.cookie("accessToken", user.accessToken, {
-      httpOnly: false, 
+      httpOnly: true, 
       secure: isProd,
       sameSite: isProd ? "none" : "lax",
       path: "/",
