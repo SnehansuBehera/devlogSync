@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -29,14 +23,14 @@ model User {
   githubToken       String?
   githubUsername    String?
   accounts          Account[]
-  Project           Project[]
-  ProjectMembers    Project[]           @relation("ProjectMembers")
-  assignedTasks     Task[]              @relation("AssignedTo")
-  createdTasks      Task[]              @relation("AssignedBy")
-  updatedTasks      Task[]              @relation("UpdatedBy")
-  GitHubCommitGroup GitHubCommitGroup[]
-  DailyLog          DailyLog[]
   codingSessions    CodingDetails[]
+  DailyLog          DailyLog[]
+  GitHubCommitGroup GitHubCommitGroup[]
+  Project           Project[]
+  createdTasks      Task[]              @relation("AssignedBy")
+  assignedTasks     Task[]              @relation("AssignedTo")
+  updatedTasks      Task[]              @relation("UpdatedBy")
+  ProjectMembers    Project[]           @relation("ProjectMembers")
 }
 
 model Account {
@@ -47,8 +41,7 @@ model Account {
   accessToken       String?
   refreshToken      String?
   expiresAt         DateTime?
-
-  user User @relation(fields: [userId], references: [id])
+  user              User      @relation(fields: [userId], references: [id])
 
   @@unique([provider, providerAccountId])
 }
@@ -60,11 +53,11 @@ model Project {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   userId      Int
-  owner       User         @relation(fields: [userId], references: [id])
-  members     User[]       @relation("ProjectMembers")
-  tasks       Task[]
-  githubRepos GitHubRepo[]
   DailyLog    DailyLog[]
+  githubRepos GitHubRepo[]
+  owner       User         @relation(fields: [userId], references: [id])
+  tasks       Task[]
+  members     User[]       @relation("ProjectMembers")
 
   @@index([userId])
 }
@@ -83,17 +76,10 @@ model Task {
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   completedOn  DateTime?
-
-  project    Project @relation(fields: [projectId], references: [id])
-  assignedTo User    @relation("AssignedTo", fields: [assignedToId], references: [id])
-  assignedBy User    @relation("AssignedBy", fields: [assignedById], references: [id])
-  updatedBy  User?   @relation("UpdatedBy", fields: [updatedById], references: [id])
-}
-
-enum TaskStatus {
-  PENDING
-  COMPLETED
-  OVERDUE
+  assignedBy   User       @relation("AssignedBy", fields: [assignedById], references: [id])
+  assignedTo   User       @relation("AssignedTo", fields: [assignedToId], references: [id])
+  project      Project    @relation(fields: [projectId], references: [id])
+  updatedBy    User?      @relation("UpdatedBy", fields: [updatedById], references: [id])
 }
 
 model GitHubRepo {
@@ -104,65 +90,50 @@ model GitHubRepo {
   updatedAt         DateTime            @updatedAt
   projectId         Int
   webHookId         Int?
-  project           Project             @relation(fields: [projectId], references: [id])
   GitHubCommitGroup GitHubCommitGroup[]
+  project           Project             @relation(fields: [projectId], references: [id])
 }
 
 model GitHubCommit {
   id                  Int                @id @default(autoincrement())
   commitDate          DateTime           @db.Date
-  timing              DateTime           @db.Time
+  timing              DateTime           @db.Time(6)
   message             String
-  GitHubCommitGroup   GitHubCommitGroup? @relation(fields: [gitHubCommitGroupId], references: [id])
   gitHubCommitGroupId Int?
+  GitHubCommitGroup   GitHubCommitGroup? @relation(fields: [gitHubCommitGroupId], references: [id])
 }
 
 model GitHubCommitGroup {
   id      Int            @id @default(autoincrement())
-  user    User           @relation(fields: [userId], references: [id])
   userId  Int
-  repo    GitHubRepo     @relation(fields: [repoId], references: [id])
   repoId  Int
-  commits GitHubCommit[] @relation()
+  commits GitHubCommit[]
+  repo    GitHubRepo     @relation(fields: [repoId], references: [id])
+  user    User           @relation(fields: [userId], references: [id])
 }
 
 model VSCodeLog {
-  id             Int      @id @default(autoincrement())
+  id             Int             @id @default(autoincrement())
   activeFileName String
-  codingTime     Int // in minutes
-  date           DateTime @db.Date
-  createdAt      DateTime @default(now())
-
-  codingDetails CodingDetails[] @relation()
+  codingTime     Int
+  date           DateTime        @db.Date
+  createdAt      DateTime        @default(now())
+  codingDetails  CodingDetails[] @relation("CodingDetailsToVSCodeLog")
 }
 
 model CodingDetails {
   id        Int         @id @default(autoincrement())
-  user      User        @relation(fields: [userId], references: [id])
   userId    Int
-  logs      VSCodeLog[] @relation()
   date      DateTime    @db.Date
   createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id])
+  logs      VSCodeLog[] @relation("CodingDetailsToVSCodeLog")
 }
 
-// model DailyLog {
-//   id         Int      @id @default(autoincrement())
-//   user       User     @relation(fields: [userId], references: [id])
-//   userId     Int
-//   date       DateTime @db.Date
-//   commitLogs Json
-//   codingLogs Json
-//   aiSummary  String?
-//   export     String?
-// }
 model DailyLog {
-  id     Int  @id @default(autoincrement())
-  user   User @relation(fields: [userId], references: [id])
-  userId Int
-
-  project   Project @relation(fields: [projectId], references: [id])
-  projectId Int
-
+  id         Int      @id @default(autoincrement())
+  userId     Int
+  projectId  Int
   date       DateTime @db.Date
   commitLogs Json
   codingLogs Json
@@ -170,4 +141,12 @@ model DailyLog {
   export     String?
   flag       Boolean  @default(false)
   exportUrl  String?
+  project    Project  @relation(fields: [projectId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+  OVERDUE
 }
