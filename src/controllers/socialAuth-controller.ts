@@ -126,14 +126,16 @@ export const socialAuthController = async (req: Request, res: Response): Promise
       secure: isProd,
       sameSite: isProd ? "none" : "lax",
       path: "/",
-      maxAge: 1 * 24 * 60 * 60 * 1000
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+      domain: "devlogsync.vercel.app"
     });
     res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
         secure: isProd,
       sameSite: isProd ? "none" : "lax",
         path: "/",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+        domain: "devlogsync.vercel.app"
     });
     res.status(200).json({ message: 'Logged in successfully', user });
   } catch (err) {

@@ -31,6 +31,7 @@ export const setRefreshCookie = (res: any, token: string) => {
         secure: isProd,
         sameSite: isProd ? "none" : "lax",
         path: "/",
-        maxAge: 7 * 24 * 60 * 60 * 1000
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        domain: "devlogsync.vercel.app"
     });
 }

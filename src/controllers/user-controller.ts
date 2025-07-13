@@ -71,7 +71,8 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       secure: isProd,
       sameSite: isProd ? "none" : "lax",
       path: "/",
-      maxAge: 1 * 24 * 60 * 60 * 1000
+      maxAge: 1 * 24 * 60 * 60 * 1000,
+      domain: "devlogsync.vercel.app"
     });
 
     setOtp(email, otp, otpExpiryMin, cooldownSec);
@@ -140,7 +141,8 @@ export const login = async (req: Request, res: Response):Promise<void> => {
         secure: isProd,
         sameSite: isProd ? "none" : "lax",
         path: "/",
-        maxAge: 1 * 24 * 60 * 60 * 1000
+        maxAge: 1 * 24 * 60 * 60 * 1000,
+        domain: "devlogsync.vercel.app"
       });
 
         await prisma.user.update({
@@ -181,7 +183,8 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
             secure: isProd,
             sameSite: isProd ? "none" : "lax",
             path: "/",
-            maxAge: 1 * 24 * 60 * 60 * 1000
+            maxAge: 1 * 24 * 60 * 60 * 1000,
+            domain: "devlogsync.vercel.app"
           })
           const updateAccessToken = await prisma.user.update({
             where: {
@@ -232,11 +235,13 @@ export const getUserFromAccessToken = async (req: Request, res:Response) => {
 export const logout = (req: Request, res: Response) => {
 
   const isProd = process.env.NODE_ENV === "production";
+  console.log(isProd)
   res.clearCookie("refreshToken", {
     httpOnly: true,
     secure: isProd,
     sameSite: isProd ? "none" : "lax",
     path: "/",
+    domain: "devlogsync.vercel.app"
   });
 
   res.clearCookie("accessToken", {
@@ -244,6 +249,7 @@ export const logout = (req: Request, res: Response) => {
     secure: isProd,
     sameSite: isProd ? "none" : "lax",
     path: "/",
+    domain: "devlogsync.vercel.app"
   });
 
   res.status(200).json({ status: 200, message: "Logged out successfully" });
