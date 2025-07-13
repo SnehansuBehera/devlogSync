@@ -15,9 +15,20 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const allowedOrigins = [
+  "https://devlogsync.vercel.app",
+  "http://localhost:3000",
+];
+
 app.use(cors({
-  origin: ["https://devlogsync.vercel.app","http://localhost:3000"], 
-  credentials: true, //allow cookies
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
 }));
 
 app.use(bodyParser.json());
