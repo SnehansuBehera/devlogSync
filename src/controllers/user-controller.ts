@@ -136,6 +136,7 @@ export const login = async (req: Request, res: Response):Promise<void> => {
         });
       setRefreshCookie(res, refreshToken)
       const isProd = process.env.NODE_ENV === "production";
+      console.log(isProd);
       res.cookie("accessToken", accessToken, {
         httpOnly: true,
         secure: isProd,
