@@ -7,18 +7,19 @@ export const logVSCodeSession = async (req: Request, res: Response): Promise<voi
     const userId = req.user?.id;
     if (!userId) {
       res.status(400).json({ status: 400, message: 'User ID is required' });
-      return;
+      return
     }
 
     const { activeFileName, codingTime, date } = req.body;
     if (!activeFileName || !codingTime || !date) {
       res.status(400).json({ status: 400, message: 'activeFileName, codingTime, and date are required' });
-      return;
+      return
     }
 
     const logDate = new Date(date);
     logDate.setHours(0, 0, 0, 0);
 
+    // Ensure codingDetails exists
     let details = await prisma.codingDetails.findFirst({
       where: { userId, date: logDate },
     });
@@ -29,6 +30,7 @@ export const logVSCodeSession = async (req: Request, res: Response): Promise<voi
       });
     }
 
+    // Check if log already exists for this file
     let existingLog = await prisma.vSCodeLog.findFirst({
       where: {
         activeFileName,
@@ -54,23 +56,15 @@ export const logVSCodeSession = async (req: Request, res: Response): Promise<voi
       });
     }
 
-    const existingDailyLog = await prisma.dailyLog.findFirst({
+    // 🔥 Update codingLogs in all DailyLogs for this user + date
+    const allDailyLogs = await prisma.dailyLog.findMany({
       where: { userId, date: logDate },
     });
 
-    if (!existingDailyLog) {
-      await prisma.dailyLog.create({
-        data: {
-          userId,
-          date: logDate,
-          commitLogs: [],
-          codingLogs: [{ activeFileName, codingTime, include: false }],
-        },
-      });
-    } else {
-      const currentCodingLogs = (existingDailyLog.codingLogs as any[]) || [];
+    for (const log of allDailyLogs) {
+      const currentCodingLogs = (log.codingLogs as any[]) || [];
       const fileIndex = currentCodingLogs.findIndex(
-        (log) => log.activeFileName === activeFileName
+        (entry) => entry.activeFileName === activeFileName
       );
 
       if (fileIndex !== -1) {
@@ -80,24 +74,23 @@ export const logVSCodeSession = async (req: Request, res: Response): Promise<voi
       }
 
       await prisma.dailyLog.update({
-        where: { id: existingDailyLog.id },
-        data: {
-          codingLogs: currentCodingLogs,
-        },
+        where: { id: log.id },
+        data: { codingLogs: currentCodingLogs },
       });
     }
 
     res.status(200).json({
       status: 200,
-      message: 'VS Code log updated successfully',
+      message: 'VS Code log updated across all daily logs',
       log: newLog || existingLog,
     });
 
   } catch (err) {
-    console.error(err);
+    console.error('VSCode session error:', err);
     res.status(500).json({ status: 500, message: 'Internal Server error' });
   }
 };
+
 
 
 

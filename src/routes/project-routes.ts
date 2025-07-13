@@ -1,5 +1,5 @@
 import express from 'express';
-import { addProjectMember, createProject, removeProjectMember, getProjectMembers, updateProject, getProjectsOfUser, getProjectById, deleteProject, getProjectTasks } from '../controllers/project-controller';
+import { addProjectMember, createProject, removeProjectMember, getProjectMembers, updateProject, getProjectsOfUser, getProjectById, deleteProject} from '../controllers/project-controller';
 import { jwtVerify } from '../middleware/user-middleware';
 
 
@@ -13,6 +13,5 @@ router.put('/update/:projectId', jwtVerify, updateProject);
 router.put('/delete/:projectId', jwtVerify, deleteProject);
 router.get('/project/:projectId', jwtVerify, getProjectById);
 router.get('/user-projects', jwtVerify, getProjectsOfUser);
-router.get('/tasks/:projectId', jwtVerify, getProjectTasks);
 
 export default router;

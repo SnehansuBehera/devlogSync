@@ -193,39 +193,55 @@ export const getProjectById = async (req: Request, res: Response): Promise<void>
 export const getProjectsOfUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { user } = req;
+
     if (!user || !user.id) {
       res.status(400).json({ error: 'User ID is required' });
       return;
     }
+
     const projects = await prisma.project.findMany({
       where: {
         members: {
           some: {
-            id: user.id
-          }
-        }
+            id: user.id,
+          },
+        },
       },
-      include: {
-        members: true,
-      }
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        createdAt: true,
+        members: {
+          select: {
+            image: true,
+          },
+          take: 5,
+        },
+      },
+      take: 5,
     });
+
     if (!projects || projects.length === 0) {
       res.status(404).json({
         status: 404,
-        message: "No projects found for this user"
-      })
+        message: "No projects found for this user",
+      });
       return;
     }
-    res.status(200).json({
-      status: 200,
-      message: "Projects fetched successfully",
-      data: projects
-    });
+    const payload = {
+  status: 200,
+  message: "Projects fetched successfully",
+  data: projects,
+    };
+
+    res.status(200).json(payload);
   } catch (error) {
     console.error("Error fetching projects of user:", error);
-    res.status(500).json({ error: 'Failed to fetch projects', details: error });
+    res.status(500).json({ error: "Failed to fetch projects", details: error });
   }
-}
+};
+
 
 export const getAllprojects = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -255,32 +271,3 @@ export const getAllprojects = async (req: Request, res: Response): Promise<void>
   }
 }
 
-export const getProjectTasks = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const { projectId } = req.params;
-    if (!projectId) {
-      res.status(400).json({ error: 'Project ID is required' });
-      return;
-    }
-    const tasks = await prisma.task.findMany({
-      where: { projectId: Number(projectId) },
-      include: {
-        assignedTo: true,
-        assignedBy: true,
-      }
-    });
-
-    if (!tasks || tasks.length === 0) {
-      res.status(404).json({ error: 'No tasks found for this project' });
-      return;
-    }
-
-    res.status(200).json({
-      status: 200,
-      message: "Tasks fetched successfully",
-      data: tasks
-    });
-  } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch tasks', details: err });
-  }
-}

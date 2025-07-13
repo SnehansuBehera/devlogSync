@@ -64,12 +64,12 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       where: { id: createdUser.id },
       data: { accessToken }
     });
-
+    const isProd = process.env.NODE_ENV === "production";
     setRefreshCookie(res, refreshToken);
     res.cookie("accessToken", accessToken, {
       httpOnly: false, 
-      secure: false,
-      sameSite: "lax",
+      secure: isProd,
+      sameSite: isProd ? "none" : "lax",
       path: "/",
       maxAge: 1 * 24 * 60 * 60 * 1000
     });
@@ -134,10 +134,11 @@ export const login = async (req: Request, res: Response):Promise<void> => {
             id: user.id
         });
       setRefreshCookie(res, refreshToken)
+      const isProd = process.env.NODE_ENV === "production";
       res.cookie("accessToken", accessToken, {
         httpOnly: false,
-        secure: false,
-        sameSite: "lax",
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax",
         path: "/",
         maxAge: 1 * 24 * 60 * 60 * 1000
       });
@@ -174,10 +175,11 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
         const decode = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
         if (typeof decode === "object" && decode !== null && "username" in decode && "email" in decode) {
           const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
+          const isProd = process.env.NODE_ENV === "production";
           res.cookie("accessToken", newAccessToken, {
             httpOnly: false, 
-            secure: false,
-            sameSite: "lax",
+            secure: isProd,
+            sameSite: isProd ? "none" : "lax",
             path: "/",
             maxAge: 1 * 24 * 60 * 60 * 1000
           })
@@ -214,27 +216,39 @@ export const getUserFromAccessToken = async (req: Request, res:Response) => {
       id: true,
       firstName: true,
       lastName: true,
+      password: true,
       email: true,
       username: true,
+      image: true,
+      isVerified: true,
+      githubToken: true,
+      githubUsername: true
+
     },
   });
-
   res.status(200).json({ user });
 }
 
 export const logout = (req: Request, res: Response) => {
+
+  const isProd = process.env.NODE_ENV === "production";
   res.clearCookie("refreshToken", {
     httpOnly: true,
-    secure: false,
-    sameSite: "lax",
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
+    path: "/",
   });
+
   res.clearCookie("accessToken", {
     httpOnly: false,
-    secure: false,
-    sameSite: "lax",
+    secure: isProd,
+    sameSite: isProd ? "none" : "lax",
+    path: "/",
   });
-  res.json({ message: "Logged out successfully" });
+
+  res.status(200).json({ status: 200, message: "Logged out successfully" });
 };
+
 
 export const verifyOtp = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -276,7 +290,6 @@ export const verifyOtp = async (req: Request, res: Response): Promise<void> => {
   
     
 };
-
 export const resendOtp = async (req: Request, res: Response): Promise<void> => {
     try {
         const { email } = req.body;
@@ -373,5 +386,194 @@ export const updateUserProfile = async (req: Request, res: Response) => {
       status: 500,
       message: "Internal server error while updating profile",
     });
+  }
+};
+
+export const changePassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      res.status(400).json({ message: "All fields are required" });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      res.status(400).json({ message: "New password and confirmation do not match" });
+      return;
+    }
+
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user || !user.password) {
+      res.status(404).json({ message: "User not found or password not set" });
+      return;
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      res.status(401).json({ message: "Current password is incorrect" });
+      return;
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    console.log(hashedNewPassword)
+    const updateduser = await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedNewPassword },
+    });
+
+    res.status(200).json({ message: "Password changed successfully", data: updateduser });
+  } catch (error) {
+    console.error("Error in changePassword:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+export const setPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { newPassword, confirmPassword } = req.body;
+
+    if (!newPassword || !confirmPassword) {
+      res.status(400).json({ message: "All fields are required" });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      res.status(400).json({ message: "New password and confirmation do not match" });
+      return;
+    }
+
+    const userId = req.user?.id;
+    if (!userId) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user || user.password) {
+      res.status(404).json({ message: "User not found or password already set" });
+      return;
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: { password: hashedNewPassword },
+    });
+
+    res.status(200).json({ message: "Password set successfully", data: updatedUser });
+  } catch (error) {
+    console.error("Error in setPassword:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+//-----------------------forgot password-------------------------//
+
+export const forgotPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email } = req.body;
+    if (!email) {
+      res.status(400).json({ message: "Email is required" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    if (isInCooldown(email)) {
+      res.status(429).json({ message: "Please wait before requesting a new OTP" });
+      return;
+    }
+
+    const otp = generateOtp();
+    setOtp(email, otp, otpExpiryMin, cooldownSec);
+    await sendOtpEmail(email, otp);
+
+    res.status(200).json({ message: "OTP sent to email" });
+  } catch (error) {
+    console.error("Error in forgotPassword:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const verifyPasswordOtp = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { email, code } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+        res.status(404).json({ message: 'User not found' });
+        return;
+  }  
+
+  const record = getOtp(email);
+  if (!record || record.otp !== code) {
+      res.status(400).json({ message: 'Invalid or expired OTP' });
+      return;
+  }
+
+  if (new Date() > record.expiresAt) {
+      res.status(400).json({ message: 'OTP expired' });
+      return;
+  }
+
+  await prisma.user.update({
+    where: { email },
+    data: { isVerified: true },
+  });
+      clearOtp(email);
+    res.status(200).json({ message: 'Email verified successfully' });
+    } catch (error) {
+        console.error("Error in verifyOtp:", error);
+        res.status(500).json({ error: "Internal Server Error" });
+        
+    }
+};
+export const resetPassword = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      res.status(400).json({ message: "Email, OTP and new password are required" });
+      return;
+    }
+
+    const user = await prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+
+    const record = getOtp(email);
+
+    if (!record) {
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+      await prisma.user.update({
+        where: { email },
+        data: { password: hashedPassword },
+      });
+    } else {
+      res.status(400).json({
+        status: 400,
+        message: "OTP not verified"
+      });
+      return;
+    }
+
+    res.status(200).json({ message: "Password reset successful" });
+  } catch (error) {
+    console.error("Error in resetPassword:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };

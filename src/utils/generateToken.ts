@@ -25,10 +25,11 @@ export const generateRefreshToken = (payload: object | string | Buffer) => {
 };
 
 export const setRefreshCookie = (res: any, token: string) => {
+    const isProd = process.env.NODE_ENV === "production";
     res.cookie('refreshToken', token, {
         httpOnly: true,
-        secure: false,
-        sameSite: "lax",
+        secure: isProd,
+        sameSite: isProd ? "none" : "lax",
         path: "/",
         maxAge: 7 * 24 * 60 * 60 * 1000
     });

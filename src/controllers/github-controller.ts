@@ -59,55 +59,55 @@ const response = await axios.post(
     }
 }
 
-export const updateGithubTokens = async (req: Request, res: Response): Promise<void> => {
-  try {
-    const code = req.query.code;
-    console.log(`Received code: ${code}`);
-    if (!code || typeof code !== 'string') {
-      res.status(400).send('Invalid or missing code parameter');
-      return;
-    }
+// export const updateGithubTokens = async (req: Request, res: Response): Promise<void> => {
+//   try {
+//     const code = req.query.code;
+//     console.log(`Received code: ${code}`);
+//     if (!code || typeof code !== 'string') {
+//       res.status(400).send('Invalid or missing code parameter');
+//       return;
+//     }
 
-    const tokenRes = await axios.post(
-      'https://github.com/login/oauth/access_token',
-      {
-        client_id: process.env.GITHUB_CLIENT_ID!,
-        client_secret: process.env.GITHUB_CLIENT_SECRET!,
-        code
-      },
-      {
-        headers: { Accept: 'application/json' }
-      }
-    );
+//     const tokenRes = await axios.post(
+//       'https://github.com/login/oauth/access_token',
+//       {
+//         client_id: process.env.GITHUB_CLIENT_ID!,
+//         client_secret: process.env.GITHUB_CLIENT_SECRET!,
+//         code
+//       },
+//       {
+//         headers: { Accept: 'application/json' }
+//       }
+//     );
 
-    console.log("GitHub Token Response:", tokenRes.data);
+//     console.log("GitHub Token Response:", tokenRes.data);
 
-    const accessToken = tokenRes.data.access_token;
-    if (!accessToken) {
-        res.status(401).json({ status: 401, message: 'Access token is missing' });
-        return;
-    }
+//     const accessToken = tokenRes.data.access_token;
+//     if (!accessToken) {
+//         res.status(401).json({ status: 401, message: 'Access token is missing' });
+//         return;
+//     }
 
-    const userRes = await axios.get('https://api.github.com/user', {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    });
+//     const userRes = await axios.get('https://api.github.com/user', {
+//       headers: { Authorization: `Bearer ${accessToken}` }
+//     });
 
-    const githubUsername = userRes.data.login;
+//     const githubUsername = userRes.data.login;
 
-    await prisma.user.update({
-      where: { email: req.user.email }, 
-      data: {
-        githubToken: accessToken,
-        githubUsername: githubUsername
-      }
-    });
+//     await prisma.user.update({
+//       where: { email: req.user.email }, 
+//       data: {
+//         githubToken: accessToken,
+//         githubUsername: githubUsername
+//       }
+//     });
 
-    res.send('GitHub connected. You can now link your repos.');
-  } catch (error) {
-    console.error("OAuth Callback Error:", error);
-    res.status(500).json({ message: 'GitHub OAuth failed', error });
-  }
-};
+//     res.send('GitHub connected. You can now link your repos.');
+//   } catch (error) {
+//     console.error("OAuth Callback Error:", error);
+//     res.status(500).json({ message: 'GitHub OAuth failed', error });
+//   }
+// };
 
 export const handleGitHubWebhook = async (req: Request, res: Response): Promise<void> => {
   const event = req.headers['x-github-event'];
@@ -199,34 +199,44 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
         commitId: newCommit.id,
         time: newCommit.timing,
       };
+      //------------dailyLog--------------
+      if (!repo.projectId) {
+  console.error("GitHub repo does not have a linked projectId.");
+        res.status(400).send("GitHub repo is missing a projectId");
+        return;
+}
 
-      const existingDailyLog = await prisma.dailyLog.findFirst({
-        where: {
-          userId: user.id,
-          date: commitDate,
-        },
-      });
+const existingDailyLog = await prisma.dailyLog.findFirst({
+  where: {
+    userId: user.id,
+    projectId: repo.projectId,
+    date: commitDate,
+  },
+});
 
-      if (!existingDailyLog) {
-        await prisma.dailyLog.create({
-          data: {
-            userId: user.id,
-            date: commitDate,
-            commitLogs: [newCommitLog],
-            codingLogs: [],
-          },
-        });
-      } else {
-        const currentCommits = (existingDailyLog.commitLogs as any[]) || [];
-        currentCommits.push(newCommitLog);
+if (!existingDailyLog) {
+  await prisma.dailyLog.create({
+    data: {
+      userId: user.id,
+      projectId: repo.projectId,
+      date: commitDate,
+      commitLogs: [newCommitLog],
+      codingLogs: [],
+      flag: false,
+    },
+  });
+} else {
+  const currentCommits = (existingDailyLog.commitLogs as any[]) || [];
+  currentCommits.push(newCommitLog);
 
-        await prisma.dailyLog.update({
-          where: { id: existingDailyLog.id },
-          data: {
-            commitLogs: currentCommits,
-          },
-        });
-      }
+  await prisma.dailyLog.update({
+    where: { id: existingDailyLog.id },
+    data: {
+      commitLogs: currentCommits,
+    },
+  });
+}
+
 
       console.log(`Commit inserted: "${commit.message}" at ${commitDateTime.toISOString()}`);
     }
@@ -239,9 +249,105 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
   }
 };
 
+export const getProjectCommitsForDate = async (req: Request, res: Response) => {
+  try {
+    const { projectId, date } = req.query;
+
+    if (!projectId || !date) {
+      res.status(400).json({ error: "projectId and date are required" });
+      return;
+    }
+    const userId = req.user?.id; 
+
+    if (!userId) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+    const targetDate = new Date(date as string);
+    targetDate.setHours(0, 0, 0, 0);
 
 
+const logs = await prisma.dailyLog.findMany({
+  where: {
+    userId: userId,
+    projectId: Number(projectId),
+    date: targetDate,
+  },
+});
+    if (logs.length === 0) {
+      res.status(400).json({
+      status: 400,
+      message: "No logs found",
+      });
+      return;
+    }
+const commitIds = logs.flatMap((log) =>
+  (Array.isArray(log.commitLogs) ? log.commitLogs : []).map((c: any) => c.commitId)
+);
 
+    const commits = await prisma.gitHubCommit.findMany({
+      where: {
+        id: { in: commitIds },
+      },
+      orderBy: {
+        timing: "asc",
+      },
+    });
+
+// Filter only required fields
+    const filteredCommits = commits.map(commit => ({
+      id: commit.id,
+      time: commit.timing,
+      message: commit.message,
+    }));
+
+  res.status(200).json({status:200, message:"Commits retrieved successfully", commits: filteredCommits });
+  } catch (err) {
+    console.error("Error fetching project commits:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export const getUnexportedLogsByProjectAndUser = async (req: Request, res: Response) => {
+  try {
+    const { userId, projectId } = req.query;
+
+    if (!userId || !projectId) {
+      res.status(400).json({ error: "userId and projectId are required" });
+      return;
+    }
+
+    const logs = await prisma.dailyLog.findMany({
+      where: {
+        userId: Number(userId),
+        projectId: Number(projectId),
+        flag: false,
+      },
+      select: {
+        id: true,
+        date: true,
+      },
+      orderBy: {
+        date: "asc",
+      },
+    });
+    if (logs.length === 0) {
+      res.status(400).json({
+      status: 400,
+      message: "No Unexported logs found",
+      });
+      return;
+    }
+    res.status(200).json({
+      status: 200,
+      message: "Unexported logs retrieved successfully",
+      logs,
+    });
+  } catch (err) {
+    console.error("Error fetching unexported logs:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 export const getCommitsByDate = async (req: Request, res: Response): Promise<void> => {
   try {

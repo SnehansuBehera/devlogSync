@@ -4,10 +4,9 @@ import prisma from '../config/prisma-config';
 import axios from 'axios';
 import PDFDocument from 'pdfkit';
 // import getStream from 'get-stream';
-import { PutObjectCommand, ObjectCannedACL } from '@aws-sdk/client-s3';
+// import { PutObjectCommand, ObjectCannedACL } from '@aws-sdk/client-s3';
 import { PassThrough } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
-import { s3 } from '../config/s3-config';
 import { emailDailyReport } from '../utils/nodemailer';
 
 export const generatePDFReport = async ({
@@ -63,7 +62,7 @@ const buffer = await new Promise<Buffer>((resolve, reject) => {
     // ACL: ObjectCannedACL.public_read,
   };
 
-  await s3.send(new PutObjectCommand(uploadParams));
+  // await s3.send(new PutObjectCommand(uploadParams));
 
   const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/reports/${fileName}`;
   return publicUrl;
@@ -143,59 +142,64 @@ Now write the 4-line summary based on the structure and tone above.
 
 
 
-export const generateAISummariesForAllUsers = async (req: Request, res: Response) => {
-  try {
-  const today = new Date().toISOString().slice(0, 10);
-  const logs = await prisma.dailyLog.findMany({
-    where: { date: new Date(today) },
-    include: { user: true },
-  });
+// export const generateAISummariesForAllUsers = async (req: Request, res: Response) => {
+//   try {
+//   const today = new Date().toISOString().slice(0, 10);
+//   const logs = await prisma.dailyLog.findMany({
+//     where: { date: new Date(today) },
+//     include: { user: true },
+//   });
 
-  for (const log of logs) {
-    const codingLogsRaw = Array.isArray(log.codingLogs)
-      ? log.codingLogs
-      : (typeof log.codingLogs === 'string'
-          ? JSON.parse(log.codingLogs)
-              : []);
-    const codingLogs = codingLogsRaw.filter((logs: any)=>logs.include===true)
-    const commitLogs = Array.isArray(log.commitLogs)
-      ? log.commitLogs
-      : (typeof log.commitLogs === 'string'
-          ? JSON.parse(log.commitLogs)
-          : []);
-    if (!codingLogs?.length || !commitLogs?.length || log.aiSummary) continue;
+//   for (const log of logs) {
+//     const codingLogsRaw = Array.isArray(log.codingLogs)
+//       ? log.codingLogs
+//       : (typeof log.codingLogs === 'string'
+//           ? JSON.parse(log.codingLogs)
+//               : []);
+//     const codingLogs = codingLogsRaw.filter((logs: any)=>logs.include===true)
+//     const commitLogs = Array.isArray(log.commitLogs)
+//       ? log.commitLogs
+//       : (typeof log.commitLogs === 'string'
+//           ? JSON.parse(log.commitLogs)
+//           : []);
+//     if (!codingLogs?.length || !commitLogs?.length || log.aiSummary) continue;
 
-    const summary = await generateAISummary(commitLogs, codingLogs, log.user);
+//     const summary = await generateAISummary(commitLogs, codingLogs, log.user);
     
-     await prisma.dailyLog.update({
-      where: { id: log.id },
-      data: { aiSummary: summary },
-    });
-  }
+//      await prisma.dailyLog.update({
+//       where: { id: log.id },
+//       data: { aiSummary: summary },
+//     });
+//   }
 
-  } catch (error) {
-    console.error("Error in generating AI summaries for all users", error);
-    res.status(500).json({
-      status: 500,
-      message: "Error in generating AI summaries for all users"
-    })
-  }
+//   } catch (error) {
+//     console.error("Error in generating AI summaries for all users", error);
+//     res.status(500).json({
+//       status: 500,
+//       message: "Error in generating AI summaries for all users"
+//     })
+//   }
  
-}
+// }
 
 export const generateAISummaryForUser = async (req: Request, res: Response):Promise<void> => {
   try {
     const userId = req.user?.id
     // const today = new Date().toISOString().slice(0, 10);
-
+    const projectId = req.query;
     if (isNaN(userId)) {
       res.status(400).json({ status: 400, message: 'Invalid userId' });
+      return;
+    }
+    if (!projectId) {
+      res.status(400).json({ status: 400, message: 'Invalid projectId' });
       return;
     }
 
     const log = await prisma.dailyLog.findFirst({
       where: {
         userId,
+        projectId,
         date: {
       gte: startOfDay(new Date()),
       lte: endOfDay(new Date()),
