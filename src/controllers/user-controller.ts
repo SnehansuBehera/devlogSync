@@ -139,8 +139,8 @@ export const login = async (req: Request, res: Response):Promise<void> => {
       console.log(isProd);
       res.cookie("accessToken", accessToken, {
         httpOnly: false,
-        secure: isProd,
-        sameSite: isProd ? "none" : "lax",
+        secure: false,
+        sameSite: "lax",
         path: "/",
         maxAge: 1 * 24 * 60 * 60 * 1000,
         // domain: "devlogsync.vercel.app"
