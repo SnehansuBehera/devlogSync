@@ -138,12 +138,12 @@ export const login = async (req: Request, res: Response):Promise<void> => {
       const isProd = process.env.NODE_ENV === "production";
       console.log(isProd);
       res.cookie("accessToken", accessToken, {
-        httpOnly: true,
+        httpOnly: false,
         secure: isProd,
         sameSite: isProd ? "none" : "lax",
         path: "/",
         maxAge: 1 * 24 * 60 * 60 * 1000,
-        domain: "devlogsync.vercel.app"
+        // domain: "devlogsync.vercel.app"
       });
 
         await prisma.user.update({
