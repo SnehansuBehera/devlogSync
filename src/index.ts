@@ -17,7 +17,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(
   cors({
-    origin: "https://devlogsync.vercel.app",
+    origin: "http://localhost:3000",
     credentials: true,
   })
 );
