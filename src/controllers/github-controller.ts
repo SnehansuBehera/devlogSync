@@ -30,7 +30,7 @@ const response = await axios.post(
     active: true,
     events: ['push', 'ping'],
     config: {
-      url: 'https://16ed-2405-201-8021-50db-7d51-f520-71e2-644f.ngrok-free.app/api/github/github/webhook',
+      url: 'https://devlogsync.onrender.com/api/github/github/webhook',
       content_type: 'json',
       secret: process.env.GITHUB_WEBHOOK_SECRET || 'fallback-secret',
       insecure_ssl: '0'
