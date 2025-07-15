@@ -4,60 +4,103 @@ import prisma from "../config/prisma-config";
 import { startOfDay, endOfDay } from 'date-fns';
 
 export const addGithubLinks = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { name, url, projectId } = req.body;
+
+    // Validate required fields
+    if (!name || !url || !projectId) {
+      res.status(400).json({ message: "Name, URL, and project ID are required." });
+      return;
+    }
+
+    // Validate authenticated user
+    const user = req.user;
+    if (!user || !user.email) {
+      res.status(401).json({ message: "Unauthorized. User not found." });
+      return;
+    }
+
+    // Fetch GitHub credentials from user
+    const owner = await prisma.user.findUnique({
+      where: { email: user.email },
+      select: { githubUsername: true, githubToken: true },
+    });
+
+    if (!owner || !owner.githubUsername || !owner.githubToken) {
+      res.status(404).json({ message: "GitHub credentials not found for user." });
+      return;
+    }
+
+    // Save repository details in database
+    const githubRepo = await prisma.gitHubRepo.create({
+      data: {
+        name,
+        url,
+        projectId,
+      },
+    });
+
+    // Create webhook on GitHub
+    const webhookUrl = "https://devlogsync.onrender.com/api/github/github/webhook";
+
+    if (!process.env.GITHUB_WEBHOOK_SECRET) {
+      console.warn("⚠️ GITHUB_WEBHOOK_SECRET is not set. Using fallback.");
+    }
+
+    let response;
     try {
-        const { name, url, projectId } = req.body;
-        if (!name || !url || !projectId) {
-            res.status(400).json({ message: "Name, URL, and project ID are required." });
-            return;
+      console.log("GitHub webhook payload:", {
+  repoOwner: owner.githubUsername,
+  repoName: name,
+  fullUrl: `https://api.github.com/repos/${owner.githubUsername}/${name}/hooks`,
+});
+
+      response = await axios.post(
+        `https://api.github.com/repos/${owner.githubUsername}/${name}/hooks`,
+        {
+          name: "web",
+          active: true,
+          events: ["push", "ping"],
+          config: {
+            url: webhookUrl,
+            content_type: "json",
+            secret: process.env.GITHUB_WEBHOOK_SECRET || "fallback-secret",
+            insecure_ssl: "0",
+          },
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${owner.githubToken}`,
+            Accept: "application/vnd.github.v3+json",
+            "User-Agent": "axios",
+          },
         }
-        const user = req.user;
-        const owner = await prisma.user.findUnique({
-            where: { email: user.email },   
-            select: { githubUsername: true, githubToken: true }
-        });
-        const githubRepo = await prisma.gitHubRepo.create({
-            data: {
-                name,
-                url,
-                projectId
-            }
-        });
+      );
+    } catch (githubError: any) {
+      console.error("GitHub webhook error:", githubError.response?.data || githubError.message);
+      res.status(500).json({
+        message: "Failed to create webhook on GitHub",
+        details: githubError.response?.data || githubError.message,
+      });
+      return;
+    }
 
-const response = await axios.post(
-  `https://api.github.com/repos/${owner?.githubUsername}/${name.toLowerCase()}/hooks`,
-  {
-    name: 'web',
-    active: true,
-    events: ['push', 'ping'],
-    config: {
-      url: 'https://devlogsync.onrender.com/api/github/github/webhook',
-      content_type: 'json',
-      secret: process.env.GITHUB_WEBHOOK_SECRET || 'fallback-secret',
-      insecure_ssl: '0'
-    }
-  },
-  {
-    headers: {
-      Authorization: `Bearer ${owner?.githubToken}`,
-      Accept: 'application/vnd.github.v3+json',
-      'User-Agent': 'axios'
-    }
+    // Update webhook ID in database
+    const hookId = response.data.id;
+    await prisma.gitHubRepo.update({
+      where: { id: githubRepo.id },
+      data: { webHookId: hookId },
+    });
+
+    res.status(201).json({
+      message: "GitHub link added successfully",
+      githubRepo,
+    });
+  } catch (error: any) {
+    console.error("Error adding GitHub links:", error.stack || error.message || error);
+    res.status(500).json({ message: "Internal server error", error: error.message });
   }
-);
-
-        const hookId = response.data.id;
-        await prisma.gitHubRepo.update({
-            where: { id: githubRepo.id },
-            data: { webHookId: hookId }
-        });
-
-        res.status(201).json({ message: "GitHub link added successfully", githubRepo });
-    } catch (error) {
-        console.error("Error adding GitHub links:", error);
-        res.status(500).json({ message: "Internal server error" });
-        
-    }
-}
+};
 
 // export const updateGithubTokens = async (req: Request, res: Response): Promise<void> => {
 //   try {
