@@ -307,7 +307,6 @@ export const getProjectCommitsForDate = async (req: Request, res: Response) => {
       return;
     }
     const targetDate = new Date(date as string);
-    targetDate.setHours(0, 0, 0, 0);
 
 
 const logs = await prisma.dailyLog.findMany({
