@@ -435,7 +435,7 @@ export const emailDailyReportController = async (req: Request, res: Response): P
       res.status(403).json({ status: 403, message: 'You are not a member of this project' });
       return;
     }
-    await emailDailyReport(log.user, project.owner.email, log.export)
+    await emailDailyReport(log.user, project.owner.email, log?.exportUrl ?? "")
 
     res.status(200).json({
       status: 200,
