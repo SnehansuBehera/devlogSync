@@ -285,6 +285,7 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
     const userId = req.user?.id
     // const today = new Date().toISOString().slice(0, 10);
     const projectId = parseInt(req.query.projectId as string, 10);
+    const {date}= req.body;
     if (isNaN(userId)) {
       res.status(400).json({ status: 400, message: 'Invalid userId' });
       return;
@@ -293,15 +294,17 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
       res.status(400).json({ status: 400, message: 'Invalid projectId' });
       return;
     }
-
+    const dateFilter = date
+  ? new Date(date)
+  : {
+      gte: startOfDay(new Date()),
+      lte: endOfDay(new Date()),
+    };
     const log = await prisma.dailyLog.findFirst({
       where: {
         userId,
         projectId,
-        date: {
-      gte: startOfDay(new Date()),
-      lte: endOfDay(new Date()),
-    },
+        date: dateFilter
       },
       include: { user: true },
     });
@@ -344,11 +347,14 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
     });
     const summary = await generateAISummary(commitLogsRaw, codingLogs, log.user);
 
-    const today = new Date().toISOString().slice(0, 10);
+    const targetDate = date ? new Date(date) : new Date();
+    targetDate.setHours(0, 0, 0, 0);
+    const formattedDate = targetDate.toISOString().slice(0, 10);
+
 
     const exportUrl = await generatePDFReport({
       user: log.user,
-      date: today,
+      date: formattedDate,
       commitLogs: formattedCommits,
       codingLogs: formattedCoding,
       summary,
@@ -385,19 +391,22 @@ export const emailDailyReportController = async (req: Request, res: Response): P
   try {
     const userId = req.user.id;
     const projectId = parseInt(req.params.projectId);
-
+    const { date } = req.body;
     if (!userId || isNaN(projectId)) {
       res.status(400).json({ status: 400, message: 'User ID and valid projectId are required' });
       return;
     }
+  const dateFilter = date
+  ? new Date(date)
+  : {
+      gte: startOfDay(new Date()),
+      lte: endOfDay(new Date()),
+    };
     const log = await prisma.dailyLog.findFirst({
       where: {
         userId,
         projectId,
-        date: {
-          gte: startOfDay(new Date()),
-          lte: endOfDay(new Date()),
-        },
+        date: dateFilter
       },
       include: {
         user: true,
@@ -435,7 +444,7 @@ export const emailDailyReportController = async (req: Request, res: Response): P
       res.status(403).json({ status: 403, message: 'You are not a member of this project' });
       return;
     }
-    await emailDailyReport(log.user, project.owner.email, log?.exportUrl ?? "")
+    await emailDailyReport(log.user, project.owner.email, log?.exportUrl ?? "", date)
 
     res.status(200).json({
       status: 200,

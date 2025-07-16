@@ -229,6 +229,17 @@ export const handleGitHubWebhook = async (req: Request, res: Response): Promise<
       const commitDate = new Date(commitDateTime);
       commitDate.setHours(0, 0, 0, 0);
 
+      const existingCommit = await prisma.gitHubCommit.findFirst({
+          where: {
+          gitHubCommitGroupId: commitGroup.id,
+          timing: commitDateTime,
+        },
+      });
+
+      if (existingCommit) {
+        console.log(`Skipping duplicate commit at ${commitDateTime.toISOString()}`);
+        continue;
+      }
       const newCommit = await prisma.gitHubCommit.create({
         data: {
           commitDate: commitDate,
