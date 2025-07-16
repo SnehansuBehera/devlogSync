@@ -8,6 +8,8 @@ import PDFDocument from 'pdfkit';
 import { PassThrough } from 'stream';
 import { v4 as uuidv4 } from 'uuid';
 import { emailDailyReport } from '../utils/nodemailer';
+import supabase from '../config/supabase-config';
+
 
 export const generatePDFReport = async ({
   user,
@@ -27,7 +29,6 @@ export const generatePDFReport = async ({
 
   const fileName = `DailyLog_${user.username?.replace(/[^a-zA-Z0-9]/g, '_')}_${date}_${uuidv4()}.pdf`;
 
-  // Pipe PDF output to stream
   doc.pipe(passThrough);
 
   doc.fontSize(18).text(`Daily Log Report`, { align: 'center' });
@@ -47,26 +48,123 @@ export const generatePDFReport = async ({
   doc.fontSize(14).text(`AI Summary:`);
   doc.fontSize(12).text(summary || 'No summary generated.');
   doc.end();
-const buffer = await new Promise<Buffer>((resolve, reject) => {
-  const chunks: Buffer[] = [];
-  passThrough.on('data', (chunk) => chunks.push(chunk));
-  passThrough.on('end', () => resolve(Buffer.concat(chunks)));
-  passThrough.on('error', reject);
-});
-  // Upload to S3
-  const uploadParams = {
-    Bucket: process.env.AWS_BUCKET_NAME!,
-    Key: `reports/${fileName}`,
-    Body: buffer,
-    ContentType: 'application/pdf',
-    // ACL: ObjectCannedACL.public_read,
-  };
 
-  // await s3.send(new PutObjectCommand(uploadParams));
+  const buffer = await new Promise<Buffer>((resolve, reject) => {
+    const chunks: Buffer[] = [];
+    passThrough.on('data', (chunk) => chunks.push(chunk));
+    passThrough.on('end', () => resolve(Buffer.concat(chunks)));
+    passThrough.on('error', reject);
+  });
 
-  const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/reports/${fileName}`;
+  const { data, error } = await supabase.storage
+    .from(process.env.SUPABASE_BUCKET_NAME!)
+    .upload(`devreports/${fileName}`, buffer, {
+      contentType: 'application/pdf',
+      upsert: true,
+    });
+
+  if (error) {
+    console.error('Upload failed:', error);
+    throw new Error('Failed to upload PDF to Supabase Storage.');
+  }
+
+  const publicUrl = supabase.storage
+    .from(process.env.SUPABASE_BUCKET_NAME!)
+    .getPublicUrl(`devreports/${fileName}`).data.publicUrl;
+
   return publicUrl;
 };
+
+
+// export const generatePDFReport = async ({
+//   user,
+//   date,
+//   commitLogs,
+//   codingLogs,
+//   summary,
+// }: {
+//   user: any;
+//   date: string;
+//   commitLogs: string[];
+//   codingLogs: string[];
+//   summary: string;
+// }): Promise<string> => {
+//   const doc = new PDFDocument();
+//   const passThrough = new PassThrough();
+
+//   const fileName = `DailyLog_${user.username?.replace(/[^a-zA-Z0-9]/g, '_')}_${date}_${uuidv4()}.pdf`;
+
+//   // Pipe PDF output to stream
+//   doc.pipe(passThrough);
+
+//   doc.fontSize(18).text(`Daily Log Report`, { align: 'center' });
+//   doc.moveDown();
+//   doc.fontSize(12).text(`Developer: ${user.firstName || user.username}`);
+//   doc.text(`Date: ${date}`);
+//   doc.moveDown();
+
+//   doc.fontSize(14).text(`Commits:`);
+//   doc.fontSize(12).text(commitLogs.length ? commitLogs.join('\n') : 'No commits logged.');
+//   doc.moveDown();
+
+//   doc.fontSize(14).text(`Coding Activity:`);
+//   doc.fontSize(12).text(codingLogs.length ? codingLogs.join('\n') : 'No coding sessions logged.');
+//   doc.moveDown();
+
+//   doc.fontSize(14).text(`AI Summary:`);
+//   doc.fontSize(12).text(summary || 'No summary generated.');
+//   doc.end();
+// const buffer = await new Promise<Buffer>((resolve, reject) => {
+//   const chunks: Buffer[] = [];
+//   passThrough.on('data', (chunk) => chunks.push(chunk));
+//   passThrough.on('end', () => resolve(Buffer.concat(chunks)));
+//   passThrough.on('error', reject);
+// });
+//     const result = await cloudinary.uploader.upload_stream({
+//     resource_type: 'raw', // Important for PDFs
+//     public_id: `reports/${fileName}`,
+//     format: 'pdf',
+//   }, (error, result) => {
+//     if (error) throw error;
+//     return result;
+//     });
+//   const uploadToCloudinary = () =>
+//     new Promise<string>((resolve, reject) => {
+//       const uploadStream = cloudinary.uploader.upload_stream(
+//         {
+//           resource_type: 'raw',
+//           public_id: `reports/${fileName}`,
+//           format: 'pdf',
+//         },
+//         (error, result) => {
+//           if (error || !result) {
+//             reject(error || new Error('Upload failed'));
+//           } else {
+//             resolve(result.secure_url);
+//           }
+//         }
+//       );
+//       // Pipe the PDF buffer to Cloudinary
+//       const stream = passThrough;
+//       stream.end(buffer);
+//       stream.pipe(uploadStream);
+//     });
+
+//   // Upload to S3
+//   // const uploadParams = {
+//   //   Bucket: process.env.AWS_BUCKET_NAME!,
+//   //   Key: `reports/${fileName}`,
+//   //   Body: buffer,
+//   //   ContentType: 'application/pdf',
+//   //   // ACL: ObjectCannedACL.public_read,
+//   // };
+
+//   // await s3.send(new PutObjectCommand(uploadParams));
+
+//   // const publicUrl = `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/reports/${fileName}`;
+//    const publicUrl = await uploadToCloudinary();
+//   return publicUrl;
+// };
 
 
 export const generateAISummary = async (commitLogs: any[], codingLogs: any[], user: any): Promise<string> => {
@@ -186,7 +284,7 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
   try {
     const userId = req.user?.id
     // const today = new Date().toISOString().slice(0, 10);
-    const projectId = req.query;
+    const projectId = parseInt(req.query.projectId as string, 10);
     if (isNaN(userId)) {
       res.status(400).json({ status: 400, message: 'Invalid userId' });
       return;
@@ -227,7 +325,7 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
         ? JSON.parse(log.commitLogs)
         : [];
 
-    if (!codingLogs.length || !commitLogsRaw.length) {
+    if (!codingLogs.length && !commitLogsRaw.length) {
       res.status(400).json({ status: 400, message: 'Missing valid codingLogs or commitLogs' });
       return;
     }
@@ -260,7 +358,9 @@ export const generateAISummaryForUser = async (req: Request, res: Response):Prom
       where: { id: log.id },
       data: {
         aiSummary: summary,
-        export: exportUrl,
+        exportUrl,
+        export: new Date().toLocaleDateString([], {hour: '2-digit', minute:'2-digit', hour12: true}),
+        flag: true,
       },
     });
 
@@ -293,6 +393,7 @@ export const emailDailyReportController = async (req: Request, res: Response): P
     const log = await prisma.dailyLog.findFirst({
       where: {
         userId,
+        projectId,
         date: {
           gte: startOfDay(new Date()),
           lte: endOfDay(new Date()),
