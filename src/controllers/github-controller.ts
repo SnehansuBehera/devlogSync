@@ -352,10 +352,15 @@ const commitIds = logs.flatMap((log) =>
 
 export const getUnexportedLogsByProjectAndUser = async (req: Request, res: Response) => {
   try {
-    const { userId, projectId } = req.query;
+    const {projectId } = req.query;
+    const userId = req.user?.id; 
 
-    if (!userId || !projectId) {
-      res.status(400).json({ error: "userId and projectId are required" });
+    if (!userId) {
+      res.status(401).json({ error: "Unauthorized" });
+      return;
+    }
+    if (!projectId) {
+      res.status(400).json({ error: "projectId are required" });
       return;
     }
 
