@@ -122,20 +122,20 @@ export const socialAuthController = async (req: Request, res: Response): Promise
     }
      const isProd = process.env.NODE_ENV === "production";
     res.cookie("accessToken", user.accessToken, {
-      httpOnly: true, 
-      secure: isProd,
-      sameSite: isProd ? "none" : "lax",
+      httpOnly: false, 
+      secure: false,
+      sameSite: "lax",
       path: "/",
       maxAge: 1 * 24 * 60 * 60 * 1000,
-      domain: "devlogsync.vercel.app"
+      // domain: "devlogsync.vercel.app"
     });
     res.cookie('refreshToken', newRefreshToken, {
         httpOnly: true,
-        secure: isProd,
-      sameSite: isProd ? "none" : "lax",
+        secure: false,
+      sameSite: "lax",
         path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-        domain: "devlogsync.vercel.app"
+        // domain: "devlogsync.vercel.app"
     });
     res.status(200).json({ message: 'Logged in successfully', user });
   } catch (err) {

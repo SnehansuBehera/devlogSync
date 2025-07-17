@@ -3,7 +3,7 @@ import prisma from '../config/prisma-config';
 
 
 
-export const createTask = async (req: Request, res: Response): Promise<void> => {
+export const createTask = async (req: Request, res: Response): Promise<void> => { //owner
     try {
         const userId = req.user.id;
       const { title, description, assigneeUser, startDate, dueDate, projectId } = req.body;
@@ -128,7 +128,7 @@ export const getAllTasksOfUser = async (req: Request, res: Response): Promise<vo
     }
 }
 
-export const getAllProjectTasksOfUser = async (req: Request, res: Response): Promise<void> => {
+export const getAllProjectTasksOfUser = async (req: Request, res: Response): Promise<void> => { //both
     try {
         const { user } = req;
         const { projectId } = req.params;
@@ -170,7 +170,7 @@ export const getAllProjectTasksOfUser = async (req: Request, res: Response): Pro
         res.status(500).json({ error: "Internal Server Error" });
     }
 }
-export const getAllProjectTasks = async (req: Request, res: Response): Promise<void> => {
+export const getAllProjectTasks = async (req: Request, res: Response): Promise<void> => { //owner
     try {
         const { user } = req;
         const { projectId } = req.params;
@@ -213,7 +213,7 @@ export const getAllProjectTasks = async (req: Request, res: Response): Promise<v
     }
 }
 
-export const markTaskCompleted = async (req: Request, response: Response): Promise<void> => {
+export const markTaskCompleted = async (req: Request, response: Response): Promise<void> => { //both
     try {
         const taskId = parseInt(req.params.taskId);
         if( isNaN(taskId)) {
@@ -246,7 +246,7 @@ export const markTaskCompleted = async (req: Request, response: Response): Promi
     }
 }
 
-export const updateTask = async (req: Request, res: Response): Promise<void> => {
+export const updateTask = async (req: Request, res: Response): Promise<void> => { //both
     try {
         const taskId = parseInt(req.params.taskId);
         if (isNaN(taskId)) {

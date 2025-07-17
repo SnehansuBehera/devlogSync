@@ -239,18 +239,18 @@ export const logout = (req: Request, res: Response) => {
   console.log(isProd)
   res.clearCookie("refreshToken", {
     httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
+    secure: false,
+    sameSite: "lax",
     path: "/",
-    domain: "devlogsync.vercel.app"
+    // domain: "devlogsync.vercel.app"
   });
 
   res.clearCookie("accessToken", {
-    httpOnly: true,
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
+    httpOnly: false,
+    secure: false,
+    sameSite: "lax",
     path: "/",
-    domain: "devlogsync.vercel.app"
+    // domain: "devlogsync.vercel.app"
   });
 
   res.status(200).json({ status: 200, message: "Logged out successfully" });

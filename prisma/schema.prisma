@@ -58,8 +58,20 @@ model Project {
   owner       User         @relation(fields: [userId], references: [id])
   tasks       Task[]
   members     User[]       @relation("ProjectMembers")
+  Invitation  Invitation[]
 
   @@index([userId])
+}
+
+model Invitation {
+  id        Int      @id @default(autoincrement())
+  email     String
+  token     String   @unique
+  projectId Int
+  project   Project  @relation(fields: [projectId], references: [id])
+  expiresAt DateTime
+  accepted  Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
 
 model Task {
