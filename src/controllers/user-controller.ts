@@ -1,7 +1,7 @@
 import express from "express";
 import prisma from "../config/prisma-config";
 import bcrypt from "bcryptjs";
-import { generateAccessToken, generateRefreshToken, setRefreshCookie } from "../utils/generateToken";
+import { generateAccessToken, generateRefreshToken} from "../utils/generateToken";
 import jwt from "jsonwebtoken";
 import generateOtp, { setOtp, getOtp, clearOtp, isInCooldown } from "../utils/otpUtils";
 import { sendOtpEmail } from "../utils/nodemailer";
@@ -64,17 +64,6 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
       where: { id: createdUser.id },
       data: { accessToken }
     });
-    const isProd = process.env.NODE_ENV === "production";
-    setRefreshCookie(res, refreshToken);
-    res.cookie("accessToken", accessToken, {
-      httpOnly: true, 
-      secure: isProd,
-      sameSite: isProd ? "none" : "lax",
-      path: "/",
-      maxAge: 1 * 24 * 60 * 60 * 1000,
-      domain: "devlogsync.vercel.app"
-    });
-
     setOtp(email, otp, otpExpiryMin, cooldownSec);
     await sendOtpEmail(email, otp);
 
@@ -89,6 +78,7 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
         username: createdUser.username,
         accessToken,
       },
+      accessToken,
       refreshToken
     });
 
@@ -134,17 +124,6 @@ export const login = async (req: Request, res: Response):Promise<void> => {
             email: user.email,
             id: user.id
         });
-      setRefreshCookie(res, refreshToken)
-      const isProd = process.env.NODE_ENV === "production";
-      console.log(isProd);
-      res.cookie("accessToken", accessToken, {
-        httpOnly: false,
-        secure: false,
-        sameSite: "lax",
-        path: "/",
-        maxAge: 1 * 24 * 60 * 60 * 1000,
-        // domain: "devlogsync.vercel.app"
-      });
 
         await prisma.user.update({
             where: { email },
@@ -160,7 +139,9 @@ export const login = async (req: Request, res: Response):Promise<void> => {
                 email: user.email,
                 username: user.username,
                 accessToken
-            }
+            },
+            accessToken,
+            refreshToken
         });
     } catch (error) {
         console.error("Error in Login:", error);
@@ -170,7 +151,7 @@ export const login = async (req: Request, res: Response):Promise<void> => {
 
 export const accessTokenUsingRefreshToken = async (req: Request, res: Response):Promise<void> => { 
     try {
-        const refreshToken = req.cookies.refreshToken;
+        const refreshToken = req.body.refreshToken || req.cookies.refreshToken;
         if(!refreshToken) {
             res.status(401).json({ status: 401, message: "Refresh token is required" });
             return;
@@ -178,15 +159,6 @@ export const accessTokenUsingRefreshToken = async (req: Request, res: Response):
         const decode = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string);
         if (typeof decode === "object" && decode !== null && "username" in decode && "email" in decode) {
           const newAccessToken = generateAccessToken({ username: (decode as any).username, email: (decode as any).email, id: (decode as any).id });
-          const isProd = process.env.NODE_ENV === "production";
-          res.cookie("accessToken", newAccessToken, {
-            httpOnly: true, 
-            secure: isProd,
-            sameSite: isProd ? "none" : "lax",
-            path: "/",
-            maxAge: 1 * 24 * 60 * 60 * 1000,
-            domain: "devlogsync.vercel.app"
-          })
           const updateAccessToken = await prisma.user.update({
             where: {
                 id: (decode as any).id
@@ -234,25 +206,6 @@ export const getUserFromAccessToken = async (req: Request, res:Response) => {
 }
 
 export const logout = (req: Request, res: Response) => {
-
-  const isProd = process.env.NODE_ENV === "production";
-  console.log(isProd)
-  res.clearCookie("refreshToken", {
-    httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-    path: "/",
-    // domain: "devlogsync.vercel.app"
-  });
-
-  res.clearCookie("accessToken", {
-    httpOnly: false,
-    secure: false,
-    sameSite: "lax",
-    path: "/",
-    // domain: "devlogsync.vercel.app"
-  });
-
   res.status(200).json({ status: 200, message: "Logged out successfully" });
 };
 

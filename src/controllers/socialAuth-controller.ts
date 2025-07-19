@@ -1,6 +1,6 @@
 import express from "express";
 import prisma from "../config/prisma-config";
-import { generateAccessToken, generateRefreshToken, setRefreshCookie } from "../utils/generateToken";
+import { generateAccessToken, generateRefreshToken} from "../utils/generateToken";
 
 
 type Request = express.Request;
@@ -120,24 +120,7 @@ export const socialAuthController = async (req: Request, res: Response): Promise
       });
       return;
     }
-     const isProd = process.env.NODE_ENV === "production";
-    res.cookie("accessToken", user.accessToken, {
-      httpOnly: false, 
-      secure: false,
-      sameSite: "lax",
-      path: "/",
-      maxAge: 1 * 24 * 60 * 60 * 1000,
-      // domain: "devlogsync.vercel.app"
-    });
-    res.cookie('refreshToken', newRefreshToken, {
-        httpOnly: true,
-        secure: false,
-      sameSite: "lax",
-        path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-        // domain: "devlogsync.vercel.app"
-    });
-    res.status(200).json({ message: 'Logged in successfully', user });
+    res.status(200).json({ message: 'Logged in successfully', user, accessToken: user?.accessToken, refreshToken: newRefreshToken });
   } catch (err) {
     res.status(500).json({ error: 'Something went wrong', details: err });
   }
@@ -179,7 +162,7 @@ export const githubAuthController = async (req: Request, res: Response): Promise
       });
       return;
     }
-    res.status(200).json({ message: 'Github connected successfully', user });
+    res.status(200).json({ message: 'Github connected successfully', user, accessToken: user?.accessToken, refreshToken: newRefreshToken });
   } catch (err) {
     res.status(500).json({ error: 'Something went wrong', details: err });
   }

@@ -23,15 +23,3 @@ export const generateRefreshToken = (payload: object | string | Buffer) => {
     const refreshToken = jwt.sign(payload, secret, options);
     return refreshToken;
 };
-
-export const setRefreshCookie = (res: any, token: string) => {
-    const isProd = process.env.NODE_ENV === "production";
-    res.cookie('refreshToken', token, {
-        httpOnly: true,
-        secure: isProd,
-        sameSite: isProd ? "none" : "lax",
-        path: "/",
-        maxAge: 7 * 24 * 60 * 60 * 1000,
-        // domain: "devlogsync.vercel.app"
-    });
-}
