@@ -17,7 +17,7 @@ export const sendInvite = async (req: Request, res: Response) => {
     data: { email, projectId: Number(projectId), token, expiresAt }
   });
 
-  const inviteLink = `http://localhost:3000/accept-invite?token=${token}`;
+  const inviteLink = `https://devlogsync.vercel.app/accept-invite?token=${token}`;
 
   const transporter = nodemailer.createTransport({
     service: "Gmail",
