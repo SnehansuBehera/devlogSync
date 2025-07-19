@@ -6,6 +6,7 @@ import githubRouter from "./routes/github-routes";
 import vsCodeRouter from "./routes/vscode-routes";
 import summaryRouter from "./routes/summary-routes";
 import inviteRouter from "./routes/invite-routes";
+import dailyLogRouter from "./routes/dailyLog-routes";
 
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -36,6 +37,7 @@ app.use('/api', githubRouter);
 app.use('/api', vsCodeRouter);
 app.use("/api", summaryRouter);
 app.use("/api", inviteRouter);
+app.use("/api", dailyLogRouter);
 
 app.listen(PORT, () => {
     console.log("Server is running at PORT:", PORT);

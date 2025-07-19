@@ -444,5 +444,3 @@ export const getCommitsByDate = async (req: Request, res: Response): Promise<voi
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
-
-
