@@ -70,10 +70,10 @@ model Invitation {
   email     String
   token     String   @unique
   projectId Int
-  project   Project  @relation(fields: [projectId], references: [id])
   expiresAt DateTime
   accepted  Boolean  @default(false)
   createdAt DateTime @default(now())
+  project   Project  @relation(fields: [projectId], references: [id])
 
   @@index([projectId])
 }
@@ -176,6 +176,24 @@ model DailyLog {
 
   @@index([userId])
   @@index([projectId])
+}
+
+model CodingDetailsToVSCodeLog {
+  A Int
+  B Int
+
+  @@id([A, B], map: "_CodingDetailsToVSCodeLog_AB_pkey")
+  @@index([B], map: "_CodingDetailsToVSCodeLog_B_index")
+  @@map("_CodingDetailsToVSCodeLog")
+}
+
+model ProjectMembers {
+  A Int
+  B Int
+
+  @@id([A, B], map: "_ProjectMembers_AB_pkey")
+  @@index([B], map: "_ProjectMembers_B_index")
+  @@map("_ProjectMembers")
 }
 
 enum TaskStatus {
